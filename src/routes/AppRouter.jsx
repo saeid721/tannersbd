@@ -18,6 +18,7 @@ const NotFoundPage          = lazy(() => import('../pages/NotFoundPage'));
 const EventsPage            = lazy(() => import('../pages/EventsPage'));
 const MenuPage              = lazy(() => import('../pages/MenuPage'));
 const NoticePage            = lazy(() => import('../pages/NoticePage'));
+const FaqPage            = lazy(() => import('../pages/FaqPage'));
 const ContactPage            = lazy(() => import('../pages/ContactPage'));
 
 // ── About dropdown routes ──────────────────────────────────────────
@@ -87,6 +88,7 @@ const router = createBrowserRouter([
       { path: 'video', element: withSuspense(VideoGalleryPage) },
       { path: 'notice', element: withSuspense(NoticePage) },
       { path: 'reservation', element: withSuspense(ReservationPage) },
+      { path: 'faq', element: withSuspense(FaqPage) },
       { path: 'contact', element: withSuspense(ContactPage) },
 
       // 404

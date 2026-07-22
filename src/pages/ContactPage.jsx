@@ -29,7 +29,12 @@ const validate = (values) => {
 
 const heroVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.1 } }
+  visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.2 } }
+};
+
+const heroItemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } }
 };
 
 const itemVariants = {
@@ -85,31 +90,42 @@ const ContactPage = () => {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────── */}
-      <div className={styles.hero}>
-        <Container>
-          <h1 className={styles.heroTitle}>Contact Us</h1>
+      <motion.div
+        className={styles.hero}
+        variants={heroVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <div className={styles.heroBg} />
+        <Container className={styles.heroContent}>
+          <motion.p className={styles.heroEyebrow} variants={heroItemVariants}>
+            Get In Touch
+          </motion.p>
+          <motion.h1 className={styles.heroTitle} variants={heroItemVariants}>
+            Contact Us
+          </motion.h1>
+          <motion.div className={styles.heroDivider} variants={heroItemVariants} />
+          <motion.p className={styles.heroDesc} variants={heroItemVariants}>
+            We'd love to hear from you. Reach out with any questions about membership, events, or our industry initiatives.
+          </motion.p>
         </Container>
-      </div>
+      </motion.div>
 
-      {/* ── Breadcrumb ───────────────────────────────── */}
-      <div className={styles.breadcrumb}>
-        <Container className={styles.breadcrumbInner}>
-          <Link to="/" className={styles.breadcrumbLink}>Bangladesh Tanners Association (BTA)</Link>
-          <span className={styles.breadcrumbSep}>›</span>
-          <span className={styles.breadcrumbCurrent}>Contact Us</span>
-        </Container>
-      </div>
 
       {/* ── Form + Info ───────────────────────────────── */}
       <motion.section
         ref={ref}
         className={styles.formSection}
-        variants={heroVariants}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
       >
         <Container>
-          <motion.p className={styles.formIntro} variants={itemVariants}>
+          <motion.p
+            className={styles.formIntro}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
             We're committed to helping you. For any queries or assistance, please contact at the
             mentioned address or leave an email. Thanks for being with us.
           </motion.p>
@@ -142,7 +158,11 @@ const ContactPage = () => {
               <form onSubmit={handleSubmit} noValidate>
                 <Row className="g-3">
                   <Col md={6}>
-                    <motion.div variants={itemVariants}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.4, delay: 0.05 }}
+                    >
                       <input
                         className={`${styles.formInput} ${touched.firstName && errors.firstName ? styles.inputError : ''}`}
                         type="text"
@@ -158,7 +178,11 @@ const ContactPage = () => {
                     </motion.div>
                   </Col>
                   <Col md={6}>
-                    <motion.div variants={itemVariants}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.4, delay: 0.1 }}
+                    >
                       <input
                         className={`${styles.formInput} ${touched.lastName && errors.lastName ? styles.inputError : ''}`}
                         type="text"
@@ -174,7 +198,11 @@ const ContactPage = () => {
                     </motion.div>
                   </Col>
                   <Col md={6}>
-                    <motion.div variants={itemVariants}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.4, delay: 0.15 }}
+                    >
                       <input
                         className={`${styles.formInput} ${touched.email && errors.email ? styles.inputError : ''}`}
                         type="email"
@@ -190,7 +218,11 @@ const ContactPage = () => {
                     </motion.div>
                   </Col>
                   <Col md={6}>
-                    <motion.div variants={itemVariants}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.4, delay: 0.2 }}
+                    >
                       <input
                         className={`${styles.formInput} ${touched.phone && errors.phone ? styles.inputError : ''}`}
                         type="tel"
@@ -206,7 +238,11 @@ const ContactPage = () => {
                     </motion.div>
                   </Col>
                   <Col md={12}>
-                    <motion.div variants={itemVariants}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.4, delay: 0.25 }}
+                    >
                       <input
                         className={styles.formInput}
                         type="text"
@@ -218,7 +254,11 @@ const ContactPage = () => {
                     </motion.div>
                   </Col>
                   <Col md={12}>
-                    <motion.div variants={itemVariants}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.4, delay: 0.3 }}
+                    >
                       <textarea
                         className={styles.formTextarea}
                         name="message"
@@ -231,7 +271,12 @@ const ContactPage = () => {
                   </Col>
                 </Row>
 
-                <motion.div variants={itemVariants} className={styles.submitWrap}>
+                <motion.div
+                  className={styles.submitWrap}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.35 }}
+                >
                   <motion.button
                     type="submit"
                     className={styles.submitBtn}

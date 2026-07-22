@@ -56,7 +56,7 @@ const NAV_ITEMS = [
       { to: '/video', label: 'Video Gallery' }
     ]
   },
-  { type: 'link', to: '/contact', label: 'FAQ' },
+  { type: 'link', to: '/faq', label: 'FAQ' },
   { type: 'link', to: '/contact', label: 'Contact' },
 ];
 
