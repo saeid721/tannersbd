@@ -1,0 +1,106 @@
+// ─── Brand Colors ───────────────────────────────────────────
+$brand-gold:    #cf9a61;
+$brand-black:   #000000;
+$brand-red:     #FF0000;
+$brand-white:   #FFFFFF;
+$gold: $brand-gold;
+
+// ─── Extended Palette ───────────────────────────────────────
+$gold-light:    #e5b88d;
+$gold-dark:     #a85a3a;
+$gold-muted:    #d4a875;
+$btn-primary:   #ec1b23;
+$btn-light:     #f55563;
+$btn-dark:      #a71419;
+$surface-dark:  #0D0D0D;
+$surface-mid:   #1A1A1A;
+$surface-card:  #111111;
+$border-subtle: rgba(207, 154, 97, 0.18);
+$text-muted:    #999999;
+$text-light:    #CCCCCC;
+
+// ─── Typography ─────────────────────────────────────────────
+$font-display:  'Sen', sans-serif;
+$font-body:     'Lato', 'Helvetica Neue', Arial, sans-serif;
+$font-mono:     'JetBrains Mono', monospace;
+
+$fs-xs:   0.75rem;
+$fs-sm:   0.875rem;
+$fs-base: 1rem;
+$fs-md:   1.125rem;
+$fs-lg:   1.375rem;
+$fs-xl:   1.75rem;
+$fs-2xl:  2.25rem;
+$fs-3xl:  3rem;
+$fs-4xl:  4rem;
+
+// ─── Spacing ─────────────────────────────────────────────────
+$space-xs:  0.25rem;
+$space-sm:  0.5rem;
+$space-md:  1rem;
+$space-lg:  1.5rem;
+$space-xl:  2.5rem;
+$space-2xl: 4rem;
+$space-3xl: 6rem;
+
+// ─── Borders & Radius ───────────────────────────────────────
+$radius-sm:  4px;
+$radius-md:  8px;
+$radius-lg:  16px;
+$radius-pill: 999px;
+$border-default:  2px;
+
+// ─── Shadows ─────────────────────────────────────────────────
+$shadow-card:   0 4px 24px rgba(0,0,0,0.4);
+$shadow-gold:   0 0 24px rgba(207,154,97,0.25);
+$shadow-hover:  0 8px 40px rgba(207,154,97,0.35);
+
+// ─── Transitions ─────────────────────────────────────────────
+$transition-fast:   150ms ease;
+$transition-base:   300ms ease;
+$transition-slow:   500ms ease;
+
+// ─── Bootstrap Overrides ─────────────────────────────────────
+$primary:         $brand-gold;
+$secondary:       $brand-black;
+$dark:            $surface-dark;
+$body-bg:         $surface-dark;
+$body-color:      $brand-white;
+$link-color:      $brand-gold;
+$border-color:    $border-subtle;
+$navbar-dark-color: rgba(255,255,255,0.85);
+
+// ─── Z-index Scale ───────────────────────────────────────────
+$z-below:    -1;
+$z-base:      0;
+$z-raised:    10;
+$z-dropdown:  100;
+$z-sticky:    200;
+$z-overlay:   300;
+$z-modal:     400;
+$z-toast:     500;
+
+
+
+// Borders & Accents
+$card-border: rgba(212, 175, 55, 0.2);
+$gold-border: rgba($gold, 0.4);
+$gold-faint: rgba($gold, 0.12);
+
+// Backgrounds
+$navy-photo: linear-gradient(135deg, #1a1a2e, #0f1a33);
+// $surface-card: #0f1a33;
+// $surface-mid: #0a1428;
+
+// Text
+$text-light: rgba(255, 255, 255, 0.9);
+$text-muted: rgba(255, 255, 255, 0.65);
+
+// Spacing
+$space-lg: 2rem;
+$space-xl: 3rem;
+$space-2xl: 4rem;
+$space-3xl: 5rem;
+
+// Radius
+$radius-pill: 999px;

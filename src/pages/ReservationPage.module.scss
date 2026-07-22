@@ -1,0 +1,256 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+// ── Hero ─────────────────────────────────────────────────────
+.hero {
+  position: relative;
+  min-height: 38vh;
+  @include flex-center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba($brand-gold, 0.07) 0%, transparent 70%),
+    linear-gradient(180deg, $surface-mid 0%, $surface-card 100%);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $brand-gold, $brand-red, $brand-gold, transparent);
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  padding: $space-3xl $space-md;
+}
+
+.heroEyebrow {
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $brand-gold;
+  margin-bottom: $space-sm;
+}
+
+.heroTitle {
+    font-family: "Sen", sans-serif;
+    font-size: 50px;
+    font-weight: 800;
+    font-style: normal;
+    font-variant: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-stretch: 100%;
+    font-variation-settings: normal;
+    font-feature-settings: normal;
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0);
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    text-indent: 0px;
+  
+  @include tablet { font-size: $fs-3xl; }
+  @include mobile { font-size: $fs-2xl; }
+}
+
+.heroDivider {
+  width: 64px;
+  height: 3px;
+  background: linear-gradient(90deg, $brand-gold, $brand-red);
+  margin: 0 auto $space-lg;
+  border-radius: 2px;
+}
+
+.heroDesc {
+  font-size: $fs-md;
+  color: $text-light;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+// ── Form Section ──────────────────────────────────────────────
+.formSection {
+  @include section-padding;
+  background: $surface-dark;
+}
+
+// ── Form Card ─────────────────────────────────────────────────
+.formCard {
+  background: $surface-card;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-lg;
+  overflow: hidden;
+}
+
+.formCardHeader {
+  padding: $space-xl $space-xl $space-lg;
+  border-bottom: 1px solid $border-subtle;
+  background: $surface-mid;
+}
+
+.formTitle {
+  font-family: $font-display;
+  font-size: $fs-xl;
+  font-weight: 700;
+  color: $brand-white;
+  margin-bottom: $space-xs;
+}
+
+.formSubtitle { font-size: $fs-sm; color: $text-muted; margin: 0; }
+
+.successAlert {
+  margin: $space-lg $space-xl 0;
+  background: rgba(#22c55e, 0.1) !important;
+  border: 1px solid rgba(#22c55e, 0.3) !important;
+  color: #86efac !important;
+  border-radius: $radius-sm !important;
+}
+
+.errorAlert {
+  margin: $space-lg $space-xl 0;
+  background: rgba($brand-red, 0.1) !important;
+  border: 1px solid rgba($brand-red, 0.3) !important;
+  color: lighten(#FF0000, 30%) !important;
+  border-radius: $radius-sm !important;
+}
+
+// ── Field Groups ──────────────────────────────────────────────
+.fieldGroup {
+  padding: $space-xl;
+  border-bottom: 1px solid $border-subtle;
+}
+
+.fieldGroupTitle {
+  font-family: $font-body;
+  font-size: $fs-xs;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: $brand-gold;
+  margin-bottom: $space-lg;
+  padding-bottom: $space-sm;
+  border-bottom: 1px solid $border-subtle;
+}
+
+// ── Form Footer ───────────────────────────────────────────────
+.formFooter {
+  padding: $space-xl;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-md;
+  flex-wrap: wrap;
+
+  @include mobile { flex-direction: column; align-items: stretch; text-align: center; }
+}
+
+.formNote {
+  font-size: $fs-xs;
+  color: $text-muted;
+  margin: 0;
+  flex: 1;
+}
+
+// ── Sidebar ───────────────────────────────────────────────────
+.sidebar {
+  background: $surface-card;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  position: sticky;
+  top: 100px;
+}
+
+.sidebarTitle {
+  font-family: $font-body;
+  font-size: $fs-xs;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: $brand-gold;
+  padding: $space-lg $space-lg $space-md;
+  border-bottom: 1px solid $border-subtle;
+  margin: 0;
+  background: $surface-mid;
+}
+
+.infoList {
+  list-style: none;
+  padding: $space-md;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.infoItem {
+  display: flex;
+  gap: $space-md;
+  align-items: flex-start;
+  padding: $space-md;
+  border-bottom: 1px solid $border-subtle;
+  transition: background $transition-fast;
+
+  &:hover { background: rgba($brand-gold, 0.04); }
+  &:last-child { border-bottom: none; }
+}
+
+.infoIcon { font-size: $fs-lg; flex-shrink: 0; width: 28px; text-align: center; }
+
+.infoLabel {
+  display: block;
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $brand-gold;
+  margin-bottom: 2px;
+}
+
+.infoValue { font-size: $fs-sm; color: $text-light; }
+
+// ── Sidebar Note ──────────────────────────────────────────────
+.sidebarNote {
+  padding: $space-lg;
+  background: $surface-mid;
+  border-top: 1px solid $border-subtle;
+}
+
+.sidebarNoteTitle {
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $text-muted;
+  margin-bottom: $space-md;
+}
+
+.policyList {
+  padding-left: $space-md;
+  margin: 0;
+
+  li {
+    font-size: 0.60rem;
+    color: $text-light;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    text-align: start;
+    &::marker { color: $brand-gold; }
+  }
+}

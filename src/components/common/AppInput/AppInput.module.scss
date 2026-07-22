@@ -1,0 +1,52 @@
+@use '../../../styles/variables' as *;
+
+.group {
+  margin-bottom: $space-lg;
+}
+
+.label {
+  display: block;
+  font-family: $font-body;
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $text-light;
+  margin-bottom: 6px;
+}
+
+.required {
+  color: $brand-red;
+}
+
+.control {
+  background-color: $surface-mid !important;
+  border: 1px solid $border-subtle !important;
+  color: $brand-white !important;
+  border-radius: $radius-sm !important;
+  padding: 0.7rem 1rem !important;
+  font-size: $fs-sm !important;
+  transition: border-color $transition-fast, box-shadow $transition-fast !important;
+
+  &::placeholder {
+    color: $text-muted !important;
+  }
+
+  &:focus {
+    border-color: $brand-gold !important;
+    box-shadow: 0 0 0 3px rgba($brand-gold, 0.15) !important;
+    outline: none;
+  }
+
+  // For select, override arrow color
+  option {
+    background: $surface-mid;
+    color: $brand-white;
+  }
+}
+
+.error {
+  font-size: $fs-xs;
+  color: $brand-red !important;
+  margin-top: 4px;
+}

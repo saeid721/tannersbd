@@ -1,0 +1,302 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+/* ── Section: white background ────────────────────────── */
+.about {
+  width: 100%;
+  background: $brand-white;
+  padding: $space-3xl 0;
+
+  @include tablet { padding: $space-2xl 0; }
+  @include mobile { padding: $space-xl 0; }
+}
+
+/* ── Image collage ─────────────────────────────────────── */
+.imageGrid {
+  position: relative;
+  height: 520px;
+
+  @include tablet { height: 360px; margin-bottom: $space-xl; }
+  @include mobile { height: 300px; }
+}
+
+.imgBox {
+  position: absolute;
+  border-radius: $radius-md;
+  overflow: hidden;
+  border: 1px solid rgba($brand-black, 0.06);
+  box-shadow: $shadow-card;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease; // ✅ Smooth zoom transition
+  }
+
+  /* Large image: takes up left ~68% and top ~65% */
+  &--large {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    z-index: 1;
+    border-radius: $radius-md;
+
+    &:hover img {
+      transform: scale(1.08); // ✅ Subtle zoom on hover
+    }
+  }
+
+  /* Small image: top-right, overlaps large */
+  &--small {
+    top: -10%;
+    right: 0;
+    width: 25%;
+    height: 40%;
+    z-index: 2;
+    border-radius: $radius-md;
+    
+    @include mobile {
+      display: none;
+    }
+  } 
+
+}
+
+/* ── Badge: bottom-center overlapping both images ──────── */
+.badge {
+  position: absolute;
+  bottom: 10%;
+  left: 36%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  padding: 30px 24px;
+  background: rgba($brand-black, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: $radius-lg;
+  color: $brand-white;
+  border: 1px solid rgba($brand-white, 0.15);
+  width: 62%;
+
+  @include mobile {
+    bottom: 10%;
+    left: 15%;
+    padding: $space-sm $space-md;
+    width: 70%;
+  }
+}
+
+.badgeLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.badgeYear {
+  font-family: 'Sen', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: $brand-gold;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+
+  @include mobile { font-size: 1.3rem; }
+}
+
+.badgeText {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba($brand-white, 0.7);
+  line-height: 1.3;
+}
+
+.badgeDivider {
+  width: 1px;
+  height: 44px;
+  background: rgba($brand-white, 0.25);
+  flex-shrink: 0;
+
+  @include mobile { height: 32px; }
+}
+
+.badgeRight {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.memberAvatars {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid rgba($brand-gold, 0.8);
+    object-fit: cover;
+    margin-left: -10px;
+
+    &:first-child { margin-left: 0; }
+
+    @include mobile { width: 26px; height: 26px; }
+  }
+}
+
+.memberCountBubble {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: $brand-gold;
+  border: 2px solid rgba($brand-white, 0.6);
+  margin-left: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.48rem;
+  font-weight: 800;
+  color: $brand-white;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+
+  @include mobile {
+    width: 26px;
+    height: 26px;
+    font-size: 0.42rem;
+  }
+}
+
+.membersLabel {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba($brand-white, 0.7);
+  margin-top: 2px;
+}
+
+/* ── Content Section ──────────────────────────────────── */
+.content {
+  padding: 36px 40px;
+  background: $brand-white;
+  border-radius: $radius-lg;
+  border: 1px solid rgba($brand-black, 0.08);
+  box-shadow: $shadow-card;
+
+  @include tablet {
+    padding: 28px 24px;
+    margin-top: $space-xl;
+  }
+
+  @include mobile {
+    padding: 20px 16px;
+  }
+}
+
+/* ── EST. 2014 line ───────────────────────────────────── */
+.estText {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  margin-bottom: $space-md;
+
+  &::before,
+  &::after {
+    content: '';
+    height: 1px;
+    background: $brand-gold;
+    width: 48px;
+    flex-shrink: 0;
+  }
+
+  span {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: $brand-gold;
+    white-space: nowrap;
+  }
+}
+
+/* ── Title ────────────────────────────────────────────── */
+.title {
+  font-family: 'Sen', sans-serif;
+  font-size: clamp(52px, 7vw, 80px);
+  font-weight: 900;
+  line-height: 1.0;
+  margin-bottom: $space-lg;
+  letter-spacing: -0.02em;
+
+  .titlePart1 {
+    display: block;
+    color: $brand-black;
+  }
+
+  .titlePart2 {
+    display: block;
+    color: $brand-gold;
+  }
+  
+  @include mobile {
+    font-size: 36px;
+  }
+}
+
+/* ── Descriptions ─────────────────────────────────────── */
+.description {
+  font-size: $fs-sm;
+  line-height: 1.8;
+  color: $brand-black;
+  margin-bottom: $space-md;
+
+  /* First paragraph gets a left gold border, like in the screenshot */
+  &:first-of-type {
+    border-left: 3px solid $brand-gold;
+    padding-left: $space-md;
+    color: #475569;
+  }
+
+  &:last-of-type {
+    margin-bottom: $space-xl;
+  }
+}
+
+/* ── Legacy Link ──────────────────────────────────────── */
+.legacyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: $brand-black;
+  text-decoration: none;
+  padding-bottom: 6px;
+  border-bottom: 2px solid $brand-gold;
+  transition: all $transition-base;
+
+  &:hover {
+    color: $brand-gold;
+    gap: $space-md;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    transition: transform $transition-base;
+    flex-shrink: 0;
+  }
+
+  &:hover svg {
+    transform: translateX(4px);
+  }
+}

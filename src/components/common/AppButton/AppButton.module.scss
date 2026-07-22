@@ -1,0 +1,131 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-body;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: all $transition-base;
+  white-space: nowrap;
+  text-decoration: none;
+
+  // ── Background Context Modifiers ─────────────────────────
+  &--bg-dark {
+    &.btn--ghost {
+      color: $brand-white;
+      border-color: rgba($brand-white, 0.3);
+      &:hover:not(:disabled) {
+        border-color: $brand-gold;
+        color: $brand-gold;
+        background: rgba($brand-gold, 0.08);
+      }
+    }
+    &.btn--outline {
+      color: $btn-primary;
+      border-color: $btn-primary;
+      &:hover:not(:disabled) {
+        background: $brand-gold;
+        color: $brand-black;
+      }
+    }
+  }
+
+  &--bg-light {
+    &.btn--ghost {
+      color: #0f172a;
+      border-color: rgba(#0f172a, 0.3);
+      &:hover:not(:disabled) {
+        border-color: $brand-gold;
+        color: $brand-gold;
+        background: rgba($brand-gold, 0.08);
+      }
+    }
+    // ✅ Outline button on light background - uses primary button color
+    &.btn--outline {
+      color: $btn-primary;
+      border-color: $btn-primary;
+      background: transparent; // White/transparent background
+      
+      &:hover:not(:disabled) {
+        background: $brand-gold; // Brand color background on hover
+        color: $brand-black; // Dark text on hover for contrast
+        box-shadow: $shadow-gold;
+      }
+    }
+  }
+
+  // ── Variants (core styles) ───────────────────────────────
+  &--gold {
+    background: linear-gradient(135deg, $btn-primary, $btn-dark);
+    color: $brand-white;
+
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, $gold-light, $brand-gold);
+      box-shadow: $shadow-gold;
+      transform: translateY(-2px);
+      color: $brand-black;
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    color: $btn-primary;
+    border: 1.5px solid $btn-primary;
+
+    &:hover:not(:disabled) {
+      background: $brand-gold;
+      color: $brand-black;
+      box-shadow: $shadow-gold;
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: $brand-white;
+    border: 1.5px solid rgba($brand-white, 0.3);
+
+    &:hover:not(:disabled) {
+      border-color: $brand-gold;
+      color: $brand-gold;
+      background: rgba($brand-gold, 0.08);
+    }
+  }
+
+  &--danger {
+    background: $brand-red;
+    color: $brand-white;
+
+    &:hover:not(:disabled) {
+      background: darken(#FF0000, 10%);
+      box-shadow: 0 4px 16px rgba(255, 0, 0, 0.3);
+    }
+  }
+
+  // ── Sizes ─────────────────────────────────────────────────
+  &--sm { font-size: $fs-xs; padding: 0.45rem 1.1rem; }
+  &--md { font-size: $fs-sm; padding: 0.7rem 1.8rem; }
+  &--lg { font-size: $fs-base; padding: 0.9rem 2.4rem; }
+
+  // ── Modifiers ─────────────────────────────────────────────
+  &--full { width: 100%; }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .spinner { flex-shrink: 0; }
+}

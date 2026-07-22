@@ -1,0 +1,18 @@
+@use '../styles/variables' as *;
+
+/* Full-width flex column layout */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background-color: $surface-dark;
+  overflow-x: hidden;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  /* Push below fixed navbar — adjust if navbar height changes */
+  //padding-top: 76px;
+}

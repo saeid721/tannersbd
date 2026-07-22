@@ -1,0 +1,219 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+/* ── Section: full-width background ────────────────────────── */
+.section {
+  width: 100%;
+  background: $surface-mid;
+  padding: $space-3xl 0;
+
+  @include tablet { padding: $space-2xl 0; }
+  @include mobile { padding: $space-xl 0; }
+}
+
+.header { margin-bottom: $space-xl; }
+
+/* ── Cards ──────────────────────────────────────────────────── */
+.card {
+  background: $surface-card;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  padding: $space-xl;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: transform $transition-base, box-shadow $transition-base, border-color $transition-base;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $brand-gold, $brand-red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform $transition-base;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: $shadow-hover;
+    border-color: rgba($brand-gold, 0.3);
+    &::before { transform: scaleX(1); }
+  }
+}
+
+/* ── Icon and Title Row ────────────────────────────────────── */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  margin-bottom: $space-md;
+}
+
+.cardIcon {
+  flex-shrink: 0;
+  font-size: 2rem;
+  width: 48px;
+  height: 48px;
+  @include flex-center;
+  background: rgba($brand-gold, 0.08);
+  border-radius: $radius-sm;
+  border: 1px solid rgba($brand-gold, 0.15);
+  transition: transform $transition-fast;
+
+  @include mobile {
+    width: 40px;
+    height: 40px;
+    font-size: 1.6rem;
+  }
+
+  // Extra small devices
+  @media (max-width: 380px) {
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+  }
+}
+
+.cardIconWrapper {
+  &:hover .cardIcon {
+    transform: rotate(8deg) scale(1.1);
+  }
+}
+
+.cardTitleGroup {
+  flex: 1;
+  min-width: 0; /* Prevents overflow */
+}
+
+.cardTag { 
+  font-size: $fs-xs; 
+  font-weight: 700; 
+  letter-spacing: 0.12em; 
+  text-transform: uppercase; 
+  color: $brand-gold; 
+  margin-bottom: $space-xs; 
+}
+
+.cardTitle { 
+  font-family: $font-display; 
+  font-size: $fs-lg; 
+  font-weight: 700; 
+  color: $brand-white; 
+  line-height: 1.2;
+  margin: 0;
+  word-break: break-word;
+  
+  @include mobile {
+    font-size: $fs-md;
+  }
+  
+  // Extra small devices
+  @media (max-width: 380px) {
+    font-size: $fs-sm;
+  }
+}
+
+.cardDesc { 
+  font-size: $fs-sm; 
+  color: $text-muted; 
+  line-height: 1.7; 
+  flex: 1; 
+  margin-top: $space-sm;
+  margin-bottom: $space-md;
+  
+  @include mobile {
+    font-size: $fs-xs;
+    line-height: 1.6;
+  }
+}
+
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: $fs-sm;
+  font-weight: 700;
+  color: $brand-gold;
+  text-decoration: none;
+  margin-top: auto;
+  transition: gap $transition-fast, color $transition-fast;
+
+  &:hover { 
+    gap: 10px; 
+    color: $gold-light; 
+    text-decoration: none; 
+  }
+  
+  @include mobile {
+    font-size: $fs-xs;
+  }
+}
+
+.cta { 
+  text-align: center; 
+  margin-top: $space-2xl; 
+}
+
+/* ── Card Wrapper for hover effects ────────────────────────── */
+.cardWrapper {
+  height: 100%;
+}
+
+/* ── Responsive adjustments ────────────────────────────────── */
+@include tablet {
+  .card {
+    padding: $space-lg;
+  }
+  
+  .cardIcon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.8rem;
+  }
+}
+
+@include mobile {
+  .card {
+    padding: $space-md;
+  }
+  
+  .cardHeader {
+    gap: $space-sm;
+    margin-bottom: $space-sm;
+  }
+  
+  .cardIcon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.4rem;
+  }
+  
+  .cardTitle {
+    font-size: $fs-base;
+  }
+}
+
+/* ── Extra small devices (phones under 380px) ────────────────── */
+@media (max-width: 380px) {
+  .card {
+    padding: $space-sm;
+  }
+  
+  .cardHeader {
+    gap: $space-xs;
+  }
+  
+  .cardIcon {
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+  }
+  
+  .cardTitle {
+    font-size: $fs-sm;
+  }
+}

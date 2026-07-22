@@ -1,0 +1,105 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.header {
+  margin-bottom: $space-2xl;
+
+  &--centered {
+    text-align: center;
+  }
+
+  // Text adapts to background via variant
+  &--dark {
+    .titlePart1 { color: $brand-white; }
+    .titlePart2 { color: $brand-gold; }
+    .subtitle { color: $brand-gold; }
+    .description { color: $text-light; }
+  }
+
+  &--light {
+    .titlePart1 { color: $brand-black; }
+    .titlePart2 { color: $brand-gold; }
+    .subtitle { color: $brand-gold; }
+    .description { color: $text-muted; }
+  }
+}
+
+.subtitle {
+  display: inline-block;
+  font-family: $font-body;
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: $space-sm;
+}
+
+.title {
+  font-family: 'Sen', sans-serif;
+  font-size: 50px;
+  font-weight: 900;
+  font-style: normal;
+  font-variant: normal;
+  font-kerning: auto;
+  font-optical-sizing: auto;
+  font-stretch: 100%;
+  font-variation-settings: normal;
+  font-feature-settings: normal;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: start;
+  text-indent: 0px;
+  background-color: rgba(0, 0, 0, 0);
+  line-height: 1.15;
+  margin: 0;
+
+  @include tablet { font-size: 48px; }
+  @include mobile { font-size: 36px; }
+}
+
+// Center alignment for title when needed
+.title--centered {
+  text-align: center;
+  
+  .titlePart1,
+  .titlePart2 {
+    text-align: center;
+  }
+}
+
+.titlePart1 {
+  display: inline;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.titlePart2 {
+  display: inline;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.divider {
+  width: 56px;
+  height: 3px;
+  background: linear-gradient(90deg, $brand-gold, $brand-red);
+  margin-top: $space-md;
+  margin-bottom: 0;
+  border-radius: 2px;
+}
+
+.dividerCenter {
+  @extend .divider;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.description {
+  margin-top: $space-lg;
+  font-size: $fs-md;
+  max-width: 640px;
+  line-height: 1.8;
+
+  .header--centered & {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

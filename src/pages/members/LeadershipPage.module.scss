@@ -1,0 +1,388 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+// ── Local tokens ──────────────────────────────────────────────────────────────
+$navy-deep   : #0a0f1e;
+$navy-card   : #111827;
+$navy-photo  : #0f1420;
+$gold        : #c9a84c;
+$gold-faint  : rgba(201, 168, 76, 0.14);
+$gold-border : rgba(201, 168, 76, 0.30);
+$text-cream  : #f0ece3;
+$text-muted  : #8ba3cc;
+$card-border : rgba(255, 255, 255, 0.07);
+
+// ── Media query breakpoints ──────────────────────────────────────────────────
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 576px;
+
+// ── Mixins (replacing external imports) ──────────────────────────────────────
+@mixin tablet {
+  @media (max-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+
+// ── Hero ─────────────────────────────────────────────────────
+.hero {
+  position: relative;
+  min-height: 38vh;
+  @include flex-center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba($brand-gold, 0.07) 0%, transparent 70%),
+    linear-gradient(180deg, $surface-mid 0%, $surface-card 100%);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $brand-gold, $brand-red, $brand-gold, transparent);
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  padding: $space-3xl $space-md;
+}
+
+.heroEyebrow {
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $brand-gold;
+  margin-bottom: $space-sm;
+}
+
+.heroTitle {
+    font-family: "Sen", sans-serif;
+    font-size: 50px;
+    font-weight: 800;
+    font-style: normal;
+    font-variant: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-stretch: 100%;
+    font-variation-settings: normal;
+    font-feature-settings: normal;
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0);
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    text-indent: 0px;
+  
+  @include tablet { font-size: $fs-3xl; }
+  @include mobile { font-size: $fs-2xl; }
+}
+
+.heroDivider {
+  width: 64px;
+  height: 3px;
+  background: linear-gradient(90deg, $brand-gold, $brand-red);
+  margin: 0 auto $space-lg;
+  border-radius: 2px;
+}
+
+.heroDesc {
+  font-size: $fs-md;
+  color: $text-light;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+// ── Section ───────────────────────────────────────────────────────────────────
+.section {
+  width: 100%;
+  background: 
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba($brand-gold, 0.07) 0%, transparent 70%),
+    linear-gradient(180deg, $surface-mid 0%, $surface-card 100%);
+  padding: $space-3xl 0;
+
+  @include tablet { 
+    padding: $space-2xl 0; 
+  }
+}
+
+// ── Card shell ────────────────────────────────────────────────────────────────
+.card {
+  position: relative;
+  background: $brand-black;
+  border: 1px solid $card-border;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100%;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+
+  // entrance animation state
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity      0.001s,
+    transform    0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow   0.35s ease,
+    border-color 0.35s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.55), 0 0 0 1px $gold-border;
+    border-color: rgba($gold, 0.25);
+
+    .photoOverlay  { opacity: 1; }
+    .cornerAccent  { opacity: 1; }
+    .photo         { transform: scale(1.05); }
+  }
+}
+
+// ── President variant ─────────────────────────────────────────────────────────
+.card--featured {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: 460px;
+
+  .photoArea {
+    width: 280px;
+    min-width: 280px;
+    height: auto;
+    min-height: 280px;
+    border-radius: 18px 0 0 18px;
+  }
+
+  .photo {
+    object-position: center 20%;
+  }
+
+  .cardBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px 32px;
+  }
+
+  .name { 
+  font-family: 'Sen', sans-serif;
+    font-size: 28px; 
+    margin-bottom: 10px;
+    color: $brand-white;
+  }
+
+  .goldBadge {
+    font-size: 13px;
+    color: $brand-gold;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    min-height: 520px;
+
+    .photoArea {
+      width: 100%;
+      min-height: 300px;
+      border-radius: 18px 18px 0 0;
+    }
+
+    .photo {
+      object-position: top center;
+    }
+
+    .cardBody {
+      padding: 28px 24px 32px;
+    }
+  }
+}
+
+// ── Photo area ────────────────────────────────────────────────────────────────
+.photoArea {
+  position: relative;
+  height: 420px;
+  background: $navy-photo;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+// The actual <img>
+.photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+// Gold shimmer overlay on hover
+.photoOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.5) 100%);
+  opacity: 0.4;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+  
+  .card:hover & {
+    //background: radial-gradient(ellipse at 50% 30%, rgba($gold, 0.25) 0%, rgba(0,0,0,0.6) 80%);
+    opacity: 1;
+  }
+}
+
+// Initials fallback (shown when no image available)
+.initialsCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1d2d50, #0f1a33);
+  border: 2px solid $gold-border;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.initialsText {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: $gold;
+  line-height: 1;
+}
+
+// ── Code badge ───────────────────────────────────────────────────────────────
+.codeBadge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 3;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $gold;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid $gold-border;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+// ── Corner accent ────────────────────────────────────────────────────────────
+.cornerAccent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  border-top: 2px solid rgba($gold, 0.7);
+  border-right: 2px solid rgba($gold, 0.7);
+  border-radius: 0 18px 0 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+// ── Card body ────────────────────────────────────────────────────────────────
+.cardBody {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: $brand-black;
+}
+
+.goldBadge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: $gold;
+  background: $gold-faint;
+  border: 1px solid $gold-border;
+  padding: 4px 14px;
+  border-radius: 12px;
+  width: fit-content;
+  margin: 0 auto 12px; /* Centers the badge horizontally */
+  text-align: center;
+}
+
+.name {
+  font-family: 'Sen', sans-serif;
+  font-size: $fs-base;
+  font-weight: 800;
+  color: $brand-white;
+  margin: 0 0 14px;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  transition: color 0.35s ease;
+}
+
+.tenure {
+  font-size: 13px;
+  color: $text-muted;
+  margin: 0 0 12px;
+  font-weight: 500;
+}
+
+.bio {
+  font-size: 14px;
+  color: $text-muted;
+  line-height: 1.6;
+  margin: 0;
+}
+
+// ── Section Headers ──────────────────────────────────────────────────────────
+.presidentSection,
+.committeeSection {
+  padding: 4rem 0;
+  background: $surface-card;
+}
+
+// ── President Wrapper ────────────────────────────────────────────────────────
+.presidentWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+// ── Description Section ───────────────────────────────────────
+.descriptionSection {
+  @include section-padding;
+  background: $surface-dark;
+  padding: 30px 0;
+}

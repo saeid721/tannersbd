@@ -1,0 +1,164 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+/* ─── Google Fonts ───────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700;900&family=Sen:wght@400;700;800&display=swap');
+
+/* ─── CSS Custom Properties ─────────────────────────────────── */
+:root {
+  --gold:        #{$brand-gold};
+  --gold-light:  #{$gold-light};
+  --gold-dark:   #{$gold-dark};
+  --red:         #{$brand-red};
+  --black:       #{$brand-black};
+  --white:       #{$brand-white};
+  --surface:     #{$surface-dark};
+  --surface-mid: #{$surface-mid};
+  --surface-card:#{$surface-card};
+  --text-muted:  #{$text-muted};
+  --text-light:  #{$text-light};
+  --border:      #{$border-subtle};
+  --shadow-card: #{$shadow-card};
+  --shadow-gold: #{$shadow-gold};
+  --transition:  #{$transition-base};
+  --font-display:#{$font-display};
+  --font-body:   #{$font-body};
+}
+
+/* ─── Full-width foundation ─────────────────────────────────── */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Base Reset ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; @include custom-scrollbar; }
+
+body {
+  font-family: $font-body;
+  font-size: $fs-base;
+  background-color: $surface-dark;
+  color: $brand-white;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Typography ─────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 { font-family: $font-display; font-weight: 700; line-height: 1.2; color: $brand-white; }
+p   { color: $text-light; line-height: 1.8; }
+img { max-width: 100%; height: auto; display: block; }
+
+a {
+  color: $brand-gold;
+  text-decoration: none;
+  transition: color $transition-fast;
+  &:hover { color: $gold-light; }
+}
+
+/* ─── Bootstrap Container: let it use its own max-width ──────── */
+/* We do NOT force max-width:100% here — Bootstrap Container is   */
+/* used only inside sections where we WANT content constrained.   */
+/* The full-width bg effect comes from the <section> itself.      */
+.container,
+.container-fluid,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl,
+.container-xxl {
+  // Bootstrap handles max-width and padding — no overrides needed.
+  // Sections are full-width; containers centre the content inside them.
+}
+
+/* ─── Utility classes ────────────────────────────────────────── */
+.text-gold        { color: $brand-gold !important; }
+.text-gold-light  { color: $gold-light !important; }
+.text-red         { color: $brand-red !important; }
+.text-muted-custom{ color: $text-muted !important; }
+.bg-surface       { background-color: $surface-dark !important; }
+.bg-surface-mid   { background-color: $surface-mid !important; }
+.bg-surface-card  { background-color: $surface-card !important; }
+.bg-gold          { background-color: $brand-gold !important; }
+.border-gold      { border-color: $brand-gold !important; }
+.font-display     { font-family: $font-display !important; }
+.font-body        { font-family: $font-body !important; }
+
+/* ─── Section helper ─────────────────────────────────────────── */
+.section { @include section-padding; }
+
+.section-title   { @include section-title; margin-bottom: $space-sm; }
+.section-subtitle {
+  font-family: $font-body; font-size: $fs-sm; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: $brand-gold; margin-bottom: $space-sm;
+}
+.section-divider {
+  width: 60px; height: 3px;
+  background: linear-gradient(90deg, $brand-gold, $brand-red);
+  margin: $space-md 0 $space-xl;
+}
+.section-divider--center { @extend .section-divider; margin-left: auto; margin-right: auto; }
+
+/* ─── Bootstrap overrides ────────────────────────────────────── */
+.btn-primary {
+  @include btn-gold;
+  &:focus, &:active { box-shadow: 0 0 0 3px rgba($brand-gold, 0.35) !important; }
+}
+
+.btn-outline-primary {
+  color: $brand-gold; border: 1.5px solid $brand-gold; background: transparent;
+  font-weight: 700; font-size: $fs-sm; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.7rem 1.8rem; border-radius: $radius-sm; transition: all $transition-base;
+  &:hover { background: $brand-gold; color: $brand-black; box-shadow: $shadow-gold; }
+}
+
+.form-control, .form-select {
+  background: $surface-mid !important; border: 1px solid $border-subtle !important;
+  color: $brand-white !important; border-radius: $radius-sm !important;
+  &:focus { border-color: $brand-gold !important; box-shadow: 0 0 0 3px rgba($brand-gold, 0.18) !important; }
+  &::placeholder { color: $text-muted !important; }
+}
+
+.form-label {
+  font-size: $fs-sm; font-weight: 700; letter-spacing: 0.05em;
+  text-transform: uppercase; color: $text-light; margin-bottom: $space-xs;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+body { @include custom-scrollbar; }
+
+/* ─── Animation keyframes ────────────────────────────────────── */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes shimmer  { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+
+.animate-fade-up { animation: fadeInUp 0.6s ease both; }
+.animate-fade-in { animation: fadeIn 0.6s ease both; }
+
+.skeleton {
+  background: linear-gradient(90deg, $surface-mid 25%, $surface-card 50%, $surface-mid 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: $radius-sm;
+}
+
+/* ─── Gold gradient text ─────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, $brand-gold, $gold-light, $brand-red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

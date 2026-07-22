@@ -1,0 +1,245 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+// ── Hero ─────────────────────────────────────────────────────
+.hero {
+  position: relative;
+  min-height: 38vh;
+  @include flex-center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba($brand-gold, 0.07) 0%, transparent 70%),
+    linear-gradient(180deg, $surface-mid 0%, $surface-card 100%);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $brand-gold, $brand-red, $brand-gold, transparent);
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  padding: $space-3xl $space-md;
+}
+
+.heroEyebrow {
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $brand-gold;
+  margin-bottom: $space-sm;
+}
+
+.heroTitle {
+    font-family: "Sen", sans-serif;
+    font-size: 50px;
+    font-weight: 800;
+    font-style: normal;
+    font-variant: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-stretch: 100%;
+    font-variation-settings: normal;
+    font-feature-settings: normal;
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0);
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    text-indent: 0px;
+  
+  @include tablet { font-size: $fs-3xl; }
+  @include mobile { font-size: $fs-2xl; }
+}
+
+.heroDivider {
+  width: 64px;
+  height: 3px;
+  background: linear-gradient(90deg, $brand-gold, $brand-red);
+  margin: 0 auto $space-lg;
+  border-radius: 2px;
+}
+
+.heroDesc {
+  font-size: $fs-md;
+  color: $text-light;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+
+// ── Filter ────────────────────────────────────────────────────
+.filterSection {
+  background: $surface-card;
+  border-bottom: 1px solid $border-subtle;
+  padding: $space-md 0;
+  position: sticky;
+  top: 76px;
+  z-index: $z-raised;
+}
+
+.filters {
+  display: flex;
+  gap: $space-sm;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filterBtn {
+  font-family: $font-body;
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: $radius-pill;
+  border: 1px solid $border-subtle;
+  background: transparent;
+  color: $text-muted;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover { border-color: $brand-gold; color: $brand-gold; }
+  &--active {
+    background: linear-gradient(135deg, $brand-gold, $gold-dark);
+    border-color: $brand-gold;
+    color: $brand-black;
+    box-shadow: $shadow-gold;
+  }
+}
+
+// ── Gallery Grid ──────────────────────────────────────────────
+.gallery {
+  @include section-padding;
+  background: $surface-dark;
+}
+
+.resultCount {
+  font-size: $fs-sm;
+  color: $text-muted;
+  margin-bottom: $space-lg;
+
+  strong { color: $brand-gold; }
+}
+
+// ── Gallery Item ──────────────────────────────────────────────
+.item {
+  position: relative;
+  border-radius: $radius-md;
+  overflow: hidden;
+  aspect-ratio: 1;
+  cursor: pointer;
+  border: 1px solid $border-subtle;
+
+  &:hover {
+    .itemOverlay { opacity: 1; }
+    .itemBg { transform: scale(1.06); }
+  }
+}
+
+.itemBg {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, $surface-mid, $surface-card);
+  @include flex-center;
+  transition: transform 0.4s ease;
+}
+
+.itemIcon {
+  font-size: 2.5rem;
+  opacity: 0.6;
+}
+
+.itemOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba($brand-black, 0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-sm;
+  opacity: 0;
+  transition: opacity $transition-base;
+  padding: $space-md;
+  text-align: center;
+}
+
+.itemCategory {
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $brand-gold;
+}
+
+.itemTitle {
+  font-size: $fs-sm;
+  font-weight: 700;
+  color: $brand-white;
+}
+
+.itemZoom {
+  font-size: 1.25rem;
+  margin-top: $space-xs;
+}
+
+// ── Lightbox ──────────────────────────────────────────────────
+.lightbox {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.lightboxImg {
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(135deg, $surface-dark, $surface-card);
+  border-radius: $radius-md;
+  @include flex-center;
+  border: 1px solid $border-subtle;
+}
+
+.lightboxIcon { font-size: 4rem; }
+
+.lightboxMeta { padding: 0 $space-sm; }
+
+.lightboxCategory {
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: $brand-gold;
+  display: block;
+  margin-bottom: $space-sm;
+}
+
+.lightboxTitle {
+  font-family: $font-display;
+  font-size: $fs-xl;
+  color: $brand-white;
+  margin-bottom: $space-sm;
+}
+
+.lightboxYear {
+  font-size: $fs-sm;
+  color: $text-muted;
+  margin: 0;
+}

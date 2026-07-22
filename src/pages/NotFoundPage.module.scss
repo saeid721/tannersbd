@@ -1,0 +1,97 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.page {
+  position: relative;
+  min-height: 80vh;
+  @include flex-center;
+  overflow: hidden;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 50%, rgba($brand-gold, 0.05) 0%, transparent 70%),
+    $surface-dark;
+}
+
+.container { position: relative; z-index: 1; }
+
+.content {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: $space-3xl 0;
+}
+
+.code {
+  font-family: $font-display;
+  font-size: clamp(6rem, 20vw, 10rem);
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, $brand-gold, $brand-red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: $space-md;
+}
+
+.divider {
+  width: 64px;
+  height: 3px;
+  background: linear-gradient(90deg, $brand-gold, $brand-red);
+  margin: 0 auto $space-xl;
+  border-radius: 2px;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: $fs-2xl;
+  font-weight: 700;
+  color: $brand-white;
+  margin-bottom: $space-md;
+}
+
+.desc {
+  font-size: $fs-md;
+  color: $text-light;
+  line-height: 1.8;
+  margin-bottom: $space-xl;
+}
+
+.actions {
+  display: flex;
+  gap: $space-md;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: $space-2xl;
+}
+
+.quickLinks { border-top: 1px solid $border-subtle; padding-top: $space-xl; }
+
+.quickLinksLabel {
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: $text-muted;
+  margin-bottom: $space-md;
+}
+
+.quickLinksRow {
+  display: flex;
+  gap: $space-lg;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.quickLink {
+  font-size: $fs-sm;
+  font-weight: 700;
+  color: $brand-gold;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover { color: $gold-light; text-decoration: underline; }
+}

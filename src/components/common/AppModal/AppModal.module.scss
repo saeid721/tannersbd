@@ -1,0 +1,53 @@
+@use '../../../styles/variables' as *;
+
+.modal {
+  :global(.modal-dialog) { max-width: 640px; }
+}
+
+.content {
+  background: $surface-mid;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-lg;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+  color: $brand-white;
+}
+
+.backdrop {
+  background: rgba($brand-black, 0.85);
+  backdrop-filter: blur(4px);
+}
+
+.header {
+  background: $surface-card;
+  border-bottom: 1px solid $border-subtle;
+  padding: $space-lg $space-xl;
+  border-radius: $radius-lg $radius-lg 0 0;
+
+  :global(.btn-close) {
+    filter: invert(1);
+    opacity: 0.6;
+    &:hover { opacity: 1; }
+  }
+}
+
+.title {
+  font-family: $font-display;
+  font-size: $fs-xl;
+  font-weight: 700;
+  color: $brand-white;
+  margin: 0;
+}
+
+.body {
+  padding: $space-xl;
+}
+
+.footer {
+  background: $surface-card;
+  border-top: 1px solid $border-subtle;
+  padding: $space-md $space-xl;
+  border-radius: 0 0 $radius-lg $radius-lg;
+  display: flex;
+  gap: $space-sm;
+  justify-content: flex-end;
+}

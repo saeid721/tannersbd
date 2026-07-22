@@ -1,0 +1,416 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+// ── Hero ─────────────────────────────────────────────────────
+.hero {
+  position: relative;
+  min-height: 38vh;
+  @include flex-center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba($brand-gold, 0.07) 0%, transparent 70%),
+    linear-gradient(180deg, $surface-mid 0%, $surface-card 100%);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $brand-gold, $brand-red, $brand-gold, transparent);
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  padding: $space-3xl $space-md;
+}
+
+.heroEyebrow {
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $brand-gold;
+  margin-bottom: $space-sm;
+}
+
+.heroTitle {
+    font-family: "Sen", sans-serif;
+    font-size: 50px;
+    font-weight: 800;
+    font-style: normal;
+    font-variant: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-stretch: 100%;
+    font-variation-settings: normal;
+    font-feature-settings: normal;
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0);
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+  
+  @include tablet { font-size: $fs-3xl; }
+  @include mobile { font-size: $fs-2xl; }
+}
+
+.heroDivider {
+  width: 64px;
+  height: 3px;
+  background: linear-gradient(90deg, $brand-gold, $brand-red);
+  margin: 0 auto $space-lg;
+  border-radius: 2px;
+}
+
+.heroDesc {
+  font-size: $fs-md;
+  color: $text-light;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.section {
+  width: 100%;
+  background: $brand-white;
+  padding: $space-3xl 0;
+
+  @include tablet {
+    padding: $space-2xl 0;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  background: #000;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: $space-xl $space-lg;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.name {
+  font-family: 'Sen', sans-serif;
+  font-size: $fs-xl;
+  font-weight: 700;
+  color: $brand-white;
+  margin: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: "Sen", sans-serif;
+  font-style: normal;
+  font-variant: normal;
+  font-kerning: auto;
+  font-optical-sizing: auto;
+  font-stretch: 100%;
+  font-variation-settings: normal;
+  font-feature-settings: normal;
+  color: #FFFFFF;
+  background-color: rgba(0, 0, 0, 0);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  text-indent: 0px;
+}
+
+.role {
+  font-size: $fs-xs;
+  font-weight: 600;
+  color: $brand-gold;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+  padding-left: $space-md;
+
+  @include tablet {
+    padding-left: 0;
+  }
+}
+
+.eyebrow {
+  font-family: $font-body;
+  font-size: $fs-xs;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: $brand-gold;
+  margin-bottom: $space-xs;
+}
+
+.heading {
+  font-family: 'Sen', sans-serif;
+  font-size: 50px;
+  font-weight: 900;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  margin: 0;
+  line-height: 1.15;
+  letter-spacing: normal;
+
+  @include tablet {
+    font-size: 48px;
+  }
+
+  @include mobile {
+    font-size: 36px;
+  }
+}
+
+.titlePart1 {
+  color: $brand-white;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.titlePart2 {
+  color: $brand-gold;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.divider {
+  width: 56px;
+  height: 3px;
+  background: $brand-gold;
+  margin: $space-sm 0;
+  border-radius: 2px;
+}
+
+.quote {
+  margin: 0;
+  padding: $space-md 0 $space-md $space-lg;
+  border-left: 3px solid $brand-gold;
+  font-size: $fs-md;
+  font-style: italic;
+  color: #CCCCCC;
+  line-height: 1.5;
+}
+
+.bio {
+  font-size: $fs-sm;
+  color: #CCCCCC;
+  line-height: 1.5;
+  text-align: justify;
+  margin: 0;
+}
+
+.signature {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  padding-top: $space-md;
+}
+
+.sigLine {
+  width: 36px;
+  height: 2px;
+  background: $brand-gold;
+  flex-shrink: 0;
+}
+
+.sigName {
+  display: block;
+  font-family: $font-body;
+  font-size: $fs-sm;
+  font-weight: 700;
+  color: $brand-white;
+  letter-spacing: 0.05em;
+}
+
+.sigTitle {
+  display: block;
+  font-size: $fs-xs;
+  color: $brand-gold;
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+}
+
+// ── Description Section ───────────────────────────────────────
+.descriptionSection {
+  @include section-padding;
+  background: $surface-dark;
+  padding: 20px 0;
+}
+
+
+
+// ── Vision / Mission / Values ─────────────────────────────
+.visionSection {
+  background: $surface-dark;
+  padding: $space-3xl 0;
+
+  @include tablet { padding: $space-2xl 0; }
+}
+
+.visionCard {
+  border-radius: $radius-lg;
+  padding: $space-lg $space-xl;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-md;
+}
+
+.visionCardDark {
+  background: $surface-card;
+  border: 1px solid #e0e5ee;
+  .visionTitle { color: $surface-card; }
+  .visionText  { color: $text-light; }
+}
+
+.visionCardGold {
+  background: $surface-card;
+  border: 1px solid #e0e5ee;
+  .visionTitle { color: $surface-card; }
+  .visionText  { color: $text-light; }
+}
+
+.visionCardLight {
+  background: $surface-card;
+  border: 1px solid #e0e5ee;
+  .visionTitle { color: $surface-card; }
+  .visionText  { color: $text-light; }
+}
+
+.visionIcon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.visionTitle {
+  font-family: $font-display;
+  font-size: $fs-lg;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.visionText {
+  font-size: $fs-sm;
+  line-height: 1.7;
+  margin: 0;
+}
+
+// ── Stats Bar ─────────────────────────────────────────────
+.statsSection {
+  background: $surface-mid;
+  padding: $space-2xl 0;
+}
+
+.statValue {
+  font-family: $font-display;
+  font-size: $fs-3xl;
+  font-weight: 900;
+  color: $brand-gold;
+  line-height: 1;
+  margin-bottom: $space-xs;
+}
+
+.statLabel {
+  font-size: $fs-xs;
+  font-weight: 700;
+  color: $brand-white;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+// ── CTA Section ───────────────────────────────────────────
+.ctaSection {
+  background: $brand-white;
+  padding: $space-3xl 0;
+
+  @include tablet { padding: $space-2xl 0; }
+}
+
+.ctaTitle {
+  font-family: $font-display;
+  font-size: $fs-2xl;
+  font-weight: 800;
+  color: #0f1e35;
+  margin-bottom: $space-md;
+}
+
+.ctaDesc {
+  font-size: $fs-sm;
+  color: $text-muted;
+  max-width: 560px;
+  margin: 0 auto $space-xl;
+  line-height: 1.7;
+}
+
+.ctaButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-lg;
+  flex-wrap: wrap;
+}
+
+.ctaBtnPrimary {
+  background: $brand-gold;
+  color: $brand-white;
+  border: none;
+  padding: $space-md $space-xl;
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: background $transition-base;
+
+  &:hover { background: $gold-dark; }
+}
+
+.ctaBtnGhost {
+  font-size: $fs-sm;
+  font-weight: 600;
+  color: #0f1e35;
+  text-decoration: none;
+  transition: color $transition-base;
+
+  &:hover { color: $brand-gold; }
+}

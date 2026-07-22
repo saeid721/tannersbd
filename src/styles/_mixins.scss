@@ -1,0 +1,129 @@
+@use 'variables' as *;
+
+// ─── Flexbox Helpers ─────────────────────────────────────────
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// ─── Section Spacing ─────────────────────────────────────────
+@mixin section-padding {
+  padding: $space-3xl 0;
+  @media (max-width: 768px) {
+    padding: $space-2xl 0;
+  }
+}
+
+@mixin section-title {
+  font-family: $font-display;
+  font-size: $fs-3xl;
+  font-weight: 700;
+  color: $brand-white;
+  line-height: 1.15;
+  @media (max-width: 768px) {
+    font-size: $fs-2xl;
+  }
+}
+
+// ─── Gold Accent Line ────────────────────────────────────────
+@mixin gold-underline($width: 60px) {
+  &::after {
+    content: '';
+    display: block;
+    width: $width;
+    height: 3px;
+    background: linear-gradient(90deg, $brand-gold, $brand-red);
+    margin-top: $space-sm;
+  }
+}
+
+// ─── Card Base ───────────────────────────────────────────────
+@mixin card-base {
+  background: $surface-card;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+  transition: transform $transition-base, box-shadow $transition-base;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-hover;
+  }
+}
+
+// ─── Button Gold ─────────────────────────────────────────────
+@mixin btn-gold {
+  background: linear-gradient(135deg, $btn-primary, $btn-dark);
+  color: $brand-white;
+  font-family: $font-body;
+  font-weight: 700;
+  font-size: $fs-sm;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: $radius-sm;
+  padding: 0.75rem 2rem;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    background: linear-gradient(135deg, $btn-light, $btn-primary);
+    box-shadow: 0 0 24px rgba(236, 27, 35, 0.35);
+    transform: translateY(-1px);
+    color: $brand-white;
+  }
+}
+
+// ─── Overlay ─────────────────────────────────────────────────
+@mixin dark-overlay($opacity: 0.65) {
+  position: absolute;
+  inset: 0;
+  background: rgba($brand-black, $opacity);
+  content: '';
+}
+
+// ─── Image Cover ─────────────────────────────────────────────
+@mixin img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+// ─── Scrollbar ───────────────────────────────────────────────
+@mixin custom-scrollbar {
+  &::-webkit-scrollbar { width: 6px; }
+  &::-webkit-scrollbar-track { background: $surface-mid; }
+  &::-webkit-scrollbar-thumb {
+    background: $brand-gold;
+    border-radius: $radius-pill;
+  }
+}
+
+// ─── Responsive ──────────────────────────────────────────────
+@mixin mobile  { @media (max-width: 576px)  { @content; } }
+@mixin tablet  { @media (max-width: 768px)  { @content; } }
+@mixin desktop { @media (min-width: 992px)  { @content; } }
+@mixin wide    { @media (min-width: 1200px) { @content; } }
+
+// ─── Text Truncate ───────────────────────────────────────────
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

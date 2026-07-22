@@ -1,0 +1,280 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+
+// ── Hero ─────────────────────────────────────────────────────
+.hero {
+  position: relative;
+  min-height: 38vh;
+  @include flex-center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba($brand-gold, 0.07) 0%, transparent 70%),
+    linear-gradient(180deg, $surface-mid 0%, $surface-card 100%);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $brand-gold, $brand-red, $brand-gold, transparent);
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  padding: $space-3xl $space-md;
+}
+
+.heroEyebrow {
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $brand-gold;
+  margin-bottom: $space-sm;
+}
+
+.heroTitle {
+    font-family: "Sen", sans-serif;
+    font-size: 50px;
+    font-weight: 800;
+    font-style: normal;
+    font-variant: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-stretch: 100%;
+    font-variation-settings: normal;
+    font-feature-settings: normal;
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0);
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    text-indent: 0px;
+  
+  @include tablet { font-size: $fs-3xl; }
+  @include mobile { font-size: $fs-2xl; }
+}
+
+.heroDivider {
+  width: 64px;
+  height: 3px;
+  background: linear-gradient(90deg, $brand-gold, $brand-red);
+  margin: 0 auto $space-lg;
+  border-radius: 2px;
+}
+
+.heroDesc {
+  font-size: $fs-md;
+  color: $text-light;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+// ── Filter Bar ───────────────────────────────────────────────
+.filterSection {
+  background: $surface-card;
+  border-bottom: 1px solid $border-subtle;
+  padding: $space-md 0;
+  position: sticky;
+  top: 76px;
+  z-index: $z-raised;
+}
+
+.filters {
+  display: flex;
+  gap: $space-sm;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filterBtn {
+  font-family: $font-body;
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: $radius-pill;
+  border: 1px solid $border-subtle;
+  background: transparent;
+  color: $text-muted;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: $brand-gold;
+    color: $brand-gold;
+  }
+
+  &--active {
+    background: linear-gradient(135deg, $brand-gold, $gold-dark);
+    border-color: $brand-gold;
+    color: $brand-black;
+    box-shadow: $shadow-gold;
+  }
+}
+
+// ── Facilities Grid ───────────────────────────────────────────
+.facilitiesSection {
+  @include section-padding;
+  background: $surface-dark;
+}
+
+.card {
+  background: $surface-card;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  padding: $space-xl;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform $transition-base, box-shadow $transition-base, border-color $transition-base;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $brand-gold, $brand-red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform $transition-base;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: $shadow-hover;
+    border-color: rgba($brand-gold, 0.3);
+    &::after { transform: scaleX(1); }
+  }
+}
+
+.cardHeader {
+  @include flex-between;
+  margin-bottom: $space-md;
+}
+
+.cardIcon {
+  font-size: 2.2rem;
+  width: 56px;
+  height: 56px;
+  @include flex-center;
+  background: rgba($brand-gold, 0.08);
+  border: 1px solid rgba($brand-gold, 0.15);
+  border-radius: $radius-sm;
+}
+
+.cardTag {
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $brand-black;
+  background: linear-gradient(135deg, $brand-gold, $gold-dark);
+  padding: 3px 10px;
+  border-radius: $radius-pill;
+}
+
+.cardCategory {
+  font-size: $fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $brand-gold;
+  margin-bottom: $space-sm;
+  display: block;
+}
+
+.cardTitle {
+  font-family: $font-display;
+  font-size: $fs-lg;
+  font-weight: 700;
+  color: $brand-white;
+  margin-bottom: $space-sm;
+}
+
+.cardDesc {
+  font-size: $fs-sm;
+  color: $text-muted;
+  line-height: 1.75;
+  margin-bottom: $space-lg;
+  flex: 1;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: $space-md;
+  border-top: 1px solid $border-subtle;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  font-size: $fs-xs;
+  color: $text-light;
+}
+
+.featureDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: $brand-gold;
+  flex-shrink: 0;
+}
+
+// ── Bottom CTA ────────────────────────────────────────────────
+.bottomCta {
+  margin-top: $space-3xl;
+}
+
+.ctaBox {
+  background: linear-gradient(135deg, $surface-card, rgba($brand-gold, 0.04));
+  border: 1px solid rgba($brand-gold, 0.25);
+  border-radius: $radius-lg;
+  padding: $space-3xl;
+  text-align: center;
+}
+
+.ctaTitle {
+  font-family: $font-display;
+  font-size: $fs-2xl;
+  font-weight: 700;
+  color: $brand-white;
+  margin-bottom: $space-md;
+}
+
+.ctaDesc {
+  font-size: $fs-md;
+  color: $text-light;
+  margin-bottom: $space-xl;
+}
+
+// ── Description Section ───────────────────────────────────────
+.descriptionSection {
+  @include section-padding;
+  background: $surface-dark;
+  padding: 30px 0;
+}
