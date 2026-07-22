@@ -22,10 +22,10 @@ const config = {
     galleryLightbox: true,
   },
   social: {
-    facebook: 'https://facebook.com/noakhaliclubdhaka',
-    instagram: 'https://instagram.com/noakhaliclubdhaka',
-    linkedin: 'https://linkedin.com/company/noakhaliclubdhaka',
-    twitter: 'https://twitter.com/noakhaliclubdhaka',
+    facebook: 'https://www.facebook.com/bangladeshtannersassociation',
+    instagram: 'https://instagram.com/bangladeshtannersassociation',
+    linkedin: 'https://linkedin.com/company/bangladeshtannersassociation',
+    twitter: 'https://twitter.com/bangladeshtannersassociation',
   },
 };
 
