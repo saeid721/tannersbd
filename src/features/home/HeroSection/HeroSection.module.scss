@@ -1,5 +1,4 @@
-@use '../../../styles/variables' as *;
-@use '../../../styles/mixins' as *;
+// HeroSection.module.scss
 
 .hero {
   position: relative;
@@ -52,9 +51,9 @@
   height: 100%;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0.5) 50%,
-    rgba(0, 0, 0, 0.7) 100%
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.5) 100%
   );
   z-index: 1;
 }
@@ -73,25 +72,24 @@
 }
 
 .content {
-  //max-width: 900px;
   animation: fadeInUp 1s ease-out;
 }
 
 /* Eyebrow */
 .eyebrow {
-  font-family: $font-body;
+  font-family: var(--font-primary);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: $brand-gold;
-  margin-bottom: $space-lg;
+  color: var(--brand-white);
+  margin-bottom: 2rem;
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 0.8s ease-out forwards;
   animation-delay: 0.2s;
 
-  @include mobile {
+  @media (max-width: 768px) {
     font-size: 0.65rem;
     letter-spacing: 0.25em;
   }
@@ -104,7 +102,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.10rem;
-  margin-bottom: $space-xl;
+  margin-bottom: 2.5rem;
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 0.8s ease-out forwards;
@@ -122,7 +120,7 @@
   font-stretch: 100%;
   font-variation-settings: normal;
   font-feature-settings: normal;
-  color: #FFFFFF;
+  color: var(--brand-white);
   background-color: rgba(0, 0, 0, 0);
   line-height: 1.1;
   letter-spacing: 0.02em;
@@ -131,11 +129,11 @@
   text-align: center;
   text-indent: 0px;
 
-  @include tablet {
+  @media (max-width: 992px) {
     font-size: 72px;
   }
 
-  @include mobile {
+  @media (max-width: 768px) {
     font-size: 48px;
   }
 }
@@ -151,7 +149,7 @@
   font-stretch: 100%;
   font-variation-settings: normal;
   font-feature-settings: normal;
-  color: $brand-gold;
+  color: var(--error-dark);
   background-color: rgba(0, 0, 0, 0);
   line-height: 1.1;
   letter-spacing: 0.02em;
@@ -160,31 +158,31 @@
   text-align: center;
   text-indent: 0px;
 
-  @include tablet {
+  @media (max-width: 992px) {
     font-size: 72px;
   }
 
-  @include mobile {
+  @media (max-width: 768px) {
     font-size: 48px;
   }
 }
 
 /* Body */
 .body {
-  font-family: $font-body;
+  font-family: var(--font-primary);
   font-size: clamp(1rem, 1.5vw, 1.25rem);
   font-weight: 400;
-  color: rgba($brand-white, 0.9);
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.7;
   max-width: 650px;
-  margin: 0 auto $space-2xl;
+  margin: 0 auto 3rem;
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 0.8s ease-out forwards;
   animation-delay: 0.6s;
 
-  @include mobile {
-    padding: 0 $space-md;
+  @media (max-width: 768px) {
+    padding: 0 1.5rem;
   }
 }
 
@@ -199,24 +197,24 @@
 .ctaButton {
   display: inline-flex;
   align-items: center;
-  gap: $space-sm;
+  gap: 0.75rem;
   padding: 1rem 2.5rem !important;
   font-size: 0.75rem !important;
   letter-spacing: 0.2em !important;
   border-radius: 50px !important;
-  background: linear-gradient(135deg, $btn-primary, $btn-dark) !important;
-  color: $brand-white !important;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-primary-dark)) !important;
+  color: var(--brand-white) !important;
   font-weight: 800 !important;
   transition: all 0.3s ease !important;
 
   &:hover {
     transform: translateY(-3px) !important;
-    box-shadow: $shadow-gold !important;
-    background: linear-gradient(135deg, $gold-light, $brand-gold) !important;
-    color: $brand-black !important;
+    box-shadow: 0 12px 40px rgba(189, 138, 40, 0.35) !important;
+    background: linear-gradient(135deg, var(--brand-primary-light), var(--brand-primary)) !important;
+    color: var(--brand-black) !important;
   }
 
-  @include mobile {
+  @media (max-width: 768px) {
     padding: 0.9rem 2rem !important;
     font-size: 0.7rem !important;
   }
@@ -234,19 +232,19 @@
 /* Scroll Indicator */
 .scrollIndicator {
   position: absolute;
-  bottom: $space-2xl;
+  bottom: 2.5rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: $space-sm;
+  gap: 0.75rem;
   animation: bounce 2s ease-in-out infinite;
   cursor: pointer;
   pointer-events: auto;
 
-  @include tablet {
+  @media (max-width: 992px) {
     display: none;
   }
 }
@@ -254,7 +252,7 @@
 .mouse {
   width: 26px;
   height: 42px;
-  border: 2px solid rgba($brand-gold, 0.6);
+  border: 2px solid rgba(189, 138, 40, 0.6);
   border-radius: 20px;
   display: flex;
   justify-content: center;
@@ -264,18 +262,18 @@
 .wheel {
   width: 4px;
   height: 8px;
-  background: $brand-gold;
+  background: var(--brand-primary);
   border-radius: 2px;
   animation: scroll 1.5s ease-in-out infinite;
 }
 
 .scrollText {
-  font-family: $font-body;
+  font-family: var(--font-primary);
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba($brand-gold, 0.7);
+  color: rgba(189, 138, 40, 0.7);
 }
 
 /* Animations */
@@ -311,7 +309,7 @@
 }
 
 /* Responsive */
-@include tablet {
+@media (max-width: 992px) {
   .hero {
     min-height: 600px;
   }
@@ -322,17 +320,14 @@
   }
 }
 
-@include mobile {
+@media (max-width: 768px) {
   .hero {
     min-height: 500px;
     height: auto;
-    display: flex;
-    flex-direction: column;
-    //padding: 150px 0 100px;
   }
 
   .content {
-      padding-top: 50px;
+    padding-top: 50px;
   }
   
   .bgContainer {

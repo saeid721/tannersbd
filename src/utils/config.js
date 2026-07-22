@@ -5,17 +5,17 @@
 
 const config = {
   api: {
-    baseURL: import.meta.env.VITE_API_BASE_URL || 'https://api.noakhaliclub.org/v1',
+    baseURL: import.meta.env.VITE_API_BASE_URL || 'https://api.tannersbd.com/v1',
     timeout: 10000,
   },
   site: {
-    name: import.meta.env.VITE_APP_NAME || 'Noakhali Club Dhaka Ltd.',
-    tagline: 'Excellence on the Water Since 2017',
-    email: 'noakhlaiclubdhaka@yahoo.com',
-    telephone: '+880-2-9337933, 9330963, 9353854',
-    phone: '+88 01713005821, +88 01973005821',
-    address: 'Gaus-E-Pak Bhaban, 17th Floor, 28/G/1 Toyenbee Circular Road, Motijheel C/A, Dhaka-1000',
-    foundedYear: 2017,
+    name: import.meta.env.VITE_APP_NAME || 'Bangladesh Tanners Association',
+    tagline: "Empowering Bangladesh's Leather Industry Since 1963",
+    email: 'tanners@net2bd.com',
+    telephone: '02223312024, 02223312025',
+    phone: '+8801703-248923',
+    address: 'Concord Sohel Square, 9-A, 9th Floor, Plot # 775(old), 75(new), Satmasjid Road, Dhanmondi-27, Dhaka-1209.',
+    foundedYear: 1963,
   },
   features: {
     onlineReservation: true,

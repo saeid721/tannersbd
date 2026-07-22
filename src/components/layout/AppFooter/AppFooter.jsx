@@ -12,10 +12,10 @@ import styles from './AppFooter.module.scss';
 
 const QUICK_LINKS = [
   { to: '/',            label: 'Home' },
+  { to: '/facilities',  label: 'BTA Profile' },
   { to: '/leadership',  label: 'Executive Committee' },
-  { to: '/facilities',  label: 'Club Facilities' },
-  { to: '/gallery',     label: 'Gallery' },
-  { to: '/reservation', label: 'Reservation' },
+  { to: '/leadership',  label: 'General Member List' },
+  { to: '/gallery',     label: 'Photo Gallery' },
 ];
 
 const AppFooter = () => {
@@ -41,14 +41,14 @@ const AppFooter = () => {
                   />
                 </div>
                 <p className={styles.brandDesc}>
-                  Bangladesh's premier nautical social club — offering world-class luxury facilities, and exclusive networking.
+                 BTA is the national trade association representing Bangladesh's tanning industry since 1963. We are committed to promoting sustainable growth, supporting our members, and strengthening the country's leather sector through advocacy, collaboration, and industry development.
                 </p>
 
               </div>
             </Col>
 
             {/* ── Quick Links ─────────────────────────────── */}
-            <Col lg={2} md={6} sm={6}>
+            <Col lg={3} md={6} sm={6}>
               <h4 className={styles.colTitle}>Quick Links</h4>
               <ul className={styles.linkList}>
                 {QUICK_LINKS.map(({ to, label }) => (
@@ -62,23 +62,8 @@ const AppFooter = () => {
               </ul>
             </Col>
 
-            {/* ── Facilities ──────────────────────────────── */}
-            <Col lg={2} md={6} sm={6}>
-              <h4 className={styles.colTitle}>Facilities</h4>
-              <ul className={styles.linkList}>
-                {['Swimming Pool', 'Boat Jetty', 'Gym & Fitness', 'Restaurant', 'Banquet Hall', 'Tennis Court'].map((f) => (
-                  <li key={f}>
-                    <Link to="/facilities" className={styles.footerLink}>
-                      <span className={styles.linkArrow}>›</span>
-                      {f}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </Col>
-
             {/* ── Contact ─────────────────────────────────── */}
-            <Col lg={4} md={6}>
+            <Col lg={5} md={6}>
               <h4 className={styles.colTitle}>Contact Us</h4>
               <ul className={styles.contactList}>
                 <li>
@@ -143,7 +128,7 @@ const AppFooter = () => {
             </a>
           </div>
           <p className={styles.copyright}>
-            © 2017 Noakhali Club Dhaka Ltd | All rights reserved | Powered by  
+            © 2016 Bangladesh Tanners Association | All rights reserved | Powered by  
             <a href="https://stitbd.com/" className={styles.copyrightLink} target="_blank" rel="noopener noreferrer"> STITBD</a>
           </p>
         </div>

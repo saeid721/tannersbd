@@ -1,18 +1,24 @@
 // src/features/home/PresidentSection/PresidentSection.jsx
 import React, { useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import styles from './PresidentSection.module.scss';
 import presidentImg from '../../../assets/president.jpg';
 
 const PRESIDENT = {
-  name: 'Mohd. Ataur Rahman Bhuiyan',
-  title: 'President, NCDL',
+  name: 'Md. Shaheen Ahamed',
+  designation: 'Chairman',
+  company: 'Bangladesh Tanners Association (BTA)',
   eyebrow: 'Leadership Insights',
   titlePart1: 'Message From',
-  titlePart2: 'The President',
-  quote: "Welcome to Noakhali Club Dhaka Ltd (NCDL)—a destination where elegance meets community, and tradition blends seamlessly with modern leisure.",
-  bio: "It is with great pleasure that I welcome you to the official website of Noakhali Club Dhaka Ltd. As the President of this esteemed Club, I am happy to extend my warmest greetings to each of you. It's my privilege to lead our inclusive community of Members who share a common passion for excellence, camaraderie, and the pursuit of a dynamic and fulfilling lifestyle. Remaining a central focal point for a wide range of social, cultural, and recreational activities within our cherished city. Whether you're seeking a serene environment to relax, a platform to network with like-minded individuals, or an opportunity to engage in sports and cultural events, Noakhali Club Dhaka Ltd has something special for you. It's a place where individuals from diverse backgrounds come together to celebrate life, make memories, and create meaningful relationships. At Noakhali Club Dhaka Ltd, we believe in the power of connections, the joy of shared experiences, and the beauty of lifelong friendships."
+  titlePart2: 'Chairman',
+  quote: 'Welcome you to BTA',
+  bio: `As a key advocate for Bangladesh's leather sector—the country’s second-largest manufacturing export after textiles—our association drives policy reform and industry growth. Though traditionally viewed as a high-polluting sector, we are committed to shifting this narrative by enforcing a proactive environmental approach across our member tanneries.
+
+Our relocation from Hazaribag to the modern industrial park in Savar marks a major turning point. Equipped with central effluent treatment, chrome recovery, and solid waste management systems, this hub is set to position Bangladesh as a sustainable global leader in finished leather.
+
+Beyond environmental progress, worker welfare remains a top priority. We maintain zero tolerance for human rights violations, actively addressing fair wages, child labor, and workplace safety through ongoing management and safety training. Through deep stakeholder collaboration, we are building an eco-conscious, socially responsible sourcing destination for the world.`
 };
 
 const PresidentSection = () => {
@@ -80,7 +86,8 @@ const PresidentSection = () => {
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <h3 className={styles.name}>{PRESIDENT.name}</h3>
-                <span className={styles.role}>{PRESIDENT.title}</span>
+                <span className={styles.role}>{PRESIDENT.designation}</span>
+                <span className={styles.company}>{PRESIDENT.company}</span>
               </motion.div>
             </motion.div>
           </Col>
@@ -88,12 +95,12 @@ const PresidentSection = () => {
           {/* Right: Content */}
           <Col lg={7}>
             <motion.div className={styles.content}>
-              <motion.span 
+              <motion.div 
                 className={styles.eyebrow}
                 variants={itemVariants}
               >
-                {PRESIDENT.eyebrow}
-              </motion.span>
+                <span>{PRESIDENT.eyebrow}</span>
+              </motion.div>
 
               <motion.h2 
                 className={styles.heading}
@@ -117,17 +124,13 @@ const PresidentSection = () => {
                 </motion.span>
               </motion.h2>
 
-              <motion.div 
-                className={styles.divider}
-                variants={itemVariants}
-              />
-              
               <motion.blockquote 
                 className={styles.quote}
                 variants={itemVariants}
               >
                 "{PRESIDENT.quote}"
               </motion.blockquote>
+              
               
               <motion.p 
                 className={styles.bio}
@@ -136,18 +139,18 @@ const PresidentSection = () => {
                 {PRESIDENT.bio}
               </motion.p>
               
-              <motion.div 
-                className={styles.signature}
+              
+              <motion.div
                 variants={itemVariants}
+                whileHover={{ x: 10 }}
               >
-                <div className={styles.sigLine} />
-                <motion.div
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <span className={styles.sigName}>{PRESIDENT.name}</span>
-                  <span className={styles.sigTitle}>{PRESIDENT.title}</span>
-                </motion.div>
+                <Link to="/about/chairman-message" className={styles.readMoreLink}>
+                  Read Full Message
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </Link>
               </motion.div>
             </motion.div>
           </Col>

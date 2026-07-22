@@ -1,40 +1,72 @@
-@use '../../../styles/variables' as *;
-@use '../../../styles/mixins' as *;
+// AppNavbar.module.scss
 
 .navbar {
   position: fixed !important;
-  top: 30px !important;
-  left: 50% !important;
-  right: auto !important;
-  transform: translateX(-50%);
-  width: calc(100% - 40px);
-  max-width: 1400px;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none;
+  width: 100%;
+  max-width: 100%;
   z-index: 1040;
-  background: rgba($brand-white, 0.2) !important;
-  backdrop-filter: blur(20px) saturate(1.8);
-  -webkit-backdrop-filter: blur(20px) saturate(1.8);
-  border: 1px solid rgba($brand-white, 0.1);
-  border-radius: 50px;
-  padding: 0.1rem 2.5rem !important;
+  background: transparent !important;
+  border: none;
+  border-radius: 0;
+  padding: 1rem 2.5rem !important;
   transition: all 0.4s ease;
-  box-shadow: 0 4px 20px rgba($brand-black, 0.15);
+  box-shadow: none;
+  overflow: visible;
 
-  &--scrolled {
-    top: 10px !important;
-    background: rgba($brand-white, 0.95) !important;
-    border-color: rgba($brand-gold, 0.3);
-    box-shadow: 0 8px 32px rgba($brand-black, 0.15);
-    padding: 0.1rem 2.5rem !important;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 220px;
+    pointer-events: none;
+    z-index: -1;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.45) 15%,
+      rgba(0, 0, 0, 0.32) 30%,
+      rgba(0, 0, 0, 0.2) 45%,
+      rgba(0, 0, 0, 0.11) 60%,
+      rgba(0, 0, 0, 0.05) 75%,
+      rgba(0, 0, 0, 0.015) 88%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    opacity: 1;
+    transition: opacity 0.4s ease;
   }
 
-  @include mobile {
-    top: 10px !important;
-    width: calc(100% - 20px);
-    border-radius: 20px;
-    padding: 0.6rem 1.5rem !important;
+  &--scrolled {
+    top: 0 !important;
+    background: var(--brand-primary-dark) !important;
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    padding: 0.6rem 2.5rem !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+    &::before {
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    top: 0 !important;
+    width: 100%;
+    border-radius: 0;
+    padding: 0.75rem 1.25rem !important;
+
+    &::before {
+      height: 140px;
+    }
 
     &--scrolled {
-      padding: 0.5rem 1.5rem !important;
+      padding: 0.6rem 1.25rem !important;
     }
   }
 }
@@ -43,19 +75,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 !important;
-  max-width: 100% !important;
+  padding: 0 1.5rem !important;
+  max-width: 1400px !important;
+  margin: 0 auto;
   width: 100%;
 }
 
-// Brand - Left Side
+// ============ Brand ============
 .brand {
   display: flex;
   align-items: center;
+  gap: 12px;
   text-decoration: none;
   z-index: 100;
   flex-shrink: 0;
-  margin-right: auto;
+  margin-right: 2rem;
 
   &:hover {
     text-decoration: none;
@@ -63,14 +97,14 @@
 }
 
 .brandLogo {
-  height: 45px;
+  height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 
-  @include mobile {
-    height: 38px;
+  @media (max-width: 768px) {
+    height: 36px;
   }
 }
 
@@ -80,38 +114,78 @@
   object-fit: contain;
 }
 
-// Nav Collapse - Right Side
+.brandText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+
+  .brandName {
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--brand-white);
+    white-space: nowrap;
+    text-transform: uppercase;
+
+    .navbar--scrolled & {
+      color: var(--brand-white);
+    }
+  }
+
+  .brandSub {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+
+    .navbar--scrolled & {
+      color: var(--brand-primary-lighter);
+    }
+  }
+
+  @media (max-width: 992px) {
+    display: none;
+  }
+}
+
+// ============ Nav Collapse ============
 .navCollapse {
   justify-content: flex-end;
   flex-grow: 0;
 
-  @include tablet {
+  @media (max-width: 992px) {
     position: absolute;
-    top: calc(100% + 10px);
-    left: 10px;
-    right: 10px;
-    background: rgba($brand-black, 0.98);
-    border-radius: 20px;
-    padding: $space-lg;
-    border: 1px solid rgba($brand-gold, 0.2);
-    backdrop-filter: blur(10px);
+    top: calc(100% + 12px);
+    left: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.98);
+    border-radius: 18px;
+    padding: 1.5rem;
+    border: 1px solid rgba(230, 57, 70, 0.15);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
     z-index: 1050;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
   }
 }
 
-// Nav Links - Right aligned
+// ============ Nav Links ============
 .navLinks {
   display: flex !important;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.5rem;
+  gap: 0.15rem;
   margin: 0;
   flex-wrap: nowrap;
 
-  @include tablet {
+  @media (max-width: 992px) {
     flex-direction: column;
     width: 100%;
-    gap: 0.25rem;
+    gap: 0.2rem;
+    align-items: stretch;
   }
 }
 
@@ -120,159 +194,114 @@
 }
 
 .navLink {
-  font-family: $font-body;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba($brand-white, 0.9) !important;
-  padding: 0.5rem 0.9rem !important;
+  font-family: var(--font-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.92) !important;
+  padding: 0.55rem 1rem !important;
   border-radius: 8px;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   white-space: nowrap;
   position: relative;
 
   &::after {
     content: '';
     position: absolute;
-    bottom: 4px;
-    left: 50%;
-    transform: translateX(-50%) scaleX(0);
-    width: 60%;
+    bottom: 2px;
+    left: 1rem;
+    right: 1rem;
     height: 2px;
-    background: $brand-gold;
+    background: #E63946;
+    transform: scaleX(0);
+    transform-origin: center;
     transition: transform 0.3s ease;
   }
 
   &:hover {
-    color: $brand-gold !important;
-    background: rgba($brand-gold, 0.08);
+    color: #E63946 !important;
+    background: rgba(230, 57, 70, 0.08);
 
     &::after {
-      transform: translateX(-50%) scaleX(1);
+      transform: scaleX(1);
     }
   }
 
   &--active {
-    color: $brand-gold !important;
-    background: rgba($brand-gold, 0.12);
+    color: #E63946 !important;
 
     &::after {
-      transform: translateX(-50%) scaleX(1);
+      transform: scaleX(1);
     }
   }
 
-  // Scrolled state - black text
   &--scrolled {
-    color: rgba($brand-black, 0.85) !important;
+    color: var(--brand-white) !important;
 
     &:hover {
-      color: $brand-gold !important;
+      color: #E63946 !important;
+      background: rgba(230, 57, 70, 0.06);
     }
 
     &.navLink--active {
-      color: $brand-gold !important;
+      color: #E63946 !important;
     }
   }
 
-  @include tablet {
+  @media (max-width: 992px) {
     display: block;
     width: 100%;
-    padding: 0.75rem 1.25rem !important;
-    text-align: center;
-    color: rgba($brand-white, 0.9) !important;
+    padding: 0.9rem 1.25rem !important;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 0.85rem;
 
     &::after {
       display: none;
     }
 
     &--scrolled {
-      color: rgba($brand-white, 0.9) !important;
+      color: rgba(255, 255, 255, 0.9) !important;
 
       &:hover {
-        color: $brand-gold !important;
+        color: #E63946 !important;
       }
     }
   }
-
-  @include mobile {
-    font-size: 0.7rem;
-    padding: 0.65rem 1rem !important;
-  }
 }
 
-// CTA Button
-.ctaWrap {
-  flex-shrink: 0;
-  margin-left: 1.5rem;
-
-  @include tablet {
-    margin-left: 0;
-    margin-top: $space-md;
-    width: 100%;
-  }
-}
-
-.ctaBtn {
-  display: inline-block;
-  background: linear-gradient(135deg, $btn-primary, $btn-dark);
-  color: $brand-white !important;
-  font-family: $font-body;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 0.65rem 1.6rem;
-  border-radius: 25px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  box-shadow: 0 4px 15px rgba($btn-primary, 0.25);
-
-  &:hover {
-    background: linear-gradient(135deg, $gold-light, $brand-gold);
-    box-shadow: $shadow-gold;
-    transform: translateY(-2px);
-    color: $brand-black !important;
-  }
-
-  @include tablet {
-    width: 100%;
-    text-align: center;
-    display: block;
-  }
-
-  @include mobile {
-    padding: 0.6rem 1.4rem;
-    font-size: 0.68rem;
-  }
-}
-
-// Mobile Toggle - White icon
+// ============ Mobile Toggle ============
 .toggle {
-  border: 1px solid rgba($brand-gold, 0.5) !important;
-  background: rgba($brand-white, 0.1) !important;
-  border-radius: 8px !important;
-  padding: 8px 12px !important;
-  
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 10px !important;
+  padding: 9px 12px !important;
+  transition: all 0.25s ease;
+
   &:focus {
     box-shadow: none !important;
     outline: none;
   }
 
+  &:hover {
+    background: rgba(230, 57, 70, 0.15) !important;
+    border-color: rgba(230, 57, 70, 0.4) !important;
+  }
+
   .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    display: none;
   }
 }
 
 .navbar--scrolled {
   .toggle {
-    border: 1px solid rgba($brand-gold, 0.5) !important;
-    background: rgba($brand-white, 0.3) !important;
-    
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    background: rgba(0, 0, 0, 0.04) !important;
+
+    &:hover {
+      background: rgba(230, 57, 70, 0.1) !important;
+      border-color: rgba(230, 57, 70, 0.3) !important;
     }
   }
 }
@@ -280,37 +309,37 @@
 // ============ Dropdown styles ============
 .dropdown {
   :global(.nav-link) {
-    font-family: $font-body;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba($brand-white, 0.9) !important;
-    padding: 0.5rem 0.9rem !important;
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: rgba(255, 255, 255, 0.92) !important;
+    padding: 0.55rem 1rem !important;
     border-radius: 8px;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     white-space: nowrap;
     position: relative;
+    display: flex;
+    align-items: center;
 
     &:hover,
     &:focus {
-      color: $brand-gold !important;
-      background: rgba($brand-gold, 0.08);
+      color: #E63946 !important;
+      background: rgba(230, 57, 70, 0.08);
     }
 
     &[aria-expanded="true"] {
-      color: $brand-gold !important;
-      background: rgba($brand-gold, 0.12);
+      color: #E63946 !important;
+      background: rgba(230, 57, 70, 0.1);
     }
 
-    // Dropdown arrow indicator
     &::after {
       content: '';
       display: inline-block;
-      margin-left: 8px;
+      margin-left: 6px;
       border: solid currentColor;
-      border-width: 0 2px 2px 0;
-      padding: 3px;
+      border-width: 0 1.5px 1.5px 0;
+      padding: 2.5px;
       transform: rotate(45deg);
       transition: transform 0.3s ease;
       vertical-align: middle;
@@ -322,47 +351,47 @@
   }
 
   &--scrolled :global(.nav-link) {
-    color: rgba($brand-black, 0.85) !important;
+    color: var(--brand-white) !important;
 
     &:hover,
     &:focus,
     &[aria-expanded="true"] {
-      color: $brand-gold !important;
+      color: #E63946 !important;
+      background: rgba(230, 57, 70, 0.06);
     }
   }
 
-  @include tablet {
+  @media (max-width: 992px) {
     width: 100%;
-    
+
     :global(.nav-link) {
       width: 100%;
-      text-align: center;
-      color: rgba($brand-white, 0.9) !important;
-      padding: 0.75rem 1.25rem !important;
-      justify-content: center;
+      text-align: left;
+      color: rgba(255, 255, 255, 0.9) !important;
+      padding: 0.9rem 1.25rem !important;
+      justify-content: space-between;
+      font-size: 0.85rem;
 
       &[aria-expanded="true"] {
-        background: rgba($brand-gold, 0.1) !important;
-        color: $brand-gold !important;
+        background: rgba(230, 57, 70, 0.12) !important;
+        color: #E63946 !important;
       }
 
       &::after {
         margin-left: 12px;
-        float: none;
-        vertical-align: middle;
       }
     }
-    
+
     &--scrolled :global(.nav-link) {
-      color: rgba($brand-white, 0.9) !important;
+      color: rgba(255, 255, 255, 0.9) !important;
     }
   }
 }
 
 .dropdownWrapper {
   position: relative;
-  
-  @include tablet {
+
+  @media (max-width: 992px) {
     width: 100%;
   }
 }
@@ -372,8 +401,8 @@
 }
 
 // Desktop hover behavior
-:global(.dropdown) {
-  @include desktop {
+@media (min-width: 993px) {
+  :global(.dropdown) {
     &:hover {
       :global(.dropdown-menu) {
         display: block;
@@ -382,17 +411,17 @@
   }
 }
 
-// Dropdown Menu - FIXED for better visibility
+// Dropdown Menu
 :global(.dropdown-menu) {
-  background: $brand-white !important;
-  border: 1px solid rgba($brand-gold, 0.3) !important;
+  background: var(--brand-white) !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
   border-radius: 14px !important;
-  padding: $space-sm !important;
-  min-width: 240px !important;
-  margin-top: 8px !important;
-  box-shadow: 0 20px 40px rgba($brand-black, 0.15) !important;
+  padding: 8px !important;
+  min-width: 260px !important;
+  margin-top: 12px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.14) !important;
 
-  @include tablet {
+  @media (max-width: 992px) {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -403,16 +432,15 @@
   }
 }
 
-// Show dropdown with animation
 :global(.dropdown-menu.show) {
   display: block !important;
-  animation: slideDown 0.3s ease forwards;
+  animation: slideDown 0.25s ease forwards;
 }
 
 @keyframes slideDown {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   to {
     opacity: 1;
@@ -423,36 +451,35 @@
 .dropdownItem {
   display: flex;
   align-items: center;
-  font-family: $font-body;
-  font-size: 0.72rem;
+  font-family: var(--font-primary);
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: $brand-black !important;
-  border-radius: 10px;
-  padding: 0.6rem 1rem !important;
-  transition: all 0.25s ease;
+  letter-spacing: 0.01em;
+  color: var(--brand-black) !important;
+  border-radius: 9px;
+  padding: 0.65rem 0.9rem !important;
+  transition: all 0.2s ease;
   text-decoration: none;
 
   &:hover {
-    background: rgba($brand-gold, 0.12) !important;
-    color: $brand-gold !important;
-    transform: translateX(4px);
+    background: rgba(230, 57, 70, 0.08) !important;
+    color: #E63946 !important;
+    padding-left: 1.1rem !important;
     text-decoration: none;
   }
 
-  @include tablet {
-    text-align: center;
-    justify-content: center;
-    color: rgba($brand-white, 0.85) !important;
+  @media (max-width: 992px) {
+    text-align: left;
+    justify-content: flex-start;
+    color: rgba(255, 255, 255, 0.85) !important;
     padding: 0.8rem 1.5rem !important;
-    font-size: 0.8rem !important;
-    border-bottom: 1px solid rgba($brand-white, 0.05);
-    
+    font-size: 0.82rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
     &:hover {
-      transform: none;
-      background: rgba($brand-gold, 0.15) !important;
-      color: $brand-gold !important;
+      padding-left: 1.5rem !important;
+      background: rgba(230, 57, 70, 0.15) !important;
+      color: #E63946 !important;
     }
 
     &:last-child {
@@ -460,23 +487,14 @@
     }
 
     &:active {
-      background: rgba($brand-gold, 0.2) !important;
-      transform: scale(0.98);
+      background: rgba(230, 57, 70, 0.2) !important;
     }
   }
 }
 
 .dropdownMenuWrapper {
-  // background: $brand-white !important;
-  // border: 1px solid rgba($brand-gold, 0.3) !important;
-  // border-radius: 14px !important;
-  // padding: $space-sm !important;
-  // min-width: 240px !important;
-  // margin-top: 8px !important;
-  // box-shadow: 0 20px 40px rgba($brand-black, 0.15) !important;
-
-  @include tablet {
-    background: rgba($brand-white, 0.05) !important;
+  @media (max-width: 992px) {
+    background: rgba(255, 255, 255, 0.05) !important;
     border: none !important;
     box-shadow: none !important;
     padding: 4px !important;
@@ -484,46 +502,33 @@
     position: static !important;
     width: 100% !important;
     border-radius: 12px !important;
-    background: rgba($brand-white, 0.05) !important;
   }
 }
 
-.ctaArrow {
-  display: inline-block;
-  margin-left: 6px;
-  transition: transform 0.3s ease;
-}
-
+// ============ Hamburger ============
 .hamburgerWrapper {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  width: 24px;
-  height: 20px;
+  gap: 5px;
+  width: 22px;
+  height: 16px;
   justify-content: center;
 }
 
 .hamburgerLine {
   display: block;
-  width: 24px;
+  width: 22px;
   height: 2px;
-  background: $brand-white;
+  background: var(--brand-white);
   border-radius: 2px;
   transform-origin: center;
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 
   .navbar--scrolled & {
-    background: $brand-black;
+    background: var(--brand-black);
   }
 }
 
 .activeIndicator {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 2px;
-  background: $brand-gold;
-  border-radius: 2px;
+  display: none;
 }

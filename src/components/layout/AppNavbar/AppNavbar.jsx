@@ -4,39 +4,50 @@ import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import useScrollPosition from '../../../hooks/useScrollPosition';
 import config from '../../../utils/config';
-import logo from '../../../assets/logo.png';
+import logo from '../../../assets/logo2.png';
 import styles from './AppNavbar.module.scss';
 
 const NAV_ITEMS = [
   { type: 'link', to: '/', label: 'Home', end: true },
   {
     type: 'dropdown',
-    label: 'About',
+    label: 'About Us',
     items: [
-      { to: '/about/history', label: 'History' },
-      { to: '/about/speech', label: 'President Speech' }
+      { to: '/about/history', label: 'BTA Profile' },
+      { to: '/about/history', label: 'Mission & Vision' },
+      { to: '/about/speech', label: 'Message from Chairman' },
+      { to: '/about/history', label: 'Former Chairman' },
+      { to: '/about/history', label: 'Management Staff' },
+      { to: '/about/history', label: 'Organogram' },
     ]
   },
   {
     type: 'dropdown',
-    label: 'Members',
+    label: 'Committee',
     items: [
-      { to: '/membersList', label: 'Member’s List' },
-      { to: '/leadership', label: 'EC Member' },
-      { to: '/members/life', label: 'Life Member' },
-      { to: '/members/donor', label: 'Donor Member' },
-      { to: '/members/permanent', label: 'Permanent Member' },
-      { to: '/members/corporate', label: 'Corporate Member' },
-      { to: '/members/foreign', label: 'Foreign Member' },
-      { to: '/members/honorary', label: 'Honorary Member' },
-      { to: '/members/use-club', label: 'Use club Member' },
-      { to: '/members/associate', label: 'Associate Member' },
-      { to: '/members/diplomate', label: 'Diplomate Member' },
+      { to: '/membersList', label: 'Executive Committee (2025-2026)' },
+      { to: '/leadership', label: 'Adviser Committee' },
     ]
   },
-  { type: 'link', to: '/facilities', label: 'Facilities' },
-  { type: 'link', to: '/menu', label: 'Menu' },
-  { type: 'link', to: '/events', label: 'Events' },
+  {
+    type: 'dropdown',
+    label: 'Member Directory',
+    items: [
+      { to: '/membersList', label: 'General Member List (2025-2026)' },
+      { to: '/leadership', label: 'Associate Member List (2025-2026)' },
+      { to: '/members/life', label: 'Eligibility to be a BTA member' },
+      { to: '/members/donor', label: 'Membership Benefits' },
+    ]
+  },
+  {
+    type: 'dropdown',
+    label: 'News & Events',
+    items: [
+      { to: '/notice', label: 'Latest News' },
+      { to: '/events', label: 'Circular for Member’s' },
+      { to: '/events', label: 'Press Release' },
+    ]
+  },
   {
     type: 'dropdown',
     label: 'Gallery',
@@ -45,7 +56,8 @@ const NAV_ITEMS = [
       { to: '/video', label: 'Video Gallery' }
     ]
   },
-  { type: 'link', to: '/notice', label: 'Notice' },
+  { type: 'link', to: '/contact', label: 'FAQ' },
+  { type: 'link', to: '/contact', label: 'Contact' },
 ];
 
 // Animation variants
@@ -162,6 +174,10 @@ const AppNavbar = () => {
                 className={styles.logoImg}
               />
             </motion.div>
+            <div className={styles.brandText}>
+              <span className={styles.brandName}>Bangladesh Tanners Association</span>
+              <span className={styles.brandSub}>Est. 1963 · BTA</span>
+            </div>
           </Navbar.Brand>
 
           {/* Mobile Toggle */}
@@ -293,42 +309,6 @@ const AppNavbar = () => {
                 );
               })}
             </Nav>
-
-            {/* CTA Button */}
-            <motion.div
-              className={styles.ctaWrap}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ 
-                delay: NAV_ITEMS.length * 0.05,
-                duration: 0.4,
-                ease: [0.22, 1, 0.36, 1]
-              }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link
-                to="/reservation"
-                className={styles.ctaBtn}
-                onClick={handleNavClick}
-              >
-                <motion.span
-                  initial={{ x: 0 }}
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  Reservation
-                </motion.span>
-                <motion.span
-                  className={styles.ctaArrow}
-                  initial={{ x: 0 }}
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  →
-                </motion.span>
-              </Link>
-            </motion.div>
           </Navbar.Collapse>
         </Container>
       </Navbar>

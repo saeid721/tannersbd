@@ -1,24 +1,23 @@
-@use '../../../styles/variables' as *;
-@use '../../../styles/mixins' as *;
+// AppFooter.module.scss
 
 .footer {
   position: relative;
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  background: $surface-card;
+  background: var(--brand-primary-dark);
   margin-top: auto;
   z-index: 10;
 }
 
 .topBorder {
   height: 3px;
-  background: linear-gradient(90deg, $brand-red, $brand-gold, $gold-light, $brand-gold, $brand-red);
+  background: linear-gradient(90deg, var(--brand-primary-dark), var(--brand-primary), var(--brand-primary-light), var(--brand-primary), var(--brand-primary-dark));
   width: 100%;
 }
 
 .main {
-  padding: $space-3xl 0 $space-2xl;
+  padding: 5rem 0 3.5rem;
 }
 
 .brand { 
@@ -27,10 +26,12 @@
 
 .brandLogo {
   width: 100%;
-  @include flex-center;
-  margin-bottom: $space-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
   overflow: hidden;
-  transition: border-color $transition-base;
+  transition: border-color var(--transition);
 }
 
 .logoImg {
@@ -43,62 +44,64 @@
 }
 
 .brandName {
-  font-family: $font-display;
-  font-size: $fs-xl;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: $brand-white;
-  margin-bottom: $space-xs;
+  color: var(--brand-white);
+  margin-bottom: 0.5rem;
 }
 
 .brandTagline {
-  font-size: $fs-xs;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: $brand-gold;
-  margin-bottom: $space-md;
+  color: var(--brand-primary);
+  margin-bottom: 1.5rem;
 }
 
 .brandDesc {
-  font-size: $fs-sm;                            
-  color: $text-muted;
+  font-size: 0.82rem;                         
+  color: var(--brand-secondary-lighter);
   line-height: 1.75;
-  margin-bottom: $space-lg;
+  margin-bottom: 1.5rem;
 }
 
 .social {
   display: flex;
-  gap: $space-sm;
+  gap: 0.75rem;
 }
 
 .socialLink {
   width: 32px;
   height: 32px;
   border-radius: 15%;
-  border: 1px solid $border-subtle;
-  @include flex-center;
-  color: $text-muted;
+  border: 1px solid var(--brand-secondary-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-secondary-lighter);
   text-decoration: none;
-  transition: all $transition-base;
+  transition: all var(--transition);
 
   &:hover {
-    background: $brand-gold;
-    border-color: $brand-gold;
-    color: $brand-black;
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: var(--brand-black);
     transform: translateY(-2px);
   }
 }
 
 .colTitle {
-  font-family: $font-body;
-  font-size: $fs-xs;
+  font-family: var(--font-primary);
+  font-size: 0.7rem;
   font-weight: 900;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: $brand-gold;
-  margin-bottom: $space-lg;
-  padding-bottom: $space-sm;
-  border-bottom: 1px solid $border-subtle;
+  color: var(--brand-primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--brand-secondary-soft);
 }
 
 .linkList {
@@ -107,28 +110,28 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: $space-sm;
+  gap: 0.75rem;
 }
 
 .footerLink {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: $fs-sm;
-  color: $text-muted;
+  font-size: 0.875rem;
+  color: var(--brand-secondary-lighter);
   text-decoration: none;
-  transition: color $transition-fast, gap $transition-fast;
+  transition: color 0.15s ease, gap 0.15s ease;
 
   &:hover {
-    color: $brand-gold;
+    color: var(--brand-white);
     gap: 10px;
     text-decoration: none;
   }
 }
 
 .linkArrow {
-  color: $brand-gold;
-  font-size: $fs-lg;
+  color: var(--brand-white);
+  font-size: 1.25rem;
   line-height: 1;
   flex-shrink: 0;
 }
@@ -139,63 +142,70 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: $space-md;
+  gap: 1.5rem;
 
   li {
     display: flex;
-    gap: $space-sm;
-    font-size: $fs-sm;
-    color: $text-muted;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--brand-secondary-lighter);
     line-height: 1.6;
   }
 }
 
 .contactIcon {
   flex-shrink: 0;
-  font-size: $fs-base;
+  font-size: 1rem;
   margin-top: 1px;
 }
 
 .contactLink {
-  color: $text-muted;
+  color: var(--brand-secondary-lighter);
   text-decoration: none;
-  transition: color $transition-fast;
-  &:hover { color: $brand-gold; }
+  transition: color 0.15s ease;
+  
+  &:hover { 
+    color: var(--brand-primary); 
+  }
 }
 
 .bottom {
-  border-top: 1px solid $border-subtle;
-  padding: $space-sm 0;
-  @include flex-between;
+  border-top: 1px solid var(--brand-secondary-soft);
+  padding: 0.75rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
-  gap: $space-sm;
+  gap: 0.75rem;
 
-  @include mobile {
+  @media (max-width: 768px) {
     flex-direction: column;
     text-align: center;
   }
 }
 
 .copyright {
-  font-size: $fs-xs;
-  color: $text-muted;
+  font-size: 0.7rem;
+  color: var(--brand-secondary-lighter);
   margin: 0;
 }
 
 .copyrightLink {
-  color: $brand-gold;
+  color: var(--brand-primary);
   text-decoration: none;
-  transition: color $transition-fast;
+  transition: color 0.15s ease;
 
   &:hover {
-    color: $brand-white;
+    color: var(--brand-white);
   }
 }
 
 .bottomRight {
-  font-size: $fs-xs;
-  color: $text-muted;
+  font-size: 0.7rem;
+  color: var(--brand-secondary-lighter);
   margin: 0;
 
-  span { color: $brand-gold; }
+  span { 
+    color: var(--brand-primary); 
+  }
 }

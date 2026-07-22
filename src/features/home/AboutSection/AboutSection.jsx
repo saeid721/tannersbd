@@ -6,7 +6,6 @@ import { motion, useInView } from 'framer-motion';
 import styles from './AboutSection.module.scss';
 
 import imgMain from "../../../assets/about-main.jpg";
-import imgSmall1 from "../../../assets/about-small-1.jpg";
 import member1 from "../../../assets/committee/president.jpg";
 import member2 from "../../../assets/committee/02.jpg";
 import member3 from "../../../assets/committee/03.jpg";
@@ -22,7 +21,7 @@ const AboutSection = () => {
   return (
     <section ref={ref} className={styles.about}>
       <Container>
-        <Row className="g-0 align-items-center">
+        <Row className="g-0">
           <Col lg={6}>
             <motion.div
               className={styles.imageGrid}
@@ -45,17 +44,6 @@ const AboutSection = () => {
                 />
               </motion.div>
 
-              {/* Small image */}
-              <motion.div
-                className={`${styles.imgBox} ${styles['imgBox--small']}`}
-                initial={{ opacity: 0, x: 40, y: -40 }}
-                animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: 40, y: -40 }}
-                transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <img src={imgSmall1} alt="Club facilities and dining" />
-              </motion.div>
-
               {/* Badge */}
               <motion.div
                 className={styles.badge}
@@ -65,7 +53,7 @@ const AboutSection = () => {
                 whileHover={{ scale: 1.02 }}
               >
                 <div className={styles.badgeLeft}>
-                  <span className={styles.badgeYear}>10 Years of</span>
+                  <span className={styles.badgeYear}>63 Years of</span>
                   <span className={styles.badgeText}>Pure Legacy</span>
                 </div>
                 <div className={styles.badgeDivider} />
@@ -111,7 +99,7 @@ const AboutSection = () => {
                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <span>Est. 2017</span>
+                <span>Est. 1963</span>
               </motion.div>
 
               <motion.h2
@@ -120,14 +108,13 @@ const AboutSection = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <span className={styles.titlePart1}>OUR</span>
-                <span className={styles.titlePart2}>STORY</span>
+                <span className={styles.titlePart1}>What</span>
+                <span className={styles.titlePart2}>We Are</span>
               </motion.h2>
 
               {[
-                "Built on the belief that meaningful change begins with strong relationships, the Club serves as a hub for members striving to grow personally, socially, and intellectually.",
-                "Welcome to Noakhali Club Dhaka Ltd (NCDL), the capital's premier social hub for the Noakhali community. Established in 2017, our club offers a unique blend of cultural heritage and modern recreation, providing members with top-tier facilities including tennis, squash, and billiards in a sophisticated environment.",
-                "More than just a sports center, NCDL is a vibrant community where families connect and lifelong friendships are forged. We are dedicated to celebrating our shared milestones and keeping members updated on exclusive events, relying on your active participation to help our journey continue to flourish."
+                "Bangladesh Tanners Association (BTA) is a nonprofit association of the Tanning Industry in Bangladesh.",
+                "BTA plays a pivotal role in the industry as it advocates for the tanneries, agents for policy reforms in the interest of their members, the leather sector and in turn the nation. The primary object for which the association is established for is to protect, promote and develop tanning industry in Bangladesh by encouraging co-operation between firms, companies and individuals engaged in tanning industry. We are also members of Federation of Bangladesh Chambers of Commerce & Industries (FBCCI). Through FBCCI we collaborate with various private sector entities to develop the leather sector.",
               ].map((text, i) => (
                 <motion.p
                   key={i}
@@ -147,7 +134,7 @@ const AboutSection = () => {
                 whileHover={{ x: 10 }}
               >
                 <Link to="/about/legacy" className={styles.legacyLink}>
-                  Our Legacy
+                  BTA Profile
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />

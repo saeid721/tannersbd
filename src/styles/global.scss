@@ -6,23 +6,92 @@
 
 /* ─── CSS Custom Properties ─────────────────────────────────── */
 :root {
-  --gold:        #{$brand-gold};
-  --gold-light:  #{$gold-light};
-  --gold-dark:   #{$gold-dark};
-  --red:         #{$brand-red};
-  --black:       #{$brand-black};
-  --white:       #{$brand-white};
-  --surface:     #{$surface-dark};
-  --surface-mid: #{$surface-mid};
-  --surface-card:#{$surface-card};
-  --text-muted:  #{$text-muted};
-  --text-light:  #{$text-light};
-  --border:      #{$border-subtle};
-  --shadow-card: #{$shadow-card};
-  --shadow-gold: #{$shadow-gold};
-  --transition:  #{$transition-base};
-  --font-display:#{$font-display};
-  --font-body:   #{$font-body};
+   /* --- Brand Primary Colors (Gold Theme) --- */
+  --brand-primary: #936b1f;
+  --brand-primary-dark: #412706;
+  --brand-primary-light: #e0b76c;
+  --brand-primary-lighter: #edd6ab;
+  --brand-primary-bg: #f9f4ec;
+  --brand-primary-hover: #7e5b1b;
+  --brand-primary-rgba: rgba(189, 138, 40, 0.1);
+  --brand-primary-accent: #e8a830;
+  --brand-primary-muted: #9b7f4b;
+  --brand-primary-medium: #d7a342;
+  --brand-primary-soft: #eee5d3;
+
+  /* --- Brand Secondary Colors (Black Theme) --- */
+  --brand-secondary: #1d262d;
+  --brand-secondary-dark: #10151a;
+  --brand-secondary-light: #4a5a66;
+  --brand-secondary-lighter: #8a9aa5;
+  --brand-secondary-bg: #f0f3f4;
+  --brand-secondary-hover: #2a3640;
+  --brand-secondary-rgba: rgba(29, 38, 45, 0.1);
+  --brand-secondary-accent: #2f4a5c;
+  --brand-secondary-muted: #5c6b73;
+  --brand-secondary-medium: #354652;
+  --brand-secondary-soft: #dde3e6;
+
+  --brand-white: #ffffff;
+  --brand-black: #000000;
+
+  /* --- UI / Status Colors --- */
+  /* ===== SUCCESS (Greens) ===== */
+  --success: #28a745;
+  --success-dark: #1e7e34;
+  --green: #008000;
+  --dark-green: #006400;
+  --teal: #008080;
+
+  /* ===== ERROR / DANGER (Reds) ===== */
+  --error: #dc3545;
+  --error-dark: #8b1a1a;
+  --red: #ff0000;
+  --dark-red: #8b0000;
+
+  /* ===== WARNING (Yellows/Oranges) ===== */
+  --warning: #7a5800;
+  --warning-light: #ffc107;
+  --yellow: #ffff00;
+  --gold: #ffd700;
+  --orange: #ffa500;
+
+  /* ===== INFO / LINKS (Blues) ===== */
+  --info: #0d6efd;
+  --link-blue: #2563eb;
+  --link-blue-dark: #1d4ed8;
+  --blue: #0000ff;
+  --navy: #000080;
+  --royal-blue: #4169e1;
+
+  /* ===== NEUTRALS ===== */
+  --white: #ffffff;
+  --black: #000000;
+  --gray: #808080;
+  --dark-gray: #333333;
+  --light-gray: #d3d3d3;
+
+  /* ===== PURPLE / PINK / BROWN ===== */
+  --purple: #800080;
+  --indigo: #4b0082;
+  --pink: #ffc0cb;
+  --brown: #a52a2a;
+
+
+  /* --- Typography --- */
+  --font-primary: 'Hind Siliguri', 'Segoe UI', sans-serif;
+
+  /* --- Layout & Misc --- */
+  --section-gap: 3rem;
+  --card-radius: 8px;
+  --transition: 0.22s ease;
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.10), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.15);
+  
 }
 
 /* ─── Full-width foundation ─────────────────────────────────── */

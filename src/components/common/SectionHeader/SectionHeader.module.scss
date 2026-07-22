@@ -1,8 +1,7 @@
-@use '../../../styles/variables' as *;
-@use '../../../styles/mixins' as *;
+// SectionHeader.module.scss
 
 .header {
-  margin-bottom: $space-2xl;
+  margin-bottom: 2.5rem;
 
   &--centered {
     text-align: center;
@@ -10,28 +9,28 @@
 
   // Text adapts to background via variant
   &--dark {
-    .titlePart1 { color: $brand-white; }
-    .titlePart2 { color: $brand-gold; }
-    .subtitle { color: $brand-gold; }
-    .description { color: $text-light; }
+    .titlePart1 { color: var(--brand-secondary); }
+    .titlePart2 { color: var(--brand-primary); }
+    .subtitle { color: var(--brand-primary); }
+    .description { color: rgba(255, 255, 255, 0.85); }
   }
 
   &--light {
-    .titlePart1 { color: $brand-black; }
-    .titlePart2 { color: $brand-gold; }
-    .subtitle { color: $brand-gold; }
-    .description { color: $text-muted; }
+    .titlePart1 { color: var(--brand-black); }
+    .titlePart2 { color: var(--brand-primary); }
+    .subtitle { color: var(--brand-primary); }
+    .description { color: var(--brand-secondary-lighter); }
   }
 }
 
 .subtitle {
   display: inline-block;
-  font-family: $font-body;
-  font-size: $fs-xs;
+  font-family: var(--font-primary);
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-bottom: $space-sm;
+  margin-bottom: 0.75rem;
 }
 
 .title {
@@ -53,8 +52,13 @@
   line-height: 1.15;
   margin: 0;
 
-  @include tablet { font-size: 48px; }
-  @include mobile { font-size: 36px; }
+  @media (max-width: 992px) { 
+    font-size: 48px; 
+  }
+  
+  @media (max-width: 768px) { 
+    font-size: 36px; 
+  }
 }
 
 // Center alignment for title when needed
@@ -80,8 +84,8 @@
 .divider {
   width: 56px;
   height: 3px;
-  background: linear-gradient(90deg, $brand-gold, $brand-red);
-  margin-top: $space-md;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-primary-dark));
+  margin-top: 1.5rem;
   margin-bottom: 0;
   border-radius: 2px;
 }
@@ -93,8 +97,8 @@
 }
 
 .description {
-  margin-top: $space-lg;
-  font-size: $fs-md;
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
   max-width: 640px;
   line-height: 1.8;
 

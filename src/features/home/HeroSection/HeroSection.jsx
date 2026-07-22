@@ -8,35 +8,35 @@ import AppButton from '../../../components/common/AppButton';
 import useMouseParallax from '../../../hooks/useMouseParallax';
 import styles from './HeroSection.module.scss';
 
-import heroBg from '../../../assets/about-main.jpg';
-import heroBg2 from '../../../assets/about-main.jpg';
-import heroBg3 from '../../../assets/about-main.jpg';
+import heroBg from '../../../assets/slider/01.jpg';
+import heroBg2 from '../../../assets/slider/02.jpg';
+import heroBg3 from '../../../assets/slider/03.jpg';
 
 const SLIDES = [
   {
     image: heroBg,
-    eyebrow: 'EST. 2017 • FINEST CLUB',
+    eyebrow: 'EST. 1963 • BTA',
     headline: 'WELCOME TO ',
-    highlight: 'Noakhali Club Dhaka Limited',
-    body: 'Want to build a better society',
+    highlight: 'Bangladesh Tanners Association',
+    body: "Empowering Bangladesh's Leather Industry Since 1963",
     cta: 'EXPLORE MEMBERSHIP',
     link: '/membership',
   },
   {
     image: heroBg2,
-    eyebrow: 'EST. 2017 • FINEST CLUB',
+    eyebrow: 'EST. 1963 • BTA',
     headline: 'WELCOME TO ',
-    highlight: 'Noakhali Club Dhaka Limited',
-    body: 'Want to build a better society',
+    highlight: 'Bangladesh Tanners Association',
+    body: "United for Sustainable Leather Excellence",
     cta: 'EXPLORE MEMBERSHIP',
     link: '/membership',
   },
   {
     image: heroBg3,
-    eyebrow: 'EST. 2017 • FINEST CLUB',
+    eyebrow: 'EST. 1963 • BTA',
     headline: 'WELCOME TO ',
-    highlight: 'Noakhali Club Dhaka Limited',
-    body: 'Want to build a better society',
+    highlight: 'Bangladesh Tanners Association',
+    body: "The Voice of Bangladesh's Tanning Industry",
     cta: 'EXPLORE MEMBERSHIP',
     link: '/membership',
   },
