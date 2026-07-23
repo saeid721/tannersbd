@@ -12,15 +12,19 @@ import LoadingSpinner from '../components/common/LoadingSpinner';
 const HomePage              = lazy(() => import('../pages/HomePage'));
 const FacilitiesPage        = lazy(() => import('../pages/FacilitiesPage'));
 const GalleryPage           = lazy(() => import('../pages/GalleryPage'));
-const VideoGalleryPage           = lazy(() => import('../pages/VideoGalleryPage'));
+const VideoGalleryPage      = lazy(() => import('../pages/VideoGalleryPage'));
 const ReservationPage       = lazy(() => import('../pages/ReservationPage'));
 const NotFoundPage          = lazy(() => import('../pages/NotFoundPage'));
 const EventsPage            = lazy(() => import('../pages/EventsPage'));
 const MenuPage              = lazy(() => import('../pages/MenuPage'));
-const NewsPage            = lazy(() => import('../pages/NewsPage'));
-const NewsDetailsPage = lazy(() => import('../pages/NewsDetailsPage'));
-const FaqPage            = lazy(() => import('../pages/FaqPage'));
-const ContactPage            = lazy(() => import('../pages/ContactPage'));
+const NewsPage              = lazy(() => import('../pages/NewsPage'));
+const NewsDetailsPage       = lazy(() => import('../pages/NewsDetailsPage'));
+const CircularPage          = lazy(() => import('../pages/CircularPage'));
+const CircularDetailsPage   = lazy(() => import('../pages/CircularDetailsPage'));
+const PressReleasePage          = lazy(() => import('../pages/PressReleasePage'));
+const PressReleaseDetailsPage   = lazy(() => import('../pages/PressReleaseDetailsPage'));
+const FaqPage               = lazy(() => import('../pages/FaqPage'));
+const ContactPage           = lazy(() => import('../pages/ContactPage'));
 
 // ── About dropdown routes ──────────────────────────────────────────
 const HistoryPage           = lazy(() => import('../pages/about/HistoryPage'));
@@ -89,6 +93,10 @@ const router = createBrowserRouter([
       { path: 'video', element: withSuspense(VideoGalleryPage) },
       { path: 'news', element: withSuspense(NewsPage) },
       { path: 'news/:id', element: withSuspense(NewsDetailsPage) },
+      { path: 'circular', element: withSuspense(CircularPage) },
+      { path: 'circular/:id', element: withSuspense(CircularDetailsPage) },
+      { path: 'pressRelease', element: withSuspense(PressReleasePage) },
+      { path: 'pressRelease/:id', element: withSuspense(PressReleaseDetailsPage) },
       { path: 'reservation', element: withSuspense(ReservationPage) },
       { path: 'faq', element: withSuspense(FaqPage) },
       { path: 'contact', element: withSuspense(ContactPage) },

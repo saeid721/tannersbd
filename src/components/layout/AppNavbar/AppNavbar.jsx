@@ -44,8 +44,8 @@ const NAV_ITEMS = [
     label: 'News & Events',
     items: [
       { to: '/news', label: 'Latest News' },
-      { to: '/events', label: 'Circular for Member’s' },
-      { to: '/events', label: 'Press Release' },
+      { to: '/circular', label: 'Circular for Member’s' },
+      { to: '/pressRelease', label: 'Press Release' },
     ]
   },
   {

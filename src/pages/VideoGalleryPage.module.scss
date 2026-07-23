@@ -1,11 +1,12 @@
-@use '../styles/variables' as *;
-@use '../styles/mixins' as *;
+// VideoGalleryPage.module.scss
 
 // ── Hero ─────────────────────────────────────────────────────
 .hero {
   position: relative;
   min-height: 38vh;
-  @include flex-center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   text-align: center;
   overflow: hidden;
@@ -15,7 +16,7 @@
   position: absolute;
   inset: 0;
   background: var(--brand-primary-dark);
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -30,214 +31,242 @@
 .heroContent {
   position: relative;
   z-index: 1;
-  padding: $space-3xl $space-md;
+  padding: 5rem 1.5rem;
 }
 
 .heroEyebrow {
-  font-size: $fs-xs;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: $brand-gold;
-  margin-bottom: $space-sm;
+  color: var(--brand-primary);
+  margin-bottom: 0.75rem;
 }
 
 .heroTitle {
-    font-family: "Sen", sans-serif;
-    font-size: 50px;
-    font-weight: 800;
-    font-style: normal;
-    font-variant: normal;
-    font-kerning: auto;
-    font-optical-sizing: auto;
-    font-stretch: 100%;
-    font-variation-settings: normal;
-    font-feature-settings: normal;
-    color: #FFFFFF;
-    background-color: rgba(0, 0, 0, 0);
-    line-height: 1.1;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    text-decoration: none;
-    text-align: center;
-    text-indent: 0px;
+  font-family: "Sen", sans-serif;
+  font-size: 50px;
+  font-weight: 800;
+  color: var(--brand-white);
+  background-color: rgba(0, 0, 0, 0);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+
+  @media (max-width: 992px) { 
+    font-size: 3rem; 
+  }
   
-  @include tablet { font-size: $fs-3xl; }
-  @include mobile { font-size: $fs-2xl; }
+  @media (max-width: 768px) { 
+    font-size: 2.5rem; 
+  }
 }
 
 .heroDivider {
   width: 64px;
   height: 3px;
-  background: linear-gradient(90deg, $brand-gold, $brand-red);
-  margin: 0 auto $space-lg;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-primary-dark));
+  margin: 0 auto 1.5rem;
   border-radius: 2px;
 }
 
 .heroDesc {
-  font-size: $fs-md;
-  color: $text-light;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
   max-width: 500px;
   margin: 0 auto;
   line-height: 1.8;
 }
 
+// ── Gallery Section ─────────────────────────────────────────
+.gallerySection {
+  width: 100%;
+  background: var(--brand-white);
+  padding: 3.5rem 0 5rem;
 
-// ── Filter ────────────────────────────────────────────────────
-.filterSection {
-  background: $surface-card;
-  border-bottom: 1px solid $border-subtle;
-  padding: $space-md 0;
-  position: sticky;
-  top: 76px;
-  z-index: $z-raised;
-}
-
-.filters {
-  display: flex;
-  gap: $space-sm;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.filterBtn {
-  font-family: $font-body;
-  font-size: $fs-xs;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 6px 18px;
-  border-radius: $radius-pill;
-  border: 1px solid $border-subtle;
-  background: transparent;
-  color: $text-muted;
-  cursor: pointer;
-  transition: all $transition-fast;
-
-  &:hover { border-color: $brand-gold; color: $brand-gold; }
-  &--active {
-    background: linear-gradient(135deg, $brand-gold, $gold-dark);
-    border-color: $brand-gold;
-    color: $brand-black;
-    box-shadow: $shadow-gold;
+  @media (max-width: 992px) {
+    padding: 2.5rem 0 3.5rem;
   }
 }
 
-// ── Gallery Grid ──────────────────────────────────────────────
-.gallery {
-  @include section-padding;
-  background: $surface-dark;
+.containerFluid {
+  padding-left: 30px;
+  padding-right: 30px;
+  max-width: 100%;
+
+  @media (max-width: 992px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 .resultCount {
-  font-size: $fs-sm;
-  color: $text-muted;
-  margin-bottom: $space-lg;
+  font-size: 0.875rem;
+  color: var(--brand-secondary-lighter);
+  margin-bottom: 1.5rem;
+  text-align: center;
 
-  strong { color: $brand-gold; }
-}
-
-// ── Gallery Item ──────────────────────────────────────────────
-.item {
-  position: relative;
-  border-radius: $radius-md;
-  overflow: hidden;
-  aspect-ratio: 1;
-  cursor: pointer;
-  border: 1px solid $border-subtle;
-
-  &:hover {
-    .itemOverlay { opacity: 1; }
-    .itemBg { transform: scale(1.06); }
+  strong { 
+    color: var(--brand-primary); 
   }
 }
 
-.itemBg {
+// ── Gallery Grid (5 per row) ──────────────────────────────
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+.galleryItem {
+  position: relative;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  cursor: pointer;
+  background: var(--brand-white);
+  border: 1px solid var(--brand-secondary-soft);
+  transition: all var(--transition);
+
+  &:hover {
+    .galleryOverlay {
+      opacity: 1;
+    }
+    .galleryImage {
+      transform: scale(1.1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    aspect-ratio: 1/1;
+  }
+}
+
+.galleryImage {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, $surface-mid, $surface-card);
-  @include flex-center;
-  transition: transform 0.4s ease;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.itemIcon {
-  font-size: 2.5rem;
-  opacity: 0.6;
-}
-
-.itemOverlay {
+.galleryOverlay {
   position: absolute;
   inset: 0;
-  background: rgba($brand-black, 0.75);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: $space-sm;
+  gap: 0.75rem;
   opacity: 0;
-  transition: opacity $transition-base;
-  padding: $space-md;
+  transition: opacity var(--transition);
+  padding: 1.5rem;
   text-align: center;
 }
 
-.itemCategory {
-  font-size: $fs-xs;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: $brand-gold;
+.galleryIcon {
+  font-size: 1.5rem;
+  opacity: 0.8;
 }
 
-.itemTitle {
-  font-size: $fs-sm;
-  font-weight: 700;
-  color: $brand-white;
-}
-
-.itemZoom {
-  font-size: 1.25rem;
-  margin-top: $space-xs;
-}
-
-// ── Lightbox ──────────────────────────────────────────────────
-.lightbox {
+// ── Fullscreen Lightbox ─────────────────────────────────────
+.lightboxOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.95);
   display: flex;
-  flex-direction: column;
-  gap: $space-lg;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
 }
 
-.lightboxImg {
-  width: 100%;
-  height: 300px;
-  background: linear-gradient(135deg, $surface-dark, $surface-card);
-  border-radius: $radius-md;
-  @include flex-center;
-  border: 1px solid $border-subtle;
+.lightboxImage {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 0;
+  user-select: none;
 }
 
-.lightboxIcon { font-size: 4rem; }
+.lightboxClose {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  color: var(--brand-white);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2001;
+  transition: color var(--transition), transform var(--transition);
 
-.lightboxMeta { padding: 0 $space-sm; }
-
-.lightboxCategory {
-  font-size: $fs-xs;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: $brand-gold;
-  display: block;
-  margin-bottom: $space-sm;
+  &:hover {
+    color: var(--brand-primary);
+    transform: scale(1.1);
+  }
 }
 
-.lightboxTitle {
-  font-family: $font-display;
-  font-size: $fs-xl;
-  color: $brand-white;
-  margin-bottom: $space-sm;
+.lightboxNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: var(--brand-white);
+  font-size: 2.5rem;
+  line-height: 1;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2001;
+  transition: background var(--transition), color var(--transition), transform var(--transition);
+
+  &:hover {
+    background: var(--brand-primary);
+    color: #1a1a2e;
+    transform: translateY(-50%) scale(1.08);
+  }
+
+  @media (max-width: 768px) {
+    width: 42px;
+    height: 42px;
+    font-size: 1.75rem;
+  }
 }
 
-.lightboxYear {
-  font-size: $fs-sm;
-  color: $text-muted;
-  margin: 0;
+.lightboxNavPrev {
+  left: 20px;
+
+  @media (max-width: 768px) {
+    left: 10px;
+  }
+}
+
+.lightboxNavNext {
+  right: 20px;
+
+  @media (max-width: 768px) {
+    right: 10px;
+  }
 }

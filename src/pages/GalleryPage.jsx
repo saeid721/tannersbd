@@ -1,264 +1,199 @@
-// src/pages/GalleryPage.jsx
-import React, { useState, useRef } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
-import AppModal from '../components/common/AppModal';
+// FILE: src/pages/GalleryPage.jsx
+import React, { useEffect, useState, useMemo } from 'react';
+import { Container } from 'react-bootstrap';
+import { motion } from 'framer-motion';
 import styles from './GalleryPage.module.scss';
-
-const CATEGORIES = ['All', 'Events', 'Sports', 'Facilities', 'Members', 'Awards'];
 
 // Import gallery images
 const galleryModules = import.meta.glob('../assets/gallery/*.{jpg,jpeg,png,webp}', {
   eager: true,
   import: 'default',
 });
+const GALLERY_ITEMS = Object.entries(galleryModules)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, img], index) => ({
+    id: index + 1,
+    img,
+    category: 'Events',
+  }));
 
-const galleryImages = Object.fromEntries(
-  Object.entries(galleryModules).map(([path, module]) => [path.split('/').pop(), module]),
-);
-
-// Create gallery items with real images
-const GALLERY_ITEMS = [
-  // Events (5 images)
-  { id: 1, category: 'Events', title: 'Annual Gala Dinner', image: galleryImages['01.jpg'], year: 2024 },
-  { id: 2, category: 'Events', title: 'Welcome Party', image: galleryImages['02.jpg'], year: 2024 },
-  { id: 3, category: 'Events', title: 'Christmas Celebration', image: galleryImages['03.jpg'], year: 2023 },
-  { id: 4, category: 'Events', title: 'New Year Bash', image: galleryImages['04.jpg'], year: 2024 },
-  { id: 5, category: 'Events', title: 'Club Anniversary', image: galleryImages['05.jpg'], year: 2023 },
-  
-  // Sports (5 images)
-  { id: 6, category: 'Sports', title: 'Cricket Tournament', image: galleryImages['06.jpg'], year: 2024 },
-  { id: 7, category: 'Sports', title: 'Football Championship', image: galleryImages['07.jpg'], year: 2023 },
-  { id: 8, category: 'Sports', title: 'Tennis Match', image: galleryImages['08.jpg'], year: 2024 },
-  { id: 9, category: 'Sports', title: 'Swimming Competition', image: galleryImages['09.jpg'], year: 2023 },
-  { id: 10, category: 'Sports', title: 'Marathon Day', image: galleryImages['10.jpg'], year: 2024 },
-  
-  // Facilities (3 images)
-  { id: 11, category: 'Facilities', title: 'Swimming Pool', image: galleryImages['11.jpg'], year: 2024 },
-  { id: 12, category: 'Facilities', title: 'Gym Center', image: galleryImages['12.jpg'], year: 2023 },
-  { id: 13, category: 'Facilities', title: 'Club Restaurant', image: galleryImages['13.jpg'], year: 2024 },
-  
-  // Members (4 images)
-  { id: 14, category: 'Members', title: 'Member Meetup', image: galleryImages['14.jpg'], year: 2024 },
-  { id: 15, category: 'Members', title: 'Family Day', image: galleryImages['15.jpg'], year: 2023 },
-  { id: 16, category: 'Members', title: 'Club Retreat', image: galleryImages['16.jpg'], year: 2024 },
-  { id: 17, category: 'Members', title: 'Volunteer Appreciation', image: galleryImages['17.jpg'], year: 2023 },
-  
-  // Awards (3 images)
-  { id: 18, category: 'Awards', title: 'Best Club Award', image: galleryImages['01.jpg'], year: 2024 },
-  { id: 19, category: 'Awards', title: 'Sports Excellence', image: galleryImages['02.jpg'], year: 2023 },
-  { id: 20, category: 'Awards', title: 'Community Service Award', image: galleryImages['03.jpg'], year: 2024 },
-];
-
-// Animation variants
-const heroVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
-    }
-  }
-};
-
-const heroItemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: [0.22, 1, 0.36, 1]
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, scale: 0.85 },
-  visible: (custom) => ({
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-      delay: custom * 0.05,
-      ease: [0.22, 1, 0.36, 1]
-    }
-  })
+const GalleryItem = ({ image, index, onOpen }) => {
+  return (
+    <motion.div
+      className={styles.galleryItem}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.5,
+        delay: (index % 12) * 0.05,
+        ease: [0.22, 1, 0.36, 1]
+      }}
+      whileHover={{
+        scale: 1.05,
+        boxShadow: '0 12px 40px rgba(255, 215, 0, 0.3)'
+      }}
+      onClick={() => onOpen(index)}
+    >
+      <img src={image.img} alt="Gallery" className={styles.galleryImage} />
+      <div className={styles.galleryOverlay}>
+        <span className={styles.galleryIcon}>🔍</span>
+      </div>
+    </motion.div>
+  );
 };
 
 const GalleryPage = () => {
   const [activeCategory, setActiveCategory] = useState('All');
-  const [lightboxItem, setLightboxItem] = useState(null);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
-  const filtered = activeCategory === 'All'
-    ? GALLERY_ITEMS
-    : GALLERY_ITEMS.filter((item) => item.category === activeCategory);
+  const filtered = useMemo(
+    () =>
+      activeCategory === 'All'
+        ? GALLERY_ITEMS
+        : GALLERY_ITEMS.filter((item) => item.category === activeCategory),
+    [activeCategory]
+  );
+
+  const handlePrev = (e) => {
+    e.stopPropagation();
+    setLightboxIndex((prev) => (prev - 1 + filtered.length) % filtered.length);
+  };
+
+  const handleNext = (e) => {
+    e.stopPropagation();
+    setLightboxIndex((prev) => (prev + 1) % filtered.length);
+  };
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') {
+        setLightboxIndex((prev) => (prev - 1 + filtered.length) % filtered.length);
+      } else if (e.key === 'ArrowRight') {
+        setLightboxIndex((prev) => (prev + 1) % filtered.length);
+      } else if (e.key === 'Escape') {
+        setLightboxIndex(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxIndex, filtered.length]);
 
   return (
     <>
       {/* ── Hero ──────────────────────────────────────────── */}
       <motion.div
         className={styles.hero}
-        variants={heroVariants}
-        initial="hidden"
-        animate="visible"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
       >
-        <motion.div 
+        <motion.div
           className={styles.heroBg}
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
         />
         <Container className={styles.heroContent}>
-          <motion.p 
+          <motion.p
             className={styles.heroEyebrow}
-            variants={heroItemVariants}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
             Our Moments
           </motion.p>
-          <motion.h1 
+          <motion.h1
             className={styles.heroTitle}
-            variants={heroItemVariants}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             Photo Gallery
           </motion.h1>
-          <motion.div 
+          <motion.div
             className={styles.heroDivider}
-            variants={heroItemVariants}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
           />
-          <motion.p 
+          <motion.p
             className={styles.heroDesc}
-            variants={heroItemVariants}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
           >
-            Relive the celebrations, championships, and cherished moments of club life.
+            Showcasing Industry Innovation, Events, and Sustainable Progress
           </motion.p>
         </Container>
       </motion.div>
 
-      {/* ── Filter ────────────────────────────────────────── */}
-      <section className={styles.filterSection}>
-        <Container>
-          <motion.div 
-            className={styles.filters}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            {CATEGORIES.map((cat, index) => (
-              <motion.button
-                key={cat}
-                className={`${styles.filterBtn} ${activeCategory === cat ? styles['filterBtn--active'] : ''}`}
-                onClick={() => setActiveCategory(cat)}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.3, 
-                  delay: index * 0.05 + 0.4,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {cat}
-              </motion.button>
+      {/* ── Gallery Grid ──────────────────────────────────── */}
+      <section className={styles.gallerySection}>
+        <Container fluid className={styles.containerFluid}>
+
+          <div className={styles.galleryGrid}>
+            {filtered.map((image, index) => (
+              <GalleryItem
+                key={image.id}
+                image={image}
+                index={index}
+                onOpen={setLightboxIndex}
+              />
             ))}
-          </motion.div>
+          </div>
         </Container>
       </section>
 
-      {/* ── Gallery Grid ──────────────────────────────────── */}
-      <motion.section 
-        ref={ref}
-        className={styles.gallery}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-      >
-        <Container>
-          <motion.p 
-            className={styles.resultCount}
-            variants={heroItemVariants}
+      {/* ── Fullscreen Lightbox ────────────────────────────── */}
+      {lightboxIndex !== null && filtered[lightboxIndex] && (
+        <motion.div
+          className={styles.lightboxOverlay}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={() => setLightboxIndex(null)}
+        >
+          <button
+            className={styles.lightboxClose}
+            onClick={() => setLightboxIndex(null)}
+            aria-label="Close"
           >
-            Showing <strong>{filtered.length}</strong> photos
-            {activeCategory !== 'All' && ` in ${activeCategory}`}
-          </motion.p>
+            ✕
+          </button>
 
-          <AnimatePresence mode="wait">
-            <Row className="g-3">
-              {filtered.map((item, index) => (
-                <Col key={item.id} lg={3} md={4} sm={6} xs={6}>
-                  <motion.div
-                    custom={index}
-                    variants={itemVariants}
-                    whileHover={{ 
-                      y: -8,
-                      scale: 1.02,
-                      transition: { duration: 0.3 }
-                    }}
-                    className={styles.item}
-                    onClick={() => setLightboxItem(item)}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => e.key === 'Enter' && setLightboxItem(item)}
-                    aria-label={`View ${item.title}`}
-                  >
-                    <div className={styles.itemBg}>
-                      <img 
-                        src={item.image} 
-                        alt={item.title}
-                        className={styles.itemImage}
-                      />
-                    </div>
-                    <motion.div 
-                      className={styles.itemOverlay}
-                      initial={{ opacity: 0 }}
-                      whileHover={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <span className={styles.itemCategory}>{item.category}</span>
-                      <span className={styles.itemTitle}>{item.title}</span>
-                      <span className={styles.itemYear}>{item.year}</span>
-                      <span className={styles.itemZoom}>🔍</span>
-                    </motion.div>
-                  </motion.div>
-                </Col>
-              ))}
-            </Row>
-          </AnimatePresence>
-        </Container>
-      </motion.section>
+          <button
+            className={`${styles.lightboxNav} ${styles.lightboxNavPrev}`}
+            onClick={handlePrev}
+            aria-label="Previous image"
+          >
+            ‹
+          </button>
 
-      {/* ── Lightbox Modal ────────────────────────────────── */}
-      <AppModal
-        show={!!lightboxItem}
-        onHide={() => setLightboxItem(null)}
-        title={lightboxItem?.title}
-        size="lg"
-      >
-        {lightboxItem && (
-          <motion.div 
-            className={styles.lightbox}
-            initial={{ opacity: 0, scale: 0.9 }}
+          <motion.img
+            key={lightboxIndex}
+            src={filtered[lightboxIndex].img}
+            alt="Gallery"
+            className={styles.lightboxImage}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          <button
+            className={`${styles.lightboxNav} ${styles.lightboxNavNext}`}
+            onClick={handleNext}
+            aria-label="Next image"
           >
-            <div className={styles.lightboxImg}>
-              <img 
-                src={lightboxItem.image} 
-                alt={lightboxItem.title}
-                className={styles.lightboxImage}
-              />
-            </div>
-            <div className={styles.lightboxMeta}>
-              <span className={styles.lightboxCategory}>{lightboxItem.category}</span>
-              <h3 className={styles.lightboxTitle}>{lightboxItem.title}</h3>
-              <p className={styles.lightboxYear}>Year: {lightboxItem.year}</p>
-            </div>
-          </motion.div>
-        )}
-      </AppModal>
+            ›
+          </button>
+        </motion.div>
+      )}
     </>
   );
 };
