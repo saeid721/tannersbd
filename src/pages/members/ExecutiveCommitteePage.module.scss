@@ -1,0 +1,318 @@
+// FILE: src/pages/committee/ExecutiveCommitteePage.module.scss
+// REPLACE THE ENTIRE FILE WITH THIS
+
+// ── Media query breakpoints ──────────────────────────────────────────────────
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 576px;
+
+@mixin tablet {
+  @media (max-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin section-padding {
+  padding: 5rem 0;
+}
+
+// ── Hero ─────────────────────────────────────────────────────
+.hero {
+  position: relative;
+  min-height: 34vh;
+  @include flex-center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--brand-primary-dark), #1a0f04 70%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--brand-primary), var(--brand-primary-light), var(--brand-primary), transparent);
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  padding: 4rem 1.5rem;
+}
+
+.heroEyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brand-primary-light);
+  margin-bottom: 0.75rem;
+}
+
+.heroTitle {
+  font-family: "Sen", sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--brand-white);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.heroDivider {
+  width: 64px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-primary-dark));
+  margin: 0 auto 1.5rem;
+  border-radius: 2px;
+}
+
+.heroDesc {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.8;
+  padding: 0 1rem;
+}
+
+// ── Section ───────────────────────────────────────────────────────────────────
+.section {
+  width: 100%;
+  background: var(--brand-secondary-bg);
+  padding: 4rem 0 5rem;
+
+  @include tablet {
+    padding: 2.5rem 0 3.5rem;
+  }
+}
+
+.presidentSection {
+  padding: 3.5rem 0 1rem;
+  background: var(--brand-white);
+}
+
+.presidentWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+// ── Card shell (light, modern, professional) ────────────────────────────────
+.card {
+  position: relative;
+  background: var(--brand-white);
+  border: 1px solid var(--brand-secondary-soft);
+  border-radius: 16px;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity      0.001s,
+    transform    0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow   0.3s ease,
+    border-color 0.3s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(147, 107, 31, 0.3);
+
+    .photo { transform: scale(1.06); }
+  }
+}
+
+// ── President variant ─────────────────────────────────────────────────────────
+.card--featured {
+  flex-direction: row;
+  align-items: stretch;
+  max-width: 720px;
+
+  .photoArea {
+    width: 220px;
+    min-width: 220px;
+    height: auto;
+  }
+
+  .cardBody {
+    justify-content: center;
+  }
+
+  .name {
+    font-size: 1.4rem;
+  }
+
+  @include mobile {
+    flex-direction: column;
+
+    .photoArea {
+      width: 100%;
+      min-width: 100%;
+      height: 260px;
+    }
+  }
+}
+
+// ── Photo area ────────────────────────────────────────────────────────────────
+.photoArea {
+  position: relative;
+  height: 260px;
+  background: var(--brand-secondary-bg);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.photoOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.35) 100%);
+  pointer-events: none;
+}
+
+// Initials fallback
+.initialsCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-primary-dark), var(--brand-primary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.initialsText {
+  font-family: 'Sen', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--brand-white);
+  line-height: 1;
+}
+
+// ── Code badge ───────────────────────────────────────────────────────────────
+.codeBadge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 3;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-white);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  padding: 4px 11px;
+  border-radius: 20px;
+}
+
+// ── Card body ────────────────────────────────────────────────────────────────
+.cardBody {
+  padding: 1.25rem 1.5rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.goldBadge {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+  background: rgba(147, 107, 31, 0.1);
+  border: 1px solid rgba(147, 107, 31, 0.3);
+  padding: 4px 14px;
+  border-radius: 12px;
+  width: fit-content;
+  margin: 0 auto 10px;
+}
+
+.name {
+  font-family: 'Sen', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--brand-secondary);
+  margin: 0 0 6px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.orgLine {
+  font-size: 0.85rem;
+  color: var(--brand-secondary-muted);
+  margin: 0 0 10px;
+  line-height: 1.5;
+
+  strong {
+    color: var(--brand-secondary);
+    font-weight: 700;
+  }
+}
+
+.address {
+  font-size: 0.78rem;
+  color: var(--brand-secondary-lighter);
+  line-height: 1.55;
+  margin: 0 0 10px;
+}
+
+.email {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--brand-primary);
+  text-decoration: none;
+  word-break: break-all;
+  margin-top: auto;
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--brand-primary-hover);
+  }
+}

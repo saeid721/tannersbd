@@ -25,18 +25,18 @@ const NAV_ITEMS = [
     type: 'dropdown',
     label: 'Committee',
     items: [
-      { to: '/membersList', label: 'Executive Committee (2025-2026)' },
-      { to: '/leadership', label: 'Adviser Committee' },
+      { to: '/executiveCommittee', label: 'Executive Committee (2025-2026)' },
+      { to: '/adviser', label: 'Adviser Committee' },
     ]
   },
   {
     type: 'dropdown',
     label: 'Member Directory',
     items: [
-      { to: '/membersList', label: 'General Member List (2025-2026)' },
-      { to: '/leadership', label: 'Associate Member List (2025-2026)' },
-      { to: '/members/life', label: 'Eligibility to be a BTA member' },
-      { to: '/members/donor', label: 'Membership Benefits' },
+      { to: '/adviser', label: 'General Member List (2025-2026)' },
+      { to: '/adviser', label: 'Associate Member List (2025-2026)' },
+      { to: '/adviser', label: 'Eligibility to be a BTA member' },
+      { to: '/adviser', label: 'Membership Benefits' },
     ]
   },
   {
