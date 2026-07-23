@@ -17,7 +17,8 @@ const ReservationPage       = lazy(() => import('../pages/ReservationPage'));
 const NotFoundPage          = lazy(() => import('../pages/NotFoundPage'));
 const EventsPage            = lazy(() => import('../pages/EventsPage'));
 const MenuPage              = lazy(() => import('../pages/MenuPage'));
-const NoticePage            = lazy(() => import('../pages/NoticePage'));
+const NewsPage            = lazy(() => import('../pages/NewsPage'));
+const NewsDetailsPage = lazy(() => import('../pages/NewsDetailsPage'));
 const FaqPage            = lazy(() => import('../pages/FaqPage'));
 const ContactPage            = lazy(() => import('../pages/ContactPage'));
 
@@ -86,7 +87,8 @@ const router = createBrowserRouter([
       { path: 'events', element: withSuspense(EventsPage) },
       { path: 'gallery', element: withSuspense(GalleryPage) },
       { path: 'video', element: withSuspense(VideoGalleryPage) },
-      { path: 'notice', element: withSuspense(NoticePage) },
+      { path: 'news', element: withSuspense(NewsPage) },
+      { path: 'news/:id', element: withSuspense(NewsDetailsPage) },
       { path: 'reservation', element: withSuspense(ReservationPage) },
       { path: 'faq', element: withSuspense(FaqPage) },
       { path: 'contact', element: withSuspense(ContactPage) },

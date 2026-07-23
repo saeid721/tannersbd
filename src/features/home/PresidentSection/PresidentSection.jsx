@@ -13,7 +13,7 @@ const PRESIDENT = {
   eyebrow: 'Leadership Insights',
   titlePart1: 'Message From',
   titlePart2: 'Chairman',
-  quote: 'Welcome you to BTA',
+  quote: 'Welcome you to Bangladesh Tanners Association (BTA)',
   bio: `As a key advocate for Bangladesh's leather sector—the country’s second-largest manufacturing export after textiles—our association drives policy reform and industry growth. Though traditionally viewed as a high-polluting sector, we are committed to shifting this narrative by enforcing a proactive environmental approach across our member tanneries.
 
 Our relocation from Hazaribag to the modern industrial park in Savar marks a major turning point. Equipped with central effluent treatment, chrome recovery, and solid waste management systems, this hub is set to position Bangladesh as a sustainable global leader in finished leather.

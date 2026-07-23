@@ -4,6 +4,7 @@ import AnnouncementBar       from '../features/home/AnnouncementBar/Announcement
 import AboutSection       from '../features/home/AboutSection/AboutSection';
 import FacilitiesPreview  from '../features/home/FacilitiesPreview/FacilitiesPreview';
 import PresidentSection   from '../features/home/PresidentSection/PresidentSection';
+import NewsSection   from '../features/home/NewsSection/NewsSection';
 import ExecutiveCommittee from '../features/home/Gallery/Gallery';
 // import CTABanner          from '../features/home/CTABanner/CTABanner';
 
@@ -14,6 +15,7 @@ const HomePage = () => (
     <AboutSection />
     <FacilitiesPreview />
     <PresidentSection />
+    <NewsSection/>
     <ExecutiveCommittee />
     {/* <CTABanner /> */}
   </>

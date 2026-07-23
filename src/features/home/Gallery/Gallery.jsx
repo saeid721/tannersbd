@@ -1,9 +1,9 @@
 // src/features/home/Gallery/Gallery.jsx
 import React, { useEffect, useRef, useState } from 'react';
 import { Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import SectionHeader from '../../../components/common/SectionHeader';
-import AppModal from '../../../components/common/AppModal';
 import styles from './Gallery.module.scss';
 
 // Gallery images
@@ -152,7 +152,7 @@ const GalleryItem = ({ image, index, onOpen }) => {
         scale: 1.05,
         boxShadow: '0 12px 40px rgba(255, 215, 0, 0.3)'
       }}
-      onClick={() => onOpen(image)}
+      onClick={() => onOpen(index)}
     >
       <img src={image.img} alt="Gallery" className={styles.galleryImage} />
       <div className={styles.galleryOverlay}>
@@ -164,7 +164,34 @@ const GalleryItem = ({ image, index, onOpen }) => {
 
 const GallerySection = () => {
   const sectionRef = useRef(null);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+
+  const handlePrev = (e) => {
+    e.stopPropagation();
+    setLightboxIndex((prev) => (prev - 1 + GALLERY_IMAGES.length) % GALLERY_IMAGES.length);
+  };
+
+  const handleNext = (e) => {
+    e.stopPropagation();
+    setLightboxIndex((prev) => (prev + 1) % GALLERY_IMAGES.length);
+  };
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') {
+        setLightboxIndex((prev) => (prev - 1 + GALLERY_IMAGES.length) % GALLERY_IMAGES.length);
+      } else if (e.key === 'ArrowRight') {
+        setLightboxIndex((prev) => (prev + 1) % GALLERY_IMAGES.length);
+      } else if (e.key === 'Escape') {
+        setLightboxIndex(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxIndex]);
 
   return (
     <>
@@ -200,34 +227,80 @@ const GallerySection = () => {
                 key={image.id}
                 image={image} 
                 index={index} 
-                onOpen={setSelectedImage}
+                onOpen={setLightboxIndex}
               />
             ))}
           </div>
         </Container>
+        
+
+      
+      <motion.div
+        className={styles.viewAllWrapper}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+      >
+        <Link to="/gallery" className={styles.viewAllBtn}>
+          See All Photos
+          <motion.span
+            initial={{ x: 0 }}
+            whileHover={{ x: 5 }}
+            transition={{ duration: 0.2 }}
+          >
+            →
+          </motion.span>
+        </Link>
+      </motion.div>
       </motion.section>
 
-      {/* ── Lightbox Modal ────────────────────────────────── */}
-      <AppModal
-        show={!!selectedImage}
-        onHide={() => setSelectedImage(null)}
-        size="lg"
-      >
-        {selectedImage && (
-          <motion.div 
-            className={styles.lightbox}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      {/* ── Fullscreen Lightbox ────────────────────────────── */}
+      {lightboxIndex !== null && (
+        <motion.div
+          className={styles.lightboxOverlay}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={() => setLightboxIndex(null)}
+        >
+          <button
+            className={styles.lightboxClose}
+            onClick={() => setLightboxIndex(null)}
+            aria-label="Close"
           >
-            <img 
-              src={selectedImage.img} 
-              alt="Gallery"
-              className={styles.lightboxImage}
-            />
-          </motion.div>
-        )}
-      </AppModal>
+            ✕
+          </button>
+
+          <button
+            className={`${styles.lightboxNav} ${styles.lightboxNavPrev}`}
+            onClick={handlePrev}
+            aria-label="Previous image"
+          >
+            ‹
+          </button>
+
+          <motion.img
+            key={lightboxIndex}
+            src={GALLERY_IMAGES[lightboxIndex].img}
+            alt="Gallery"
+            className={styles.lightboxImage}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          <button
+            className={`${styles.lightboxNav} ${styles.lightboxNavNext}`}
+            onClick={handleNext}
+            aria-label="Next image"
+          >
+            ›
+          </button>
+        </motion.div>
+      )}
     </>
   );
 };

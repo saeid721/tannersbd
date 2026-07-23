@@ -43,7 +43,7 @@ const NAV_ITEMS = [
     type: 'dropdown',
     label: 'News & Events',
     items: [
-      { to: '/notice', label: 'Latest News' },
+      { to: '/news', label: 'Latest News' },
       { to: '/events', label: 'Circular for Member’s' },
       { to: '/events', label: 'Press Release' },
     ]

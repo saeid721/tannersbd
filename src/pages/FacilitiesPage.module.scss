@@ -15,9 +15,7 @@
 .heroBg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 70% 60% at 50% 100%, rgba($brand-gold, 0.07) 0%, transparent 70%),
-    linear-gradient(180deg, $surface-mid 0%, $surface-card 100%);
+  background: var(--brand-primary-dark);
   
   &::before {
     content: '';
@@ -26,7 +24,7 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, $brand-gold, $brand-red, $brand-gold, transparent);
+    background: linear-gradient(90deg, transparent, var(--brand-primary), var(--brand-primary-dark), var(--brand-primary), transparent);
   }
 }
 

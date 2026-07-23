@@ -8,7 +8,7 @@ const SectionHeader = ({
   titlePart2,
   description,
   centered = false,
-  variant = 'light', // 'light' or 'dark'
+  variant = 'light',
   className = '',
 }) => {
   const headerClasses = classNames(
