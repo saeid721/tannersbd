@@ -1,0 +1,471 @@
+// GeneralMemberListPage.module.scss
+
+// ── Hero ─────────────────────────────────────────────────────
+.hero {
+  position: relative;
+  display: flex;
+  min-height: 38vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+
+  @media (max-width: 576px) {
+    min-height: 22vh;
+  }
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(224, 183, 108, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(224, 183, 108, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, var(--brand-primary-dark) 0%, #2a1804 100%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--brand-primary), var(--brand-primary-dark), var(--brand-primary), transparent);
+    z-index: 1;
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 1.5rem;
+
+  @media (max-width: 576px) {
+    padding: 4rem 1.5rem 0.5rem;
+  }
+}
+
+.heroEyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+  margin-bottom: 0.75rem;
+
+  @media (max-width: 576px) {
+    margin-bottom: 0.1rem;
+  }
+}
+
+.heroTitle {
+  font-family: "Sen", sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--brand-white);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  @media (max-width: 992px) {
+    font-size: 2.4rem;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 1.75rem;
+  }
+}
+
+.heroDivider {
+  width: 64px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-primary-dark));
+  margin: 0 auto 0.5rem;
+  border-radius: 2px;
+}
+
+.heroDesc {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+// ── Section ───────────────────────────────────────────────────
+.section {
+  width: 100%;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(189, 138, 40, 0.06) 0%, transparent 70%),
+    linear-gradient(180deg, var(--brand-secondary) 0%, var(--brand-white) 100%);
+  padding: 3.5rem 0 5rem;
+
+  @media (max-width: 576px) {
+    padding: 2rem 0 3rem;
+  }
+}
+
+// ── Search bar ───────────────────────────────────────────────
+.searchBar {
+  position: relative;
+  max-width: 560px;
+  margin: 0 auto 3rem;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 18px;
+  width: 18px;
+  height: 18px;
+  color: rgba(26, 26, 46, 0.4);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 14px 18px 14px 48px;
+  border-radius: 50px;
+  border: 1.5px solid rgba(189, 138, 40, 0.25);
+  background: var(--brand-white);
+  font-size: 0.95rem;
+  color: #1a1a2e;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+  &::placeholder {
+    color: rgba(26, 26, 46, 0.4);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 4px rgba(189, 138, 40, 0.12);
+  }
+}
+
+.noResults {
+  text-align: center;
+  color: rgba(26, 26, 46, 0.55);
+  font-size: 1rem;
+  padding: 2rem 0;
+}
+
+// ── Section block (per letter) ──────────────────────────────
+.sectionBlock {
+  margin-bottom: 3.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.letterHeading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 1.25rem;
+}
+
+.letterCircle {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Sen', sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--brand-white);
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-primary-dark));
+  box-shadow: 0 6px 18px rgba(189, 138, 40, 0.35);
+}
+
+.letterLine {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(189, 138, 40, 0.35), transparent);
+}
+
+// ── Desktop / tablet table ───────────────────────────────────
+.tableWrap {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(189, 138, 40, 0.15);
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--brand-white);
+  font-size: 0.9rem;
+
+  thead {
+    background: linear-gradient(135deg, var(--brand-primary-dark), #2a1804);
+
+    th {
+      text-align: left;
+      padding: 14px 18px;
+      font-family: 'Sen', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brand-white);
+      white-space: nowrap;
+    }
+  }
+}
+
+.row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  transition: background 0.2s ease;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:nth-child(even) {
+    background: rgba(189, 138, 40, 0.035);
+  }
+
+  &:hover {
+    background: rgba(189, 138, 40, 0.09);
+  }
+
+  td {
+    padding: 16px 18px;
+    vertical-align: top;
+  }
+}
+
+.slCell {
+  width: 56px;
+  color: rgba(26, 26, 46, 0.5);
+  font-weight: 600;
+}
+
+.firmCell {
+  min-width: 220px;
+}
+
+.firmName {
+  margin: 0 0 4px;
+  font-family: 'Sen', sans-serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #1a1a2e;
+  line-height: 1.3;
+}
+
+.repName {
+  margin: 0;
+  font-size: 0.8rem;
+  color: rgba(26, 26, 46, 0.6);
+}
+
+.designation {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.addressCell {
+  min-width: 260px;
+}
+
+.addressText {
+  margin: 0 0 4px;
+  font-size: 0.82rem;
+  color: rgba(26, 26, 46, 0.75);
+  line-height: 1.5;
+}
+
+.contactText {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  font-size: 0.78rem;
+  color: rgba(26, 26, 46, 0.55);
+}
+
+.emailText {
+  color: var(--brand-primary);
+  word-break: break-all;
+}
+
+.memberNoCell {
+  width: 100px;
+  text-align: center;
+}
+
+.memberNoBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--brand-primary-dark);
+  background: rgba(189, 138, 40, 0.12);
+  border: 1px solid rgba(189, 138, 40, 0.3);
+  padding: 4px 12px;
+  border-radius: 50px;
+}
+
+.productCell {
+  min-width: 150px;
+  font-size: 0.82rem;
+  color: rgba(26, 26, 46, 0.75);
+}
+
+// ── Mobile card grid ─────────────────────────────────────────
+.cardGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.card {
+  position: relative;
+  background: var(--brand-white);
+  border-radius: 18px;
+  border: 1px solid rgba(189, 138, 40, 0.15);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  padding: 18px 20px 20px;
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.cardSl {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(26, 26, 46, 0.4);
+  letter-spacing: 0.05em;
+}
+
+.cardMemberNo {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--brand-primary-dark);
+  background: rgba(189, 138, 40, 0.12);
+  border: 1px solid rgba(189, 138, 40, 0.3);
+  padding: 3px 10px;
+  border-radius: 50px;
+}
+
+.cardFirm {
+  font-family: 'Sen', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+
+.cardRep {
+  margin: 0;
+  font-size: 0.82rem;
+  color: rgba(26, 26, 46, 0.6);
+}
+
+.cardDesignation {
+  color: var(--brand-primary);
+  font-weight: 600;
+}
+
+.cardDivider {
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 14px 0 12px;
+}
+
+.cardRowItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.cardLabel {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(26, 26, 46, 0.4);
+}
+
+.cardValue {
+  font-size: 0.85rem;
+  color: rgba(26, 26, 46, 0.8);
+  line-height: 1.5;
+}
+
+.cardEmail {
+  color: var(--brand-primary);
+  word-break: break-all;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(189, 138, 40, 0.3);
+}
+
+.cardProductLabel {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(26, 26, 46, 0.4);
+}
+
+.cardProductValue {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--brand-primary-dark);
+  text-align: right;
+}

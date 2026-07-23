@@ -30,7 +30,7 @@ const OrganogramPage            = lazy(() => import('../pages/about/OrganogramPa
 // ── Membership routes (Members dropdown) ────────────────────────
 const ExecutiveCommitteePage        = lazy(() => import('../pages/members/ExecutiveCommitteePage'));
 const AdviserCommitteePage        = lazy(() => import('../pages/members/AdviserCommitteePage'));
-const MemberListPage        = lazy(() => import('../pages/members/MemberListPage'));
+const GeneralMemberListPage        = lazy(() => import('../pages/members/GeneralMemberListPage'));
 const DonorMemberPage       = lazy(() => import('../pages/members/DonorMemberPage'));
 const LifeMemberPage        = lazy(() => import('../pages/members/LifeMemberPage'));
 const PermanentMemberPage   = lazy(() => import('../pages/members/PermanentMemberPage'));
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
 
       // EC Members routes (including Executive Committee)
       { path: 'executiveCommittee', element: withSuspense(ExecutiveCommitteePage) },
-      { path: 'membersList', element: withSuspense(MemberListPage) },
+      { path: 'generalMemberList', element: withSuspense(GeneralMemberListPage) },
       { path: 'adviser', element: withSuspense(AdviserCommitteePage) },
       { path: 'members/donor', element: withSuspense(DonorMemberPage) },
       { path: 'members/life', element: withSuspense(LifeMemberPage) },

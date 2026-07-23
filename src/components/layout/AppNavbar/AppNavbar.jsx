@@ -33,8 +33,8 @@ const NAV_ITEMS = [
     type: 'dropdown',
     label: 'Member Directory',
     items: [
-      { to: '/adviser', label: 'General Member List (2025-2026)' },
-      { to: '/adviser', label: 'Associate Member List (2025-2026)' },
+      { to: '/generalMemberList', label: 'General Member List (2025-2026)' },
+      { to: '/generalMemberList', label: 'Associate Member List (2025-2026)' },
       { to: '/adviser', label: 'Eligibility to be a BTA member' },
       { to: '/adviser', label: 'Membership Benefits' },
     ]
