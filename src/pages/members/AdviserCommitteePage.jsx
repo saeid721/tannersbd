@@ -10,8 +10,8 @@ import img01 from '../../assets/committee/02.jpg';
 import img02 from '../../assets/committee/03.jpg';
 import img03 from '../../assets/committee/04.jpg';
 import img04 from '../../assets/committee/05.jpg';
-import img05 from '../../assets/committee/07.jpg';
-import img06 from '../../assets/committee/08.jpg';
+import img05 from '../../assets/committee/06.jpg';
+import img06 from '../../assets/committee/07.jpg';
 
 const COMMITTEE = [
   {

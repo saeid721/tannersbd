@@ -19,7 +19,7 @@ import img12 from '../../assets/committee/13.jpg';
 import img13 from '../../assets/committee/14.jpg';
 import img14 from '../../assets/committee/15.jpg';
 import img15 from '../../assets/committee/16.jpg';
-import img16 from '../../assets/committee/17.jpg';
+import img16 from '../../assets/committee/placeholder.jpg';
 
 const COMMITTEE = [
   { name: 'Mr. Mohd. Ataur Rahman Bhuiyan (Manik)', role: 'President',         code: 'P-01',  img: img00 },
