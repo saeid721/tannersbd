@@ -1,7 +1,3 @@
-/**
- * Application routes
- * Uses React Router v6 createBrowserRouter + lazy loading
- */
 
 import React, { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -29,7 +25,7 @@ const ContactPage           = lazy(() => import('../pages/ContactPage'));
 // ── About dropdown routes ──────────────────────────────────────────
 const HistoryPage           = lazy(() => import('../pages/about/HistoryPage'));
 const PresidentSpeechPage   = lazy(() => import('../pages/about/PresidentSpeechPage'));
-const LegacyPage            = lazy(() => import('../pages/about/LegacyPage'));
+const OrganogramPage            = lazy(() => import('../pages/about/OrganogramPage'));
 
 // ── Membership routes (Members dropdown) ────────────────────────
 const ExecutiveCommitteePage        = lazy(() => import('../pages/members/ExecutiveCommitteePage'));
@@ -71,7 +67,7 @@ const router = createBrowserRouter([
       // About routes (dropdown handled in navbar; define routes explicitly)
       { path: 'about/history', element: withSuspense(HistoryPage) },
       { path: 'about/speech', element: withSuspense(PresidentSpeechPage) },
-      { path: 'about/legacy', element: withSuspense(LegacyPage) },
+      { path: 'organogram', element: withSuspense(OrganogramPage) },
 
       // EC Members routes (including Executive Committee)
       { path: 'executiveCommittee', element: withSuspense(ExecutiveCommitteePage) },

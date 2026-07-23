@@ -1,5 +1,5 @@
 // FILE: src/pages/committee/ExecutiveCommitteePage.module.scss
-// REPLACE THE ENTIRE FILE WITH THIS
+
 
 // ── Media query breakpoints ──────────────────────────────────────────────────
 $breakpoint-tablet: 768px;
@@ -27,20 +27,37 @@ $breakpoint-mobile: 576px;
   padding: 5rem 0;
 }
 
+
 // ── Hero ─────────────────────────────────────────────────────
 .hero {
   position: relative;
-  min-height: 34vh;
-  @include flex-center;
+  display: flex;
+  min-height: 38vh;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   text-align: center;
   overflow: hidden;
+  @media (max-width: 576px) {  min-height: 20vh;}
 }
 
 .heroBg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--brand-primary-dark), #1a0f04 70%);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(224, 183, 108, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(224, 183, 108, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, var(--brand-primary-dark) 0%, #2a1804 100%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
 
   &::before {
     content: '';
@@ -49,52 +66,59 @@ $breakpoint-mobile: 576px;
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--brand-primary), var(--brand-primary-light), var(--brand-primary), transparent);
+    background: linear-gradient(90deg, transparent, var(--brand-primary), var(--brand-primary-dark), var(--brand-primary), transparent);
+    z-index: 1;
   }
 }
 
 .heroContent {
   position: relative;
   z-index: 1;
-  padding: 4rem 1.5rem;
+  padding: 2rem 1.5rem;
+  
+  @media (max-width: 576px) { padding: 4rem 1.5rem .5rem; }
 }
+
 
 .heroEyebrow {
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--brand-primary-light);
+  color: var(--brand-primary);
   margin-bottom: 0.75rem;
+  @media (max-width: 576px) { margin-bottom: 0.1rem; }
 }
 
 .heroTitle {
   font-family: "Sen", sans-serif;
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: 3.2rem;
   font-weight: 800;
   color: var(--brand-white);
-  line-height: 1.15;
+  line-height: 1.1;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  text-align: center;
+
+  @media (max-width: 992px) { font-size: 2.6rem; }
+  @media (max-width: 576px) { font-size: 2rem; }
 }
 
 .heroDivider {
   width: 64px;
-  height: 3px;
+  height: 2px;
   background: linear-gradient(90deg, var(--brand-primary), var(--brand-primary-dark));
-  margin: 0 auto 1.5rem;
+  margin: 0 auto .5rem;
   border-radius: 2px;
 }
 
 .heroDesc {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.85);
-  max-width: 560px;
+  max-width: 500px;
   margin: 0 auto;
   line-height: 1.8;
-  padding: 0 1rem;
 }
+
 
 // ── Section ───────────────────────────────────────────────────────────────────
 .section {

@@ -3,20 +3,34 @@
 // ── Hero ─────────────────────────────────────────────────────
 .hero {
   position: relative;
-  min-height: 38vh;
   display: flex;
+  min-height: 38vh;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   text-align: center;
   overflow: hidden;
+  @media (max-width: 576px) {  min-height: 20vh;}
 }
 
 .heroBg {
   position: absolute;
   inset: 0;
-  background: var(--brand-primary-dark);
-  
+  background:
+    radial-gradient(circle at 20% 20%, rgba(224, 183, 108, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(224, 183, 108, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, var(--brand-primary-dark) 0%, #2a1804 100%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -25,14 +39,18 @@
     right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--brand-primary), var(--brand-primary-dark), var(--brand-primary), transparent);
+    z-index: 1;
   }
 }
 
 .heroContent {
   position: relative;
   z-index: 1;
-  padding: 5rem 1.5rem;
+  padding: 2rem 1.5rem;
+  
+  @media (max-width: 576px) { padding: 4rem 1.5rem .5rem; }
 }
+
 
 .heroEyebrow {
   font-size: 0.7rem;
@@ -41,41 +59,27 @@
   text-transform: uppercase;
   color: var(--brand-primary);
   margin-bottom: 0.75rem;
+  @media (max-width: 576px) { margin-bottom: 0.1rem; }
 }
 
 .heroTitle {
   font-family: "Sen", sans-serif;
-  font-size: 50px;
+  font-size: 3.2rem;
   font-weight: 800;
-  font-style: normal;
-  font-variant: normal;
-  font-kerning: auto;
-  font-optical-sizing: auto;
-  font-stretch: 100%;
-  font-variation-settings: normal;
-  font-feature-settings: normal;
   color: var(--brand-white);
-  background-color: rgba(0, 0, 0, 0);
   line-height: 1.1;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  text-decoration: none;
-  text-align: center;
-  
-  @media (max-width: 992px) { 
-    font-size: 3rem; 
-  }
-  
-  @media (max-width: 768px) { 
-    font-size: 2.5rem; 
-  }
+
+  @media (max-width: 992px) { font-size: 2.6rem; }
+  @media (max-width: 576px) { font-size: 2rem; }
 }
 
 .heroDivider {
   width: 64px;
-  height: 3px;
+  height: 2px;
   background: linear-gradient(90deg, var(--brand-primary), var(--brand-primary-dark));
-  margin: 0 auto 1.5rem;
+  margin: 0 auto .5rem;
   border-radius: 2px;
 }
 
@@ -87,30 +91,54 @@
   line-height: 1.8;
 }
 
-.section {
-  width: 100%;
+
+// ── Shared section ───────────────────────────────────────────
+.descriptionSection {
   background: var(--brand-white);
-  padding: 5rem 0;
 
   @media (max-width: 992px) {
     padding: 3.5rem 0;
   }
 }
 
+.block {
+  padding: 3.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+  &:last-child { border-bottom: none; }
+}
+
+// ── Image card ───────────────────────────────────────────────
 .imageWrapper {
   position: relative;
   width: 100%;
-  background: var(--brand-black);
-  border-radius: 28px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
+}
+
+.imageWrapperLight {
+  align-items: center;
+  justify-content: center;
 }
 
 .image {
   width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: top center;
+  object-position: center;
   display: block;
+  position: absolute;
+  inset: 0;
+}
+
+.imageContain {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .overlay {
@@ -118,156 +146,203 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 2.5rem 1.5rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
+  padding: 1.75rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.name {
-  font-family: 'Sen', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  font-style: normal;
-  font-variant: normal;
-  font-kerning: auto;
-  font-optical-sizing: auto;
-  font-stretch: 100%;
-  font-variation-settings: normal;
-  font-feature-settings: normal;
-  color: var(--brand-white);
-  background-color: rgba(0, 0, 0, 0);
-  margin: 0;
-  line-height: 1.1;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  text-decoration: none;
-  text-align: center;
-  text-indent: 0px;
-}
-
 .role {
   font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--brand-primary);
+  font-weight: 700;
+  color: var(--brand-primary-light);
   text-transform: uppercase;
   letter-spacing: 0.15em;
 }
 
+// ── Text content ─────────────────────────────────────────────
 .content {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding-left: 1.5rem;
-
-  @media (max-width: 992px) {
-    padding-left: 0;
-  }
+  gap: 1.25rem;
 }
 
 .eyebrow {
-  font-family: var(--font-primary);
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.25em;
   color: var(--brand-primary);
-  margin-bottom: 0.5rem;
 }
 
 .heading {
   font-family: 'Sen', sans-serif;
-  font-size: 50px;
+  font-size: 2.4rem;
   font-weight: 900;
-  font-style: normal;
-  font-variant: normal;
   text-transform: uppercase;
-  text-decoration: none;
-  text-align: center;
   margin: 0;
   line-height: 1.15;
-  letter-spacing: normal;
+  text-align: left;
 
-  @media (max-width: 992px) {
-    font-size: 48px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 36px;
-  }
+  @media (max-width: 992px) { font-size: 2rem; }
+  @media (max-width: 576px) { font-size: 1.6rem; }
 }
 
-.titlePart1 {
-  color: var(--brand-white);
-  background-color: rgba(0, 0, 0, 0);
-}
-
-.titlePart2 {
-  color: var(--brand-primary);
-  background-color: rgba(0, 0, 0, 0);
-}
+.titlePart1 { color: var(--brand-secondary); }
+.titlePart2 { color: var(--brand-primary); }
 
 .divider {
   width: 56px;
   height: 3px;
   background: var(--brand-primary);
-  margin: 0.75rem 0;
+  margin: 0.5rem 0 0.75rem;
   border-radius: 2px;
 }
 
-.quote {
-  margin: 0;
-  padding: 1.5rem 0 1.5rem 1.5rem;
-  border-left: 3px solid var(--brand-primary);
-  font-size: 1.1rem;
-  font-style: italic;
-  color: #CCCCCC;
-  line-height: 1.5;
-}
-
 .bio {
-  font-size: 0.875rem;
-  color: #CCCCCC;
-  line-height: 1.5;
-  text-align: justify;
+  font-size: 1.02rem;
+  color: var(--brand-secondary-light);
+  line-height: 1.75;
+  text-align: left;
   margin: 0;
 }
 
-.signature {
+// ── Stat cards (What We Do) ──────────────────────────────────
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 0.5rem;
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statCard {
+  background: var(--brand-primary-bg);
+  border: 1px solid var(--brand-primary-lighter);
+  border-radius: 14px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  transition: transform 0.25s var(--ease-out-expo), box-shadow 0.25s var(--ease-out-expo);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.statNumber {
+  font-family: 'Sen', sans-serif;
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--brand-primary);
+  line-height: 1;
+}
+
+.statLabel {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--brand-secondary-light);
+}
+
+// ── Background / founders ───────────────────────────────────
+.foundersGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem 1.5rem;
+  margin-top: 1.5rem;
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.founder {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  padding-top: 1.5rem;
-}
-
-.sigLine {
-  width: 36px;
-  height: 2px;
-  background: var(--brand-primary);
-  flex-shrink: 0;
-}
-
-.sigName {
-  display: block;
-  font-family: var(--font-primary);
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: var(--brand-white);
-  letter-spacing: 0.05em;
-}
-
-.sigTitle {
-  display: block;
-  font-size: 0.7rem;
-  color: var(--brand-primary);
-  margin-top: 2px;
-  letter-spacing: 0.05em;
-}
-
-// ── Description Section ───────────────────────────────────────
-.descriptionSection {
-  padding: 5rem 0;
+  gap: 0.75rem;
+  text-align: left;
+  padding: 0.85rem 1rem;
   background: var(--brand-secondary-bg);
-  padding: 20px 0;
+  border-left: 3px solid var(--brand-primary);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s var(--ease-out-expo), box-shadow 0.2s var(--ease-out-expo);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.founderText {
+  display: flex;
+  flex-direction: column;
+}
+
+.founderName {
+  font-weight: 700;
+  color: var(--brand-secondary);
+  font-size: 0.95rem;
+}
+
+.founderRole {
+  font-size: 0.8rem;
+  color: var(--brand-secondary-light);
+  margin-top: 2px;
+}
+
+// ── Closing banner image ────────────────────────────────────
+.bannerWrapper {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  border-radius: 24px;
+  overflow: hidden;
+  margin-top: 3rem;
+  box-shadow: var(--shadow-lg);
+
+  @media (max-width: 768px) {
+    min-height: 220px;
+  }
+}
+
+.bannerImage {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+  display: block;
+
+  @media (max-width: 768px) {
+    min-height: 220px;
+  }
+}
+
+.bannerOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 45%);
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+}
+
+.bannerCaption {
+  color: var(--brand-white);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
 }

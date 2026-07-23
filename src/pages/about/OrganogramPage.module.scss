@@ -1,0 +1,274 @@
+// OrganogramPage.module.scss
+
+
+// ── Hero ─────────────────────────────────────────────────────
+.hero {
+  position: relative;
+  display: flex;
+  min-height: 38vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+  @media (max-width: 576px) {  min-height: 20vh;}
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(224, 183, 108, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(224, 183, 108, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, var(--brand-primary-dark) 0%, #2a1804 100%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--brand-primary), var(--brand-primary-dark), var(--brand-primary), transparent);
+    z-index: 1;
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 1.5rem;
+  
+  @media (max-width: 576px) { padding: 4rem 1.5rem .5rem; }
+}
+
+
+.heroEyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+  margin-bottom: 0.75rem;
+  @media (max-width: 576px) { margin-bottom: 0.1rem; }
+}
+
+.heroTitle {
+  font-family: "Sen", sans-serif;
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: var(--brand-white);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  @media (max-width: 992px) { font-size: 2.6rem; }
+  @media (max-width: 576px) { font-size: 2rem; }
+}
+
+.heroDivider {
+  width: 64px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-primary-dark));
+  margin: 0 auto .5rem;
+  border-radius: 2px;
+}
+
+.heroDesc {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+
+// ── Section wrapper ────────────────────────────────────────────
+.section {
+  width: 100%;
+  background: var(--brand-white);
+  padding: 3rem 0;
+
+  @media (max-width: 992px) {
+    padding: 2rem 0;
+  }
+
+  @media (max-width: 576px) {
+    padding: 1.5rem 0;
+  }
+}
+
+// ── Chart ────────────────────────────────────────────────────
+.chartWrap {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.node {
+  background: var(--brand-white);
+  border: 1px solid var(--brand-primary-lighter);
+  border-radius: 10px;
+  padding: 0.3rem 1.5rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--brand-secondary);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  white-space: nowrap;
+  transition: transform 0.2s var(--ease-out-expo), box-shadow 0.2s var(--ease-out-expo), border-color 0.2s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--brand-primary);
+  }
+
+  @media (max-width: 576px) {
+    white-space: normal;
+    font-size: 0.8rem;
+    padding: 0.55rem 1rem;
+  }
+}
+
+.nodeRoot {
+  background: var(--brand-secondary);
+  color: var(--brand-white);
+  border-color: var(--brand-secondary);
+
+  &:hover { border-color: var(--brand-primary); }
+}
+
+// Simple vertical connector with an arrowhead, used between single-child levels
+.connector {
+  width: 2px;
+  height: 1.25rem;
+  background: var(--brand-primary-lighter);
+  position: relative;
+  flex-shrink: 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--brand-primary-lighter);
+    border-bottom: 2px solid var(--brand-primary-lighter);
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  @media (max-width: 576px) {
+    height: 0.85rem;
+  }
+}
+
+// 3-way fan-out row (Executive Officers / IT Officer / Accounts Officer)
+.branch {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 760px;
+  padding-top: 1.25rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 16%;
+    right: 16%;
+    height: 2px;
+    background: var(--brand-primary-lighter);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    gap: 1.1rem;
+
+    &::before { display: none; }
+  }
+}
+
+.branchItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -1.25rem;
+    left: 50%;
+    width: 2px;
+    height: 1.25rem;
+    background: var(--brand-primary-lighter);
+    transform: translateX(-50%);
+  }
+}
+
+// ── Legend card (Executive Officers breakdown) ───────────────
+.legendWrap {
+  max-width: 900px;
+  margin: 2rem auto 0;
+  display: flex;
+  justify-content: center;
+}
+
+.legendCard {
+  background: var(--brand-primary-bg);
+  border: 1px solid var(--brand-primary-lighter);
+  border-radius: 14px;
+  padding: 1.1rem 1.4rem;
+  max-width: 420px;
+  width: 100%;
+}
+
+.legendTitle {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--brand-primary);
+  margin: 0 0 0.75rem;
+}
+
+.legendList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.legendItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--brand-secondary);
+
+  span:last-child {
+    font-weight: 700;
+    color: var(--brand-primary);
+    flex-shrink: 0;
+  }
+}

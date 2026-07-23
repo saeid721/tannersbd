@@ -1,21 +1,36 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+// PresidentSpeechPage.module.scss
 
 // ── Hero ─────────────────────────────────────────────────────
 .hero {
   position: relative;
+  display: flex;
   min-height: 38vh;
-  @include flex-center;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   text-align: center;
   overflow: hidden;
+  @media (max-width: 576px) {  min-height: 20vh;}
 }
 
 .heroBg {
   position: absolute;
   inset: 0;
-  background: var(--brand-primary-dark);
-  
+  background:
+    radial-gradient(circle at 20% 20%, rgba(224, 183, 108, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(224, 183, 108, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, var(--brand-primary-dark) 0%, #2a1804 100%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -23,82 +38,92 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, $brand-gold, $brand-red, $brand-gold, transparent);
+    background: linear-gradient(90deg, transparent, var(--brand-primary), var(--brand-primary-dark), var(--brand-primary), transparent);
+    z-index: 1;
   }
 }
 
 .heroContent {
   position: relative;
   z-index: 1;
-  padding: $space-3xl $space-md;
+  padding: 2rem 1.5rem;
+  
+  @media (max-width: 576px) { padding: 4rem 1.5rem .5rem; }
 }
 
+
 .heroEyebrow {
-  font-size: $fs-xs;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: $brand-gold;
-  margin-bottom: $space-sm;
+  color: var(--brand-primary);
+  margin-bottom: 0.75rem;
+  @media (max-width: 576px) { margin-bottom: 0.1rem; }
 }
 
 .heroTitle {
-    font-family: "Sen", sans-serif;
-    font-size: 50px;
-    font-weight: 800;
-    font-style: normal;
-    font-variant: normal;
-    font-kerning: auto;
-    font-optical-sizing: auto;
-    font-stretch: 100%;
-    font-variation-settings: normal;
-    font-feature-settings: normal;
-    color: #FFFFFF;
-    background-color: rgba(0, 0, 0, 0);
-    line-height: 1.1;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    text-decoration: none;
-    text-align: center;
-  
-  @include tablet { font-size: $fs-3xl; }
-  @include mobile { font-size: $fs-2xl; }
+  font-family: "Sen", sans-serif;
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: var(--brand-white);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  @media (max-width: 992px) { font-size: 2.6rem; }
+  @media (max-width: 576px) { font-size: 2rem; }
 }
 
 .heroDivider {
   width: 64px;
-  height: 3px;
-  background: linear-gradient(90deg, $brand-gold, $brand-red);
-  margin: 0 auto $space-lg;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-primary-dark));
+  margin: 0 auto .5rem;
   border-radius: 2px;
 }
 
 .heroDesc {
-  font-size: $fs-md;
-  color: $text-light;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
   max-width: 500px;
   margin: 0 auto;
   line-height: 1.8;
 }
 
+
+// ── Shared section ───────────────────────────────────────────
 .section {
   width: 100%;
-  background: $brand-white;
-  padding: $space-3xl 0;
+  background: var(--brand-white);
+  padding: 5rem 0;
 
-  @include tablet {
-    padding: $space-2xl 0;
+  @media (max-width: 992px) {
+    padding: 3.5rem 0;
   }
+}
+
+// ── Stacked profile header: photo on top, name/title under it ─
+.profileHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto 3rem;
 }
 
 .imageWrapper {
   position: relative;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  background: #000;
-  border-radius: 28px;
+  width: 240px;
+  aspect-ratio: 4 / 5;
+  background: var(--brand-black);
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.16);
+
+  @media (max-width: 576px) {
+    width: 190px;
+  }
 }
 
 .image {
@@ -114,7 +139,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: $space-xl $space-lg;
+  padding: 1.5rem 1rem 1.25rem;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
   display: flex;
   flex-direction: column;
@@ -123,151 +148,157 @@
 
 .name {
   font-family: 'Sen', sans-serif;
-  font-size: $fs-xl;
+  font-size: 1.05rem;
   font-weight: 700;
-  color: $brand-white;
+  color: var(--brand-white);
   margin: 0;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-family: "Sen", sans-serif;
-  font-style: normal;
-  font-variant: normal;
-  font-kerning: auto;
-  font-optical-sizing: auto;
-  font-stretch: 100%;
-  font-variation-settings: normal;
-  font-feature-settings: normal;
-  color: #FFFFFF;
-  background-color: rgba(0, 0, 0, 0);
-  line-height: 1.1;
+  line-height: 1.2;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  text-decoration: none;
   text-align: center;
-  text-indent: 0px;
 }
 
 .role {
-  font-size: $fs-xs;
+  font-size: 0.65rem;
   font-weight: 600;
-  color: $brand-gold;
+  color: var(--brand-primary-light);
   text-transform: uppercase;
   letter-spacing: 0.15em;
+  text-align: center;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: $space-md;
-  padding-left: $space-md;
+.stickyWrap {
+  position: sticky;
+  top: 110px;
 
-  @include tablet {
-    padding-left: 0;
+  @media (max-width: 992px) {
+    position: static;
   }
 }
 
+// ── Message content — single readable column below the photo ─
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 1.5rem;
+  width: 100%;
+}
+
 .eyebrow {
-  font-family: $font-body;
-  font-size: $fs-xs;
+  font-family: var(--font-primary);
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.3em;
-  color: $brand-gold;
-  margin-bottom: $space-xs;
+  color: var(--brand-primary);
+  text-align: center;
 }
 
 .heading {
   font-family: 'Sen', sans-serif;
-  font-size: 50px;
+  font-size: 2.8rem;
   font-weight: 900;
-  font-style: normal;
-  font-variant: normal;
   text-transform: uppercase;
-  text-decoration: none;
   text-align: center;
   margin: 0;
   line-height: 1.15;
-  letter-spacing: normal;
 
-  @include tablet {
-    font-size: 48px;
+  @media (max-width: 768px) {
+    font-size: 2.1rem;
   }
 
-  @include mobile {
-    font-size: 36px;
+  @media (max-width: 576px) {
+    font-size: 1.7rem;
   }
 }
 
+// FIX: was var(--brand-white) — invisible on this section's white background
 .titlePart1 {
-  color: $brand-white;
-  background-color: rgba(0, 0, 0, 0);
+  color: var(--brand-secondary);
 }
 
 .titlePart2 {
-  color: $brand-gold;
-  background-color: rgba(0, 0, 0, 0);
+  color: var(--brand-primary);
 }
 
 .divider {
   width: 56px;
   height: 3px;
-  background: $brand-gold;
-  margin: $space-sm 0;
+  background: var(--brand-primary);
   border-radius: 2px;
 }
 
 .quote {
   margin: 0;
-  padding: $space-md 0 $space-md $space-lg;
-  border-left: 3px solid $brand-gold;
-  font-size: $fs-md;
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid var(--brand-primary);
+  background: var(--brand-primary-bg);
+  border-radius: 0 10px 10px 0;
+  font-size: 1.15rem;
   font-style: italic;
-  color: #CCCCCC;
+  // FIX: was #CCCCCC — unreadable on white
+  color: var(--brand-secondary);
   line-height: 1.5;
+  text-align: left;
+  width: 100%;
+}
+
+.messageBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  width: 100%;
 }
 
 .bio {
-  font-size: $fs-sm;
-  color: #CCCCCC;
+  font-size: 0.85rem;
+  color: var(--brand-secondary);
   line-height: 1.5;
-  text-align: justify;
   margin: 0;
+  text-align: justify;
 }
 
 .signature {
   display: flex;
   align-items: center;
-  gap: $space-md;
-  padding-top: $space-md;
+  gap: 1.25rem;
+  padding-top: 1rem;
+  width: 100%;
 }
 
 .sigLine {
   width: 36px;
   height: 2px;
-  background: $brand-gold;
+  background: var(--brand-primary);
   flex-shrink: 0;
 }
 
 .sigName {
   display: block;
-  font-family: $font-body;
-  font-size: $fs-sm;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
   font-weight: 700;
-  color: $brand-white;
+  // FIX: was var(--brand-white) — invisible on white
+  color: var(--brand-secondary);
   letter-spacing: 0.05em;
 }
 
 .sigTitle {
   display: block;
-  font-size: $fs-xs;
-  color: $brand-gold;
+  font-size: 0.72rem;
+  color: var(--brand-primary);
   margin-top: 2px;
   letter-spacing: 0.05em;
 }
 
 // ── Description Section ───────────────────────────────────────
 .descriptionSection {
-  @include section-padding;
-  background: $surface-dark;
-  padding: 20px 0;
+  padding: 5rem 0;
+  background: var(--brand-white);
+
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+  }
 }

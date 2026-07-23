@@ -16,9 +16,9 @@ const NAV_ITEMS = [
       { to: '/about/history', label: 'BTA Profile' },
       { to: '/about/history', label: 'Mission & Vision' },
       { to: '/about/speech', label: 'Message from Chairman' },
-      { to: '/about/history', label: 'Former Chairman' },
-      { to: '/about/history', label: 'Management Staff' },
-      { to: '/about/history', label: 'Organogram' },
+      { to: '/adviser', label: 'Former Chairman' },
+      { to: '/adviser', label: 'Management Staff' },
+      { to: '/organogram', label: 'Organogram' },
     ]
   },
   {
