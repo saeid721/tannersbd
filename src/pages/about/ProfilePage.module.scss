@@ -112,6 +112,10 @@
   @media (max-width: 992px) {
     padding: 3.5rem 0;
   }
+
+  @media (max-width: 576px) {
+    padding: 1.25rem 0;
+  }
 }
 
 .block {
@@ -119,20 +123,30 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 
   &:last-child { border-bottom: none; }
+
+  @media (max-width: 576px) {
+    padding: 1.25rem 0;
+  }
 }
 
 // ── Image card ───────────────────────────────────────────────
 .imageWrapper {
   position: relative;
   width: 100%;
+  aspect-ratio: 4 / 3;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: var(--shadow-md);
+
+  @media (max-width: 576px) {
+    border-radius: 14px;
+  }
 }
 
 .imageWrapperLight {
   align-items: center;
   justify-content: center;
+  aspect-ratio: auto;
 }
 
 .image {
@@ -152,6 +166,10 @@
   height: auto;
   max-height: 100%;
   object-fit: contain;
+
+  @media (max-width: 576px) {
+    max-height: 200px;
+  }
 }
 
 .overlay {
@@ -179,6 +197,10 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+
+  @media (max-width: 576px) {
+    gap: 0.6rem;
+  }
 }
 
 .eyebrow {
@@ -203,7 +225,7 @@
 }
 
 .titlePart1 { color: var(--brand-secondary); }
-.titlePart2 { color: var(--brand-primary); }
+.titlePart2 { color: var(--red); }
 
 .divider {
   width: 56px;
@@ -211,6 +233,10 @@
   background: var(--brand-primary);
   margin: 0.5rem 0 0.75rem;
   border-radius: 2px;
+
+  @media (max-width: 576px) {
+    margin: 0.3rem 0 0.4rem;
+  }
 }
 
 .bio {
@@ -219,6 +245,11 @@
   line-height: 1.75;
   text-align: left;
   margin: 0;
+
+  @media (max-width: 576px) {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
 }
 
 // ── Stat cards (What We Do) ──────────────────────────────────
@@ -229,13 +260,14 @@
   margin-top: 0.5rem;
 
   @media (max-width: 576px) {
-    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    margin-top: 0.3rem;
   }
 }
 
 .statCard {
   background: var(--brand-primary-bg);
-  border: 1px solid var(--brand-primary-lighter);
+  border: 1px solid var(--red);
   border-radius: 14px;
   padding: 1.25rem 1rem;
   text-align: center;
@@ -245,14 +277,23 @@
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
   }
+
+  @media (max-width: 576px) {
+    padding: 0.6rem 0.5rem;
+    border-radius: 10px;
+  }
 }
 
 .statNumber {
   font-family: 'Sen', sans-serif;
   font-size: 2.1rem;
   font-weight: 800;
-  color: var(--brand-primary);
+  color: var(--red);
   line-height: 1;
+
+  @media (max-width: 576px) {
+    font-size: 1.4rem;
+  }
 }
 
 .statLabel {
@@ -263,6 +304,12 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--brand-secondary-light);
+
+  @media (max-width: 576px) {
+    margin-top: 0.2rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.03em;
+  }
 }
 
 // ── Background / founders ───────────────────────────────────
@@ -278,6 +325,8 @@
 
   @media (max-width: 576px) {
     grid-template-columns: 1fr;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
   }
 }
 
@@ -288,7 +337,7 @@
   text-align: left;
   padding: 0.85rem 1rem;
   background: var(--brand-secondary-bg);
-  border-left: 3px solid var(--brand-primary);
+  border-left: 3px solid var(--red);
   border-radius: 8px;
   box-shadow: var(--shadow-sm);
   transition: transform 0.2s var(--ease-out-expo), box-shadow 0.2s var(--ease-out-expo);
@@ -296,6 +345,11 @@
   &:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
+  }
+
+  @media (max-width: 576px) {
+    padding: 0.55rem 0.7rem;
+    border-radius: 6px;
   }
 }
 
@@ -308,12 +362,21 @@
   font-weight: 700;
   color: var(--brand-secondary);
   font-size: 0.95rem;
+
+  @media (max-width: 576px) {
+    font-size: 0.82rem;
+  }
 }
 
 .founderRole {
   font-size: 0.8rem;
   color: var(--brand-secondary-light);
   margin-top: 2px;
+
+  @media (max-width: 576px) {
+    font-size: 0.7rem;
+    margin-top: 1px;
+  }
 }
 
 // ── Closing banner image ────────────────────────────────────

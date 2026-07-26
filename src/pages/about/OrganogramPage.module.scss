@@ -185,7 +185,7 @@
   }
 
   @media (max-width: 576px) {
-    height: 0.85rem;
+    height: 0.55rem;
   }
 }
 
@@ -210,11 +210,39 @@
   }
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    max-width: 320px;
-    gap: 1.1rem;
+    gap: 0.5rem;
+    padding-top: 1rem;
 
-    &::before { display: none; }
+    &::before {
+      left: 12%;
+      right: 12%;
+    }
+  }
+
+  @media (max-width: 576px) {
+    gap: 0.35rem;
+    padding-top: 0.75rem;
+
+    &::before {
+      left: 8%;
+      right: 8%;
+    }
+  }
+}
+
+// Compact node style only inside the 3-way branch row (mobile)
+.branch .node {
+  @media (max-width: 576px) {
+    white-space: normal;
+    font-size: 0.68rem;
+    line-height: 1.25;
+    padding: 0.45rem 0.35rem;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 0.62rem;
+    padding: 0.4rem 0.25rem;
   }
 }
 
@@ -233,6 +261,13 @@
     height: 1.25rem;
     background: var(--brand-primary-lighter);
     transform: translateX(-50%);
+  }
+
+  @media (max-width: 576px) {
+    &::before {
+      top: -0.75rem;
+      height: 0.75rem;
+    }
   }
 }
 

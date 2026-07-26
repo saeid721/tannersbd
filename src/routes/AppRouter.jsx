@@ -28,8 +28,11 @@ const OrganogramPage            = lazy(() => import('../pages/about/OrganogramPa
 // ── Membership routes (Members dropdown) ────────────────────────
 const ExecutiveCommitteePage        = lazy(() => import('../pages/members/ExecutiveCommitteePage'));
 const AdviserCommitteePage        = lazy(() => import('../pages/members/AdviserCommitteePage'));
+
 const GeneralMemberListPage        = lazy(() => import('../pages/members/GeneralMemberListPage'));
 const AssociateMemberListPage        = lazy(() => import('../pages/members/AssociateMemberListPage'));
+const EligibilityPage        = lazy(() => import('../pages/members/EligibilityPage'));
+const MembershipBenefitsPage        = lazy(() => import('../pages/members/MembershipBenefitsPage'));
 
 
 // ── Page fallback ────────────────────────────────────────────
@@ -63,8 +66,11 @@ const router = createBrowserRouter([
       // EC Members routes (including Executive Committee)
       { path: 'executiveCommittee', element: withSuspense(ExecutiveCommitteePage) },
       { path: 'adviserCommittee', element: withSuspense(AdviserCommitteePage) },
+
       { path: 'generalMemberList', element: withSuspense(GeneralMemberListPage) },
       { path: 'associateMemberList', element: withSuspense(AssociateMemberListPage) },
+      { path: 'eligibility', element: withSuspense(EligibilityPage) },
+      { path: 'membershipBenefits', element: withSuspense(MembershipBenefitsPage) },
 
       // Core feature pages
       { path: 'facilities', element: withSuspense(FacilitiesPage) },

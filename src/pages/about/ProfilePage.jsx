@@ -58,7 +58,7 @@ const Block = ({ eyebrow, titlePart1, titlePart2, children, reverse, image, imag
 
   return (
     <motion.div ref={ref} className={styles.block} initial="hidden" animate={isInView ? 'visible' : 'hidden'}>
-      <Row className="align-items-center g-5">
+      <Row className="align-items-center g-3 g-lg-5">
         <Col lg={5} className={reverse ? 'order-lg-2' : ''}>
           <motion.div
             className={`${styles.imageWrapper} ${containImage ? styles.imageWrapperLight : ''}`}

@@ -35,8 +35,8 @@ const NAV_ITEMS = [
     items: [
       { to: '/generalMemberList', label: 'General Member List (2025-2026)' },
       { to: '/associateMemberList', label: 'Associate Member List (2025-2026)' },
-      { to: '/adviserCommittee', label: 'Eligibility to be a BTA member' },
-      { to: '/adviserCommittee', label: 'Membership Benefits' },
+      { to: '/eligibility', label: 'Eligibility to be a BTA member' },
+      { to: '/membershipBenefits', label: 'Membership Benefits' },
     ]
   },
   {
