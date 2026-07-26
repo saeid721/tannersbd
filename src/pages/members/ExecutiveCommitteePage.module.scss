@@ -81,7 +81,7 @@ $breakpoint-mobile: 576px;
   padding: 5rem 1rem 0rem 1rem;
 
   @media (max-width: 576px) {
-    padding: 4rem 1.5rem 0.5rem;
+    padding: 3.25rem 1.5rem 0.4rem;
   }
 }
 
@@ -142,17 +142,29 @@ $breakpoint-mobile: 576px;
   @include tablet {
     padding: 2.5rem 0 3.5rem;
   }
+
+  @include mobile {
+    padding: 1.25rem 0 1.75rem;
+  }
 }
 
 .presidentSection {
   padding: 3.5rem 0 1rem;
   background: var(--brand-white);
+
+  @include mobile {
+    padding: 1.25rem 0 0.5rem;
+  }
 }
 
 .presidentWrap {
   display: flex;
   justify-content: center;
   margin-top: 2rem;
+
+  @include mobile {
+    margin-top: 0.75rem;
+  }
 }
 
 @keyframes cardFadeIn {
@@ -219,6 +231,11 @@ $breakpoint-mobile: 576px;
     padding: 28px 32px;
     border-top: none;
     gap: 10px;
+
+    @include mobile {
+      padding: 16px 14px;
+      gap: 6px;
+    }
   }
 
   .goldBadge {
@@ -232,6 +249,10 @@ $breakpoint-mobile: 576px;
     font-size: 1.55rem;
     color: var(--red);
     text-shadow: none;
+
+    @include mobile {
+      font-size: 1.15rem;
+    }
   }
 
   .orgLine {
@@ -241,11 +262,20 @@ $breakpoint-mobile: 576px;
     margin-bottom: 6px;
 
     strong { color: var(--brand-secondary); }
+
+    @include mobile {
+      font-size: 0.78rem;
+      margin-bottom: 2px;
+    }
   }
 
   .metaRow {
     font-size: 0.85rem;
     align-items: center;
+
+    @include mobile {
+      font-size: 0.72rem;
+    }
   }
 
   @include mobile {
@@ -472,6 +502,10 @@ $breakpoint-mobile: 576px;
   gap: 1px;
   border-top: 1px solid var(--brand-secondary-soft);
   background: var(--brand-white);
+
+  @include mobile {
+    padding: 4px 9px 6px;
+  }
 }
 
 .metaRow {

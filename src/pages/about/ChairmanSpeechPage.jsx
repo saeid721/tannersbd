@@ -101,7 +101,7 @@ const ChairmanSpeechPage = () => {
         animate={isInView ? 'visible' : 'hidden'}
       >
         <Container>
-          <Row className="g-5">
+          <Row className="g-5 g-lg-5 g-0">
             <Col lg={4}>
               {/* Photo + name/title */}
               <motion.div className={styles.profileHeader} variants={imageVariants}>

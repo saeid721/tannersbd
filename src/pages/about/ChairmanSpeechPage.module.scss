@@ -53,7 +53,7 @@
   padding: 5rem 1rem 0rem 1rem;
 
   @media (max-width: 576px) {
-    padding: 4rem 1.5rem 0.5rem;
+    padding: 3.25rem 1.5rem 0.4rem;
   }
 }
 
@@ -123,6 +123,14 @@
   align-items: center;
   text-align: center;
   margin: 0 auto 3rem;
+
+  @media (max-width: 992px) {
+    margin: 0 auto 1rem;
+  }
+
+  @media (max-width: 576px) {
+    margin: 0 auto 0.5rem;
+  }
 }
 
 .imageWrapper {
@@ -135,7 +143,7 @@
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.16);
 
   @media (max-width: 576px) {
-    width: 190px;
+    width: 150px;
   }
 }
 
@@ -197,6 +205,10 @@
   text-align: left;
   gap: 1.5rem;
   width: 100%;
+
+  @media (max-width: 576px) {
+    gap: 0.9rem;
+  }
 }
 
 .eyebrow {
@@ -207,6 +219,13 @@
   letter-spacing: 0.3em;
   color: var(--brand-primary);
   text-align: center;
+  display: block;
+  margin-bottom: 0;
+
+  @media (max-width: 576px) {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+  }
 }
 
 .heading {
@@ -223,7 +242,7 @@
   }
 
   @media (max-width: 576px) {
-    font-size: 1.7rem;
+    font-size: 1.3rem;
   }
 }
 
@@ -256,6 +275,12 @@
   line-height: 1.5;
   text-align: left;
   width: 100%;
+
+  @media (max-width: 576px) {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
 }
 
 .messageBody {
@@ -263,6 +288,10 @@
   flex-direction: column;
   gap: 1.1rem;
   width: 100%;
+
+  @media (max-width: 576px) {
+    gap: 0.7rem;
+  }
 }
 
 .bio {
@@ -271,6 +300,11 @@
   line-height: 1.5;
   margin: 0;
   text-align: justify;
+
+  @media (max-width: 576px) {
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
 }
 
 .signature {
@@ -312,6 +346,6 @@
   background: var(--brand-white);
 
   @media (max-width: 768px) {
-    padding: 3rem 0;
+    padding: 1.5rem 0;
   }
 }

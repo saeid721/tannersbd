@@ -325,7 +325,7 @@ const ExecutiveCommitteePage = () => {
       {/* Committee Members Grid */}
       <section className={styles.section}>
         <Container>
-          <Row className="g-4 justify-content-center">
+          <Row className="g-4 g-md-4 g-3 justify-content-center">
             {COMMITTEE.map((member, index) => (
               <Col key={index} lg={4} md={6}>
                 <CommitteeCard member={member} index={index} />
