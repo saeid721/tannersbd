@@ -35,7 +35,7 @@ const NEWS = [
   },
   {
     id: 4,
-    image: img3,
+    image: img4,
     title: 'Their Excellencies, the Ambassadors of the EU, Germany, and Italy to Bangladesh, visited the Tannery Industrial Estate, Dhaka',
     desc: 'H.E. Mr. Michael Miller Ambassador and Head of Delegation of the European Union to Bangladesh, H.E. Mr. Dr. Rüdiger Lotz Ambassador.....',
     link: 'http://www.tannersbd.com/?page_id=752',
@@ -105,7 +105,7 @@ const NewsSection = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <Row className="g-4">
+          <Row className="g-4 g-md-4 g-3">
             {NEWS.map((facility, index) => (
               <Col key={facility.id} lg={3} md={6}>
                 <motion.div

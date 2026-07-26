@@ -206,8 +206,9 @@
   gap: 1rem;
 
   @media (max-width: 768px) {
-    flex-direction: column-reverse;
+    flex-direction: column;
     text-align: center;
+    gap: 0.75rem;
   }
 }
 
@@ -252,28 +253,29 @@
 
 @media (max-width: 576px) {
   .main {
-    padding: 2.75rem 0 1.5rem;
-  }
-
-  .colTitle::after {
-    left: 50%;
-    transform: translateX(-50%);
+    padding: 2rem 0 1rem;
   }
 
   .colTitle {
-    text-align: center;
+    text-align: left;
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.6rem;
   }
 
   .brandLogo {
     justify-content: center;
+    margin-bottom: 0.9rem;
   }
 
   .brand {
     text-align: center;
+    margin-bottom: 0.5rem;
   }
 
   .brandDesc {
     max-width: 100%;
+    margin-bottom: 1rem;
+    line-height: 1.6;
   }
 
   .social {
@@ -282,6 +284,24 @@
 
   .footerLink,
   .contactList li {
-    justify-content: center;
+    justify-content: flex-start;
+  }
+
+  .linkList {
+    gap: 0.6rem;
+  }
+
+  .contactList {
+    gap: 0.9rem;
+  }
+
+  .contactIcon {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+  }
+
+  .bottom {
+    padding: 1.1rem 0;
   }
 }

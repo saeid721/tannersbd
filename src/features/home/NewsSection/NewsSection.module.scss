@@ -11,7 +11,7 @@
   }
   
   @media (max-width: 768px) { 
-    padding: 2.5rem 0; 
+    padding: 1.5rem 0; 
   }
 }
 
@@ -49,7 +49,7 @@
   transition: color var(--transition);
 
   &:hover {
-    color: var(--brand-primary);
+    color: var(--brand-secondary);
     text-decoration: none;
   }
 }
@@ -70,7 +70,7 @@
   flex: 1;
 
   @media (max-width: 768px) {
-    padding: 1.25rem 1rem 1.5rem;
+    padding: 0.85rem 0.9rem 1rem;
   }
 }
 
@@ -78,17 +78,18 @@
   font-family: 'Sen', sans-serif; 
   font-size: .80rem; 
   font-weight: 700; 
-  color: var(--error); 
+  color: var(--red); 
   line-height: 1.2;
   margin: 0 0 1.25rem;
   word-break: break-word;
   
   @media (max-width: 768px) {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
+    margin: 0 0 0.6rem;
   }
   
   @media (max-width: 380px) {
-    font-size: 0.875rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -100,8 +101,9 @@
   margin: 0 0 1.5rem;
 
   @media (max-width: 768px) {
-    font-size: 0.8rem;
-    line-height: 1.6;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    margin: 0 0 0.6rem;
   }
 }
 .cardBtnWrap {
@@ -117,13 +119,13 @@
   gap: 6px;
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--error);
+  color: var(--red);
   text-decoration: none;
   transition: gap var(--transition), color var(--transition);
 
   &:hover {
     gap: 10px;
-    color: var(--brand-primary);
+    color: var(--brand-secondary);
     text-decoration: none;
   }
 
@@ -142,7 +144,7 @@
   margin-top: 3rem;
 
   @media (max-width: 768px) {
-    margin-top: 2rem;
+    margin-top: 1.25rem;
   }
 }
 

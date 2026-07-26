@@ -82,7 +82,7 @@ const FacilitiesPreview = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <Row className="g-4">
+          <Row className="g-4 g-md-4 g-3">
             {FACILITIES.map((facility, index) => (
               <Col key={facility.id} lg={4} md={6}>
                 <motion.div

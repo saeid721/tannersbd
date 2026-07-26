@@ -69,7 +69,7 @@ const PresidentSection = () => {
       animate={isInView ? "visible" : "hidden"}
     >
       <Container>
-        <Row className="align-items-center g-5">
+        <Row className="align-items-center g-5 g-md-5 g-0">
           {/* Left: Image Card */}
           <Col lg={5}>
             <motion.div

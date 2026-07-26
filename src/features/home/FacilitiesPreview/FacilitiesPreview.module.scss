@@ -11,7 +11,7 @@
   }
   
   @media (max-width: 768px) { 
-    padding: 2.5rem 0; 
+    padding: 1.5rem 0; 
   }
 }
 
@@ -44,7 +44,7 @@
   overflow: hidden;
 
   @media (max-width: 768px) {
-    height: 180px;
+    height: 140px;
   }
 }
 
@@ -64,7 +64,7 @@
   flex: 1;
 
   @media (max-width: 768px) {
-    padding: 1.25rem 1rem 1.5rem;
+    padding: 0.85rem 0.9rem 1rem;
   }
 }
 
@@ -72,13 +72,14 @@
   font-family: 'Sen', sans-serif; 
   font-size: 1.25rem; 
   font-weight: 700; 
-  color: var(--error); 
+  color: var(--red); 
   line-height: 1.2;
   margin: 0 0 1.25rem;
   word-break: break-word;
   
   @media (max-width: 768px) {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    margin: 0 0 0.5rem;
   }
   
   @media (max-width: 380px) {
@@ -94,8 +95,9 @@
   margin: 0 0 1.5rem;
 
   @media (max-width: 768px) {
-    font-size: 0.8rem;
-    line-height: 1.6;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    margin: 0 0 0.6rem;
   }
 }
 .cardBtnWrap {
@@ -111,7 +113,7 @@
   gap: 6px;
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--error);
+  color: var(--red);
   text-decoration: none;
   transition: gap var(--transition), color var(--transition);
 
@@ -122,9 +124,10 @@
   }
 
   @media (max-width: 768px) {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 }
+
 /* ── Card Wrapper for hover effects ────────────────────────── */
 .cardWrapper {
   height: 100%;

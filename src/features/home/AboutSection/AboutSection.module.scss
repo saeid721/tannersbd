@@ -11,7 +11,7 @@
   }
   
   @media (max-width: 768px) { 
-    padding: 2.5rem 0; 
+    padding: 1.5rem 0; 
   }
 }
 
@@ -26,7 +26,8 @@
   }
   
   @media (max-width: 768px) { 
-    height: 300px; 
+    height: 220px;
+    margin-bottom: 1.25rem;
   }
 }
 
@@ -93,10 +94,14 @@
   width: 62%;
 
   @media (max-width: 768px) {
-    bottom: 10%;
-    left: 15%;
-    padding: 0.75rem 1.5rem;
-    width: 70%;
+    bottom: 8px;
+    left: 25%;
+    right: auto;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: calc(100% - 16px);
+    padding: 0.55rem 0.9rem;
+    gap: 0.6rem;
   }
 }
 
@@ -113,9 +118,10 @@
   color: var(--brand-primary);
   line-height: 1.1;
   letter-spacing: -0.01em;
+  white-space: nowrap;
 
   @media (max-width: 768px) { 
-    font-size: 1.3rem; 
+    font-size: 0.95rem; 
   }
 }
 
@@ -126,6 +132,11 @@
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.3;
+
+  @media (max-width: 768px) {
+    font-size: 0.5rem;
+    letter-spacing: 0.15em;
+  }
 }
 
 .badgeDivider {
@@ -135,7 +146,7 @@
   flex-shrink: 0;
 
   @media (max-width: 768px) { 
-    height: 32px; 
+    height: 24px; 
   }
 }
 
@@ -196,6 +207,12 @@
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.7);
   margin-top: 2px;
+
+  @media (max-width: 768px) {
+    font-size: 0.48rem;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+  }
 }
 
 /* ── Content Section ──────────────────────────────────── */
@@ -212,7 +229,8 @@
   }
 
   @media (max-width: 768px) {
-    padding: 20px 16px;
+    padding: 16px 14px;
+    margin-top: 0;
   }
 }
 
@@ -222,6 +240,10 @@
   align-items: center;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 0.75rem;
+  }
 
   &::before,
   &::after {
@@ -258,12 +280,13 @@
 
   .titlePart2 {
     display: inline;
-    color: var(--brand-primary);
+    color: var(--red);
     margin-left: 0.3em;
   }
   
   @media (max-width: 768px) {
-    font-size: 36px;
+    font-size: 28px;
+    margin-bottom: 0.6rem;
   }
 }
 
@@ -282,6 +305,16 @@
 
   &:last-of-type {
     margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.75rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+
+    &:first-of-type {
+      padding-left: 0.9rem;
+    }
   }
 }
 
