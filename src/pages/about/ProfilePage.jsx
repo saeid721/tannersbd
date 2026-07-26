@@ -1,4 +1,4 @@
-// src/pages/HistoryPage.jsx
+// src/pages/about/ProfilePage.jsx
 import React, { useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { motion, useInView } from 'framer-motion';
