@@ -155,58 +155,97 @@ $breakpoint-mobile: 576px;
   margin-top: 2rem;
 }
 
-// ── Card shell (light, modern, professional) ────────────────────────────────
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ── Card shell ───────────────────────────────────────────────────────────────
 .card {
   position: relative;
   background: var(--brand-white);
   border: 1px solid var(--brand-secondary-soft);
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
   height: 100%;
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-sm);
 
-  opacity: 0;
-  transform: translateY(24px);
+  animation: cardFadeIn 0.6s var(--ease-out-expo) both;
   transition:
-    opacity      0.001s,
-    transform    0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    transform    0.35s var(--ease-out-expo),
     box-shadow   0.3s ease,
     border-color 0.3s ease;
 
-  &.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
   &:hover {
-    transform: translateY(-6px);
+    transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
-    border-color: rgba(147, 31, 31, 0.3);
+    border-color: rgba(147, 31, 31, 0.28);
 
-    .photo { transform: scale(1.06); }
+    .photo { transform: scale(1.08); }
+    .overlayInfo { padding-bottom: 20px; }
   }
 }
 
-// ── President variant ─────────────────────────────────────────────────────────
+// ── President / Chairman variant ───────────────────────────────────────────
 .card--featured {
   flex-direction: row;
   align-items: stretch;
-  max-width: 720px;
+  max-width: 760px;
+  width: 100%;
+  border: 1px solid var(--brand-primary-light);
+  background: linear-gradient(135deg, var(--brand-white) 0%, var(--brand-primary-bg) 100%);
+  box-shadow: 0 8px 30px rgba(65, 39, 6, 0.14);
 
   .photoArea {
-    width: 220px;
-    min-width: 220px;
+    width: 260px;
+    min-width: 260px;
     height: auto;
+    aspect-ratio: 3 / 3.6;
   }
 
   .cardBody {
+    flex: 1;
     justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    padding: 28px 32px;
+    border-top: none;
+    gap: 10px;
+  }
+
+  .goldBadge {
+    color: var(--brand-primary);
+    background: rgba(147, 120, 31, 0.08);
+    border: 1px solid rgba(147, 110, 31, 0.3);
+    margin: 0 0 4px;
   }
 
   .name {
-    font-size: 1.4rem;
+    font-size: 1.55rem;
+    color: var(--red);
+    text-shadow: none;
+  }
+
+  .orgLine {
+    font-size: 0.9rem;
+    color: var(--brand-secondary-muted);
+    text-shadow: none;
+    margin-bottom: 6px;
+
+    strong { color: var(--brand-secondary); }
+  }
+
+  .metaRow {
+    font-size: 0.85rem;
+    align-items: center;
   }
 
   @include mobile {
@@ -215,15 +254,60 @@ $breakpoint-mobile: 576px;
     .photoArea {
       width: 100%;
       min-width: 100%;
-      height: 260px;
     }
+
+    .cardBody {
+      align-items: center;
+      text-align: center;
+    }
+
+    .metaRow { text-align: left; }
   }
+  
+.metaIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 0;
 }
 
-// ── Photo area ────────────────────────────────────────────────────────────────
+.email {
+  font-weight: 600;
+  color: var(--brand-secondary-muted);
+  text-decoration: none;
+  word-break: break-all;
+  text-align: center;
+
+  &:hover {
+    color: var(--brand-secondary-dark);
+  }
+}
+}
+
+// Corner ribbon for the Chairman card
+.chairmanRibbon {
+  position: absolute;
+  top: 18px;
+  right: -38px;
+  z-index: 4;
+  width: 150px;
+  text-align: center;
+  transform: rotate(45deg);
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-primary-dark));
+  color: var(--brand-white);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+// ── Photo area (passport-style headshot ratio) ──────────────────────────────
 .photoArea {
   position: relative;
-  height: 260px;
+  width: 100%;
+  aspect-ratio: 3 / 3.6;
   background: var(--brand-secondary-bg);
   overflow: hidden;
   flex-shrink: 0;
@@ -236,14 +320,46 @@ $breakpoint-mobile: 576px;
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.6s var(--ease-out-expo);
 }
 
+// Bottom gradient so overlaid text stays readable on any photo
 .photoOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.35) 100%);
+  background: linear-gradient(
+    to top,
+    rgba(8, 6, 2, 0.94) 0%,
+    rgba(10, 7, 3, 0.8) 26%,
+    rgba(10, 7, 3, 0.3) 52%,
+    transparent 72%
+  );
   pointer-events: none;
+}
+
+// Name / role / company overlaid on the photo
+.overlayInfo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 16px 16px 14px;
+  transition: padding 0.3s var(--ease-out-expo);
+
+  .metaRow {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .metaIcon {
+    width: 13px;
+    height: 13px;
+    margin-top: 0;
+    flex-shrink: 0;
+    color: var(--brand-white);
+  }
 }
 
 // Initials fallback
@@ -259,7 +375,7 @@ $breakpoint-mobile: 576px;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 1;
 }
 
 .initialsText {
@@ -268,6 +384,25 @@ $breakpoint-mobile: 576px;
   font-weight: 700;
   color: var(--brand-white);
   line-height: 1;
+}
+
+.metaIcon {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.email {
+  font-weight: 600;
+  color: var(--brand-secondary-soft);
+  text-decoration: none;
+  word-break: break-all;
+  text-align: center;
+
+  &:hover {
+    color: var(--brand-white);
+  }
 }
 
 // ── Code badge ───────────────────────────────────────────────────────────────
@@ -287,69 +422,76 @@ $breakpoint-mobile: 576px;
   border-radius: 20px;
 }
 
-// ── Card body ────────────────────────────────────────────────────────────────
-.cardBody {
-  padding: 1.25rem 1.5rem 1.5rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
+// ── Role badge + name + org line (used inside overlayInfo) ─────────────────
 .goldBadge {
   display: inline-block;
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--red);
-  background: rgba(255, 147, 147, 0.1);
-  border: 1px solid rgba(147, 31, 31, 0.3);
-  padding: 4px 14px;
-  border-radius: 12px;
+  background: rgba(224, 108, 108, 0.16);
+  border: 1px solid rgba(224, 108, 108, 0.55);
+  padding: 3px 12px;
+  border-radius: 20px;
   width: fit-content;
-  margin: 0 auto 10px;
+  margin: 0 0 8px;
+  backdrop-filter: blur(2px);
 }
 
 .name {
   font-family: 'Sen', sans-serif;
   font-size: 1.05rem;
   font-weight: 800;
-  color: var(--brand-secondary);
-  margin: 0 0 6px;
-  line-height: 1.3;
+  color: var(--brand-white);
+  margin: 0 0 4px;
+  line-height: 1.25;
   letter-spacing: -0.01em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
 }
 
 .orgLine {
-  font-size: 0.85rem;
-  color: var(--brand-secondary-muted);
-  margin: 0 0 10px;
-  line-height: 1.5;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.86);
+  margin: 0;
+  line-height: 1.4;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 
   strong {
-    color: var(--brand-secondary);
+    color: var(--red);
     font-weight: 700;
   }
 }
 
-.address {
-  font-size: 0.78rem;
-  color: var(--brand-secondary-lighter);
-  line-height: 1.55;
-  margin: 0 0 10px;
+// ── Card body (address + email footer) ──────────────────────────────────────
+.cardBody {
+  padding: 5px 12px 5px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border-top: 1px solid var(--brand-secondary-soft);
+  background: var(--brand-white);
 }
 
-.email {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--brand-primary);
-  text-decoration: none;
-  word-break: break-all;
-  margin-top: auto;
+.metaRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.65rem;
+  color: var(--brand-secondary-muted);
+  text-align: left;
+}
 
-  &:hover {
-    text-decoration: underline;
-    color: var(--brand-primary-hover);
-  }
+.metaIcon {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--brand-primary);
+}
+
+.address {
+  margin: 0;
+  color: var(--brand-secondary);
 }

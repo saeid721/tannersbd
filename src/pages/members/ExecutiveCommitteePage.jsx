@@ -1,7 +1,6 @@
 // FILE: src/pages/committee/ExecutiveCommitteePage.jsx
-// REPLACE THE ENTIRE FILE WITH THIS
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import SectionHeader from '../../components/common/SectionHeader';
 import { getInitials } from '../../utils/helpers';
@@ -189,14 +188,11 @@ const COMMITTEE = [
 ];
 
 // President Card Component
-const PresidentCard = ({ member, index, cardRef }) => {
+const PresidentCard = ({ member }) => {
   return (
-    <div
-      ref={(el) => {
-        if (cardRef && el) cardRef.current[index] = el;
-      }}
-      className={`${styles.card} ${styles['card--featured']}`}
-    >
+    <div className={`${styles.card} ${styles['card--featured']}`}>
+      <span className={styles.chairmanRibbon}>Chairman</span>
+
       <div className={styles.photoArea}>
         <span className={styles.codeBadge}>{member.code}</span>
         {member.img ? (
@@ -206,7 +202,6 @@ const PresidentCard = ({ member, index, cardRef }) => {
             <span className={styles.initialsText}>{getInitials(member.name)}</span>
           </div>
         )}
-        <div className={styles.photoOverlay} />
       </div>
 
       <div className={styles.cardBody}>
@@ -215,11 +210,29 @@ const PresidentCard = ({ member, index, cardRef }) => {
         <p className={styles.orgLine}>
           {member.designation}, <strong>{member.company}</strong>
         </p>
-        {member.address && <p className={styles.address}>📍 {member.address}</p>}
+
+        {member.address && (
+          <div className={styles.metaRow}>
+            <svg className={styles.metaIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 21C12 21 19 15.5 19 10C19 5.85786 15.6421 2.5 12 2.5C8.35786 2.5 5 5.85786 5 10C5 15.5 12 21 12 21Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/>
+              <circle cx="12" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.6"/>
+            </svg>
+            <p className={styles.address}>{member.address}</p>
+          </div>
+        )}
         {member.email && (
-          <a href={`mailto:${member.email}`} className={styles.email}>
-            ✉ {member.email}
-          </a>
+          <div className={styles.metaRow}>
+            <svg className={styles.metaIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 6.5C3 5.67157 3.67157 5 4.5 5H19.5C20.3284 5 21 5.67157 21 6.5V17.5C21 18.3284 20.3284 19 19.5 19H4.5C3.67157 19 3 18.3284 3 17.5V6.5Z" stroke="currentColor" strokeWidth="1.6"/>
+              <path d="M4 6.5L12 13L20 6.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <a href={`mailto:${member.email}`}
+              className={styles.email}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {member.email}
+            </a>
+          </div>
         )}
       </div>
     </div>
@@ -227,13 +240,11 @@ const PresidentCard = ({ member, index, cardRef }) => {
 };
 
 // Committee Card Component
-const CommitteeCard = ({ member, index, cardRef }) => {
+const CommitteeCard = ({ member, index }) => {
   return (
     <div
-      ref={(el) => {
-        if (cardRef && el) cardRef.current[index] = el;
-      }}
       className={`${styles.card} ${styles['card--committee']}`}
+      style={{ animationDelay: `${Math.min(index * 0.06, 0.6)}s` }}
     >
       <div className={styles.photoArea}>
         <span className={styles.codeBadge}>{member.code}</span>
@@ -245,19 +256,38 @@ const CommitteeCard = ({ member, index, cardRef }) => {
           </div>
         )}
         <div className={styles.photoOverlay} />
+        <div className={styles.overlayInfo}>
+          <span className={styles.goldBadge}>{member.role}</span>
+          <h3 className={styles.name}>{member.name}</h3>
+          <p className={styles.orgLine}>
+            {member.designation}, <strong>{member.company}</strong>
+          </p>
+            {member.email && (
+              <div className={styles.metaRow}>
+                <svg className={styles.metaIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 6.5C3 5.67157 3.67157 5 4.5 5H19.5C20.3284 5 21 5.67157 21 6.5V17.5C21 18.3284 20.3284 19 19.5 19H4.5C3.67157 19 3 18.3284 3 17.5V6.5Z" stroke="currentColor" strokeWidth="1.6"/>
+                  <path d="M4 6.5L12 13L20 6.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <a href={`mailto:${member.email}`}
+                  className={styles.email}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {member.email}
+                </a>
+              </div>
+            )}
+        </div>
       </div>
 
       <div className={styles.cardBody}>
-        <span className={styles.goldBadge}>{member.role}</span>
-        <h3 className={styles.name}>{member.name}</h3>
-        <p className={styles.orgLine}>
-          {member.designation}, <strong>{member.company}</strong>
-        </p>
-        {member.address && <p className={styles.address}>📍 {member.address}</p>}
-        {member.email && (
-          <a href={`mailto:${member.email}`} className={styles.email}>
-            ✉ {member.email}
-          </a>
+        {member.address && (
+          <div className={styles.metaRow}>
+            <svg className={styles.metaIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 21C12 21 19 15.5 19 10C19 5.85786 15.6421 2.5 12 2.5C8.35786 2.5 5 5.85786 5 10C5 15.5 12 21 12 21Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/>
+              <circle cx="12" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.6"/>
+            </svg>
+            <p className={styles.address}>{member.address}</p>
+          </div>
         )}
       </div>
     </div>
@@ -265,55 +295,8 @@ const CommitteeCard = ({ member, index, cardRef }) => {
 };
 
 const ExecutiveCommitteePage = () => {
-  const presidentCardRef = useRef([]);
-  const committeeCardRef = useRef([]);
 
-  // Animation observer for president card
-  useEffect(() => {
-    const observers = [];
 
-    if (presidentCardRef.current[0]) {
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.visible);
-            obs.unobserve(entry.target);
-          }
-        },
-        { threshold: 0.1 }
-      );
-      obs.observe(presidentCardRef.current[0]);
-      observers.push(obs);
-    }
-
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
-
-  // Animation observer for committee cards with stagger effect
-  useEffect(() => {
-    const observers = [];
-
-    committeeCardRef.current.forEach((el, i) => {
-      if (!el) return;
-
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              if (el) el.classList.add(styles.visible);
-            }, i * 80);
-            obs.unobserve(el);
-          }
-        },
-        { threshold: 0.1 }
-      );
-
-      obs.observe(el);
-      observers.push(obs);
-    });
-
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
 
   return (
     <>
@@ -334,7 +317,7 @@ const ExecutiveCommitteePage = () => {
       <section className={styles.presidentSection}>
         <Container>
           <div className={styles.presidentWrap}>
-            <PresidentCard member={PRESIDENT} index={0} cardRef={presidentCardRef} />
+            <PresidentCard member={PRESIDENT} />
           </div>
         </Container>
       </section>
@@ -345,7 +328,7 @@ const ExecutiveCommitteePage = () => {
           <Row className="g-4 justify-content-center">
             {COMMITTEE.map((member, index) => (
               <Col key={index} lg={4} md={6}>
-                <CommitteeCard member={member} index={index} cardRef={committeeCardRef} />
+                <CommitteeCard member={member} index={index} />
               </Col>
             ))}
           </Row>
