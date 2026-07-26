@@ -1,8 +1,8 @@
-// src/pages/PresidentSpeechPage.jsx
+// src/pages/ChairmanSpeechPage.jsx
 import React, { useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { motion, useInView } from 'framer-motion';
-import styles from './PresidentSpeechPage.module.scss';
+import styles from './ChairmanSpeechPage.module.scss';
 import presidentImg from '../../assets/president.jpg';
 
 const PRESIDENT = {
@@ -25,7 +25,7 @@ We would also welcome your suggestions to improve our system and services for ou
 // Split the message into paragraphs for proper spacing
 const MESSAGE_PARAGRAPHS = PRESIDENT.message.split('\n').map((p) => p.trim()).filter(Boolean);
 
-const PresidentSpeechPage = () => {
+const ChairmanSpeechPage = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
@@ -158,4 +158,4 @@ const PresidentSpeechPage = () => {
   );
 };
 
-export default PresidentSpeechPage;
+export default ChairmanSpeechPage;

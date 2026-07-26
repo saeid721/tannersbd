@@ -5,7 +5,7 @@
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  background: linear-gradient(180deg, #1a1512 0%, #120d0a 100%);
+  background: var(--brand-primary-dark) !important;
   margin-top: auto;
   z-index: 10;
 }
@@ -83,14 +83,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--brand-white);
   text-decoration: none;
   transition: all 0.25s ease;
 
   &:hover {
-    background: var(--brand-primary);
-    border-color: var(--brand-primary);
-    color: var(--brand-black);
+    background: var(--red);
+    border-color: var(--red);
+    color: var(--brand-white);
     transform: translateY(-3px);
   }
 }
@@ -106,6 +106,7 @@
   margin-bottom: 1.5rem;
   position: relative;
   padding-bottom: 0.9rem;
+  text-align: start;
 
   &::after {
     content: '';
@@ -114,7 +115,7 @@
     bottom: 0;
     width: 32px;
     height: 2px;
-    background: var(--brand-primary);
+    background: var(--red);
   }
 }
 
@@ -138,14 +139,14 @@
   transition: color 0.2s ease, gap 0.2s ease;
 
   &:hover {
-    color: var(--brand-primary);
+    color: var(--red);
     gap: 12px;
     text-decoration: none;
   }
 }
 
 .linkArrow {
-  color: var(--brand-primary);
+  color: var(--red);
   font-size: 1.1rem;
   line-height: 1;
   flex-shrink: 0;
@@ -153,6 +154,7 @@
 
 /* ── Contact ──────────────────────────────────────────── */
 .contactList {
+  text-align: start;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -189,7 +191,7 @@
   transition: color 0.2s ease;
 
   &:hover {
-    color: var(--brand-primary);
+    color: var(--red);
   }
 }
 
@@ -216,7 +218,7 @@
 }
 
 .copyrightLink {
-  color: var(--brand-primary);
+  color: var(--red);
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s ease;

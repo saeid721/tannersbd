@@ -9,10 +9,7 @@ const HomePage              = lazy(() => import('../pages/HomePage'));
 const FacilitiesPage        = lazy(() => import('../pages/FacilitiesPage'));
 const GalleryPage           = lazy(() => import('../pages/GalleryPage'));
 const VideoGalleryPage      = lazy(() => import('../pages/VideoGalleryPage'));
-const ReservationPage       = lazy(() => import('../pages/ReservationPage'));
 const NotFoundPage          = lazy(() => import('../pages/NotFoundPage'));
-const EventsPage            = lazy(() => import('../pages/EventsPage'));
-const MenuPage              = lazy(() => import('../pages/MenuPage'));
 const NewsPage              = lazy(() => import('../pages/NewsPage'));
 const NewsDetailsPage       = lazy(() => import('../pages/NewsDetailsPage'));
 const CircularPage          = lazy(() => import('../pages/CircularPage'));
@@ -23,23 +20,16 @@ const FaqPage               = lazy(() => import('../pages/FaqPage'));
 const ContactPage           = lazy(() => import('../pages/ContactPage'));
 
 // ── About dropdown routes ──────────────────────────────────────────
-const HistoryPage           = lazy(() => import('../pages/about/HistoryPage'));
-const PresidentSpeechPage   = lazy(() => import('../pages/about/PresidentSpeechPage'));
+const ProfilePage           = lazy(() => import('../pages/about/ProfilePage'));
+const MissionVisionPage   = lazy(() => import('../pages/about/MissionVisionPage'));
+const ChairmanSpeechPage   = lazy(() => import('../pages/about/ChairmanSpeechPage'));
 const OrganogramPage            = lazy(() => import('../pages/about/OrganogramPage'));
 
 // ── Membership routes (Members dropdown) ────────────────────────
 const ExecutiveCommitteePage        = lazy(() => import('../pages/members/ExecutiveCommitteePage'));
 const AdviserCommitteePage        = lazy(() => import('../pages/members/AdviserCommitteePage'));
 const GeneralMemberListPage        = lazy(() => import('../pages/members/GeneralMemberListPage'));
-const DonorMemberPage       = lazy(() => import('../pages/members/DonorMemberPage'));
-const LifeMemberPage        = lazy(() => import('../pages/members/LifeMemberPage'));
-const PermanentMemberPage   = lazy(() => import('../pages/members/PermanentMemberPage'));
-const CorporateMemberPage   = lazy(() => import('../pages/members/CorporateMemberPage'));
-const ForeignMemberPage     = lazy(() => import('../pages/members/ForeignMemberPage'));
-const HonoraryMemberPage    = lazy(() => import('../pages/members/HonoraryMemberPage'));
-const UseClubMemberPage     = lazy(() => import('../pages/members/UseClubMemberPage'));
-const AssociateMemberPage   = lazy(() => import('../pages/members/AssociateMemberPage'));
-const DiplomateMemberPage   = lazy(() => import('../pages/members/DiplomateMemberPage'));
+const AssociateMemberListPage        = lazy(() => import('../pages/members/AssociateMemberListPage'));
 
 
 // ── Page fallback ────────────────────────────────────────────
@@ -65,28 +55,19 @@ const router = createBrowserRouter([
       { index: true, element: withSuspense(HomePage) },
 
       // About routes (dropdown handled in navbar; define routes explicitly)
-      { path: 'about/history', element: withSuspense(HistoryPage) },
-      { path: 'about/speech', element: withSuspense(PresidentSpeechPage) },
+      { path: 'profile', element: withSuspense(ProfilePage) },
+      { path: 'missionVision', element: withSuspense(MissionVisionPage) },
+      { path: 'chairmanSpeech', element: withSuspense(ChairmanSpeechPage) },
       { path: 'organogram', element: withSuspense(OrganogramPage) },
 
       // EC Members routes (including Executive Committee)
       { path: 'executiveCommittee', element: withSuspense(ExecutiveCommitteePage) },
+      { path: 'adviserCommittee', element: withSuspense(AdviserCommitteePage) },
       { path: 'generalMemberList', element: withSuspense(GeneralMemberListPage) },
-      { path: 'adviser', element: withSuspense(AdviserCommitteePage) },
-      { path: 'members/donor', element: withSuspense(DonorMemberPage) },
-      { path: 'members/life', element: withSuspense(LifeMemberPage) },
-      { path: 'members/permanent', element: withSuspense(PermanentMemberPage) },
-      { path: 'members/corporate', element: withSuspense(CorporateMemberPage) },
-      { path: 'members/foreign', element: withSuspense(ForeignMemberPage) },
-      { path: 'members/honorary', element: withSuspense(HonoraryMemberPage) },
-      { path: 'members/use-club', element: withSuspense(UseClubMemberPage) },
-      { path: 'members/associate', element: withSuspense(AssociateMemberPage) },
-      { path: 'members/diplomate', element: withSuspense(DiplomateMemberPage) },
+      { path: 'associateMemberList', element: withSuspense(AssociateMemberListPage) },
 
       // Core feature pages
       { path: 'facilities', element: withSuspense(FacilitiesPage) },
-      { path: 'menu', element: withSuspense(MenuPage) },
-      { path: 'events', element: withSuspense(EventsPage) },
       { path: 'gallery', element: withSuspense(GalleryPage) },
       { path: 'video', element: withSuspense(VideoGalleryPage) },
       { path: 'news', element: withSuspense(NewsPage) },
@@ -95,7 +76,6 @@ const router = createBrowserRouter([
       { path: 'circular/:id', element: withSuspense(CircularDetailsPage) },
       { path: 'pressRelease', element: withSuspense(PressReleasePage) },
       { path: 'pressRelease/:id', element: withSuspense(PressReleaseDetailsPage) },
-      { path: 'reservation', element: withSuspense(ReservationPage) },
       { path: 'faq', element: withSuspense(FaqPage) },
       { path: 'contact', element: withSuspense(ContactPage) },
 

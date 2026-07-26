@@ -2,9 +2,8 @@
 import React, { useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { motion, useInView } from 'framer-motion';
-import styles from './HistoryPage.module.scss';
-import presidentImg from '../../assets/services-BTA.jpg';
-import AboutUsPicsImg from '../../assets/AboutUsPics.jpg';
+import styles from './MissionVisionPage.module.scss';
+import MissionVisionImg from '../../assets/MV.jpg';
 
 const FOUNDERS = [
   { name: 'Wahidul Hader Chowdhury', role: 'Proprietor, M/S Milon Tannery' },
@@ -100,7 +99,7 @@ const Block = ({ eyebrow, titlePart1, titlePart2, children, reverse, image, imag
   );
 };
 
-const HistoryPage = () => {
+const MissionVisionPage = () => {
   const bgRef = useRef(null);
   const bgInView = useInView(bgRef, { once: true, amount: 0.1 });
 
@@ -116,10 +115,10 @@ const HistoryPage = () => {
         />
         <Container className={styles.heroContent}>
           <motion.p className={styles.heroEyebrow} variants={fadeUp}>Est. 1963</motion.p>
-          <motion.h1 className={styles.heroTitle} variants={fadeUp} custom={0.1}>BTA Profile</motion.h1>
+          <motion.h1 className={styles.heroTitle} variants={fadeUp} custom={0.1}>Mission & Vision</motion.h1>
           <motion.div className={styles.heroDivider} variants={fadeUp} custom={0.15} />
           <motion.p className={styles.heroDesc} variants={fadeUp} custom={0.2}>
-            Who We Are, Our Mission, and Our Vision
+            Our Mission, and Our Vision
           </motion.p>
         </Container>
       </motion.div>
@@ -128,90 +127,35 @@ const HistoryPage = () => {
       <section className={styles.descriptionSection}>
         <Container>
           <Block
-            eyebrow="Who We Are"
-            titlePart1="What"
-            titlePart2="We Are"
-            image={presidentImg}
+            eyebrow="Our Vision"
+            titlePart1="Our"
+            titlePart2="Vision"
+            image={MissionVisionImg}
             imageAlt="BTA activities overview"
             containImage
           >
             <p className={styles.bio}>
-              Bangladesh Tanners Association (BTA) is a nonprofit association of the Tanning Industry in
-              Bangladesh. BTA plays a pivotal role in the industry as it advocates for the tanneries,
-              agents for policy reforms in the interest of their members, the leather sector and in turn
-              the nation. The primary object for which the association is established is to protect,
-              promote and develop the tanning industry in Bangladesh by encouraging co-operation between
-              firms, companies and individuals engaged in the tanning industry. We are also members of the
-              Federation of Bangladesh Chambers of Commerce & Industries (FBCCI), through which we
-              collaborate with various private sector entities to develop the leather sector.
+              Our vision is to establish a compliant and viable leather industry in Bangladsh for sustainable economic growth.
             </p>
           </Block>
-
           <Block
-            eyebrow="Our Mandate"
-            titlePart1="What"
-            titlePart2="We Do"
-            image={AboutUsPicsImg}
-            imageAlt="BTA members at work"
-            reverse
+            eyebrow="Our Mission"
+            titlePart1="Our"
+            titlePart2="Mission"
+            image={MissionVisionImg}
+            imageAlt="BTA activities overview"
+            containImage
           >
             <p className={styles.bio}>
-              BTA is a business association that provides a range of services to its members. We have a
-              total of 809 members: 170 general members are tannery owners with factories scattered across
-              Bangladesh, concentrated mainly in Dhaka, and 649 associate members who commercially export
-              by utilizing the facilities of the tanneries owned by our general members. BTA members are
-              actively engaged in leather manufacturing and export promotion to satisfy international
-              demand, playing a positive role in earning much-needed foreign exchange. It is our
-              responsibility to prepare our members for the economic, environmental and social challenges
-              of the leather tanning business.
+              Develop an economically viable and sustainable tanning environment for tanning industry in Bangladesh.
+Lead the way in industrial development of the leather sector and enabling the leather industry to stay ahead of tomorrow’s challenges and
+Make all possible efforts to strengthen the economy of Bangladesh through exporting leather & goods.
             </p>
-
-            <div className={styles.statsGrid}>
-              <div className={styles.statCard}>
-                <span className={styles.statNumber}>809</span>
-                <span className={styles.statLabel}>Total Members</span>
-              </div>
-              <div className={styles.statCard}>
-                <span className={styles.statNumber}>170</span>
-                <span className={styles.statLabel}>General Members</span>
-              </div>
-              <div className={styles.statCard}>
-                <span className={styles.statNumber}>649</span>
-                <span className={styles.statLabel}>Associate Members</span>
-              </div>
-            </div>
           </Block>
-
-          {/* ── Background / Founders ───────────────────────── */}
-          <motion.div ref={bgRef} className={styles.block} initial="hidden" animate={bgInView ? 'visible' : 'hidden'}>
-            <div className={styles.content}>
-              <motion.h2 className={styles.heading} variants={fadeUp} custom={0.1}>
-                <span className={styles.titlePart2}>Background</span>
-              </motion.h2>
-              <motion.div className={styles.divider} variants={fadeUp} custom={0.15} />
-              <motion.p className={styles.bio} variants={fadeUp} custom={0.2}>
-                Bangladesh Tanners Association came into being in 1963 and was registered on 16th November
-                1964 under the Companies Act 1913. The association was formed under the name Pakistan
-                Tanners Association, and was renamed Bangladesh Tanners Association following independence
-                in 1971. We deeply remember its founding members:
-              </motion.p>
-
-              <motion.div className={styles.foundersGrid} variants={fadeUp} custom={0.3}>
-                {FOUNDERS.map((f) => (
-                  <div className={styles.founder} key={f.name}>
-                    <span className={styles.founderText}>
-                      <span className={styles.founderName}>{f.name}</span>
-                      <span className={styles.founderRole}>{f.role}</span>
-                    </span>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-          </motion.div>
         </Container>
       </section>
     </>
   );
 };
 
-export default HistoryPage;
+export default MissionVisionPage;

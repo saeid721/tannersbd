@@ -333,7 +333,6 @@ const ExecutiveCommitteePage = () => {
       {/* President Section */}
       <section className={styles.presidentSection}>
         <Container>
-          <SectionHeader subtitle="Chairman" title="Club President" centered />
           <div className={styles.presidentWrap}>
             <PresidentCard member={PRESIDENT} index={0} cardRef={presidentCardRef} />
           </div>
@@ -343,7 +342,6 @@ const ExecutiveCommitteePage = () => {
       {/* Committee Members Grid */}
       <section className={styles.section}>
         <Container>
-          <SectionHeader subtitle="2024 – 2026 Term" title="Executive Committee Members" centered />
           <Row className="g-4 justify-content-center">
             {COMMITTEE.map((member, index) => (
               <Col key={index} lg={4} md={6}>

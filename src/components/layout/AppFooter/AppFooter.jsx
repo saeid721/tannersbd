@@ -12,9 +12,9 @@ import styles from './AppFooter.module.scss';
 
 const QUICK_LINKS = [
   { to: '/',            label: 'Home' },
-  { to: '/facilities',  label: 'BTA Profile' },
-  { to: '/leadership',  label: 'Executive Committee' },
-  { to: '/leadership',  label: 'General Member List' },
+  { to: '/about/history',  label: 'BTA Profile' },
+  { to: '/executiveCommittee',  label: 'Executive Committee' },
+  { to: '/generalMemberList',  label: 'General Member List' },
   { to: '/gallery',     label: 'Photo Gallery' },
 ];
 

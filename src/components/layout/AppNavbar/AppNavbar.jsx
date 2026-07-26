@@ -13,11 +13,11 @@ const NAV_ITEMS = [
     type: 'dropdown',
     label: 'About Us',
     items: [
-      { to: '/about/history', label: 'BTA Profile' },
-      { to: '/about/history', label: 'Mission & Vision' },
-      { to: '/about/speech', label: 'Message from Chairman' },
-      { to: '/adviser', label: 'Former Chairman' },
-      { to: '/adviser', label: 'Management Staff' },
+      { to: '/profile', label: 'BTA Profile' },
+      { to: '/missionVision', label: 'Mission & Vision' },
+      { to: '/chairmanSpeech', label: 'Message from Chairman' },
+      { to: '/adviserCommittee', label: 'Former Chairman' },
+      { to: '/adviserCommittee', label: 'Management Staff' },
       { to: '/organogram', label: 'Organogram' },
     ]
   },
@@ -26,7 +26,7 @@ const NAV_ITEMS = [
     label: 'Committee',
     items: [
       { to: '/executiveCommittee', label: 'Executive Committee (2025-2026)' },
-      { to: '/adviser', label: 'Adviser Committee' },
+      { to: '/adviserCommittee', label: 'Adviser Committee' },
     ]
   },
   {
@@ -34,9 +34,9 @@ const NAV_ITEMS = [
     label: 'Member Directory',
     items: [
       { to: '/generalMemberList', label: 'General Member List (2025-2026)' },
-      { to: '/generalMemberList', label: 'Associate Member List (2025-2026)' },
-      { to: '/adviser', label: 'Eligibility to be a BTA member' },
-      { to: '/adviser', label: 'Membership Benefits' },
+      { to: '/associateMemberList', label: 'Associate Member List (2025-2026)' },
+      { to: '/adviserCommittee', label: 'Eligibility to be a BTA member' },
+      { to: '/adviserCommittee', label: 'Membership Benefits' },
     ]
   },
   {

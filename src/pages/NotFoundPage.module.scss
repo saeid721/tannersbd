@@ -1,6 +1,110 @@
 @use '../styles/variables' as *;
 @use '../styles/mixins' as *;
 
+
+// ── Hero ─────────────────────────────────────────────────────
+.hero {
+  position: relative;
+  display: flex;
+  min-height: 30vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+
+  @media (max-width: 576px) {
+    min-height: 22vh;
+  }
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(224, 183, 108, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(224, 183, 108, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, var(--brand-primary-dark) 0%, #2a1804 100%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--brand-primary), var(--brand-primary-dark), var(--brand-primary), transparent);
+    z-index: 1;
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  padding: 5rem 1rem 0rem 1rem;
+
+  @media (max-width: 576px) {
+    padding: 4rem 1.5rem 0.5rem;
+  }
+}
+
+.heroEyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.75rem;
+
+  @media (max-width: 576px) {
+    margin-bottom: 0.1rem;
+  }
+}
+
+.heroTitle {
+  font-family: "Sen", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--brand-white);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  @media (max-width: 992px) {
+    font-size: 2.4rem;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 1.75rem;
+  }
+}
+
+.heroDivider {
+  width: 64px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-primary-dark));
+  margin: 0 auto 0.5rem;
+  border-radius: 2px;
+}
+
+.heroDesc {
+  font-size: .90rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
 .page {
   position: relative;
   min-height: 80vh;

@@ -173,7 +173,7 @@ const AdviserCommitteePage = () => {
         <div className={styles.heroBg} />
         <Container className={styles.heroContent}>
           <p className={styles.heroEyebrow}>Our Leadership</p>
-          <h1 className={styles.heroTitle}>Executive Committee (2025-2026)</h1>
+          <h1 className={styles.heroTitle}>Adviser Committee</h1>
           <div className={styles.heroDivider} />
           <p className={styles.heroDesc}>
             Steering Bangladesh's leather sector toward global standards, sustainable growth, and member excellence.
@@ -184,7 +184,6 @@ const AdviserCommitteePage = () => {
       {/* Committee Members Grid */}
       <section className={styles.section}>
         <Container>
-          <SectionHeader subtitle="2024 – 2026 Term" title="Executive Committee Members" centered />
           <Row className="g-4 justify-content-center">
             {COMMITTEE.map((member, index) => (
               <Col key={index} lg={4} md={6}>

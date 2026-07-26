@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Container } from 'react-bootstrap';
-import styles from './GeneralMemberPage.module.scss';
+import styles from './AssociateMemberPage.module.scss';
 
 // ── Data ──────────────────────────────────────────────────────────
 // Each section = one alphabet group. Add more rows/sections as needed.
@@ -148,7 +148,7 @@ const SectionBlock = ({ section }) => (
   </div>
 );
 
-const GeneralMemberListPage = () => {
+const AssociateMemberListPage = () => {
   const [query, setQuery] = useState('');
 
   const filteredSections = useMemo(() => {
@@ -175,7 +175,7 @@ const GeneralMemberListPage = () => {
         <div className={styles.heroBg} />
         <Container className={styles.heroContent}>
           <p className={styles.heroEyebrow}>Our Members</p>
-          <h1 className={styles.heroTitle}>General Member List (2025-2026)</h1>
+          <h1 className={styles.heroTitle}>Associate Member List (2025-2026)</h1>
           <div className={styles.heroDivider} />
           <p className={styles.heroDesc}>
             The complete directory of Bangladesh Tanners Association member firms, listed alphabetically by
@@ -212,4 +212,4 @@ const GeneralMemberListPage = () => {
   );
 };
 
-export default GeneralMemberListPage;
+export default AssociateMemberListPage;
