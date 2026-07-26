@@ -1,7 +1,7 @@
 // src/pages/members/EligibilityPage.jsx
-import React, { useRef } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { motion, useInView } from 'framer-motion';
+import React from 'react';
+import { Container } from 'react-bootstrap';
+import { motion } from 'framer-motion';
 import styles from './EligibilityPage.module.scss';
 import BcmMemberImgImg from '../../assets/BcmMember.png';
 import GeneralDoc from '../../assets/doc/Application-From-BTA-General.doc?url';
@@ -45,58 +45,8 @@ const fadeInScale = {
 };
 
 
-const Block = ({ eyebrow, titlePart1, titlePart2, children, reverse, image, imageAlt, imageRole, containImage }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
-
-  return (
-    <motion.div ref={ref} className={styles.block} initial="hidden" animate={isInView ? 'visible' : 'hidden'}>
-      <Row className="align-items-center g-3 g-lg-5">
-        <Col lg={5} className={reverse ? 'order-lg-2' : ''}>
-          <motion.div
-            className={`${styles.imageWrapper} ${containImage ? styles.imageWrapperLight : ''}`}
-            variants={fadeInScale}
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.4 }}
-          >
-            <img
-              src={image}
-              className={`${styles.image} ${containImage ? styles.imageContain : ''}`}
-              alt={imageAlt}
-            />
-            {imageRole && (
-              <motion.div
-                className={styles.overlay}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <span className={styles.role}>{imageRole}</span>
-              </motion.div>
-            )}
-          </motion.div>
-        </Col>
-
-        <Col lg={7} className={reverse ? 'order-lg-1' : ''}>
-          <div className={styles.content}>
-            <motion.h2 className={styles.heading} variants={fadeUp} custom={0.1}>
-              <span className={styles.titlePart1}>{titlePart1}</span>{' '}
-              <span className={styles.titlePart2}>{titlePart2}</span>
-            </motion.h2>
-            <motion.div variants={fadeUp} custom={0.2}>
-              {children}
-            </motion.div>
-          </div>
-        </Col>
-      </Row>
-    </motion.div>
-  );
-};
 
 const EligibilityPage = () => {
-  const bgRef = useRef(null);
-  const bgInView = useInView(bgRef, { once: true, amount: 0.1 });
-
   return (
     <>
       {/* ── Hero Section ─────────────────────────────────────── */}
@@ -120,16 +70,29 @@ const EligibilityPage = () => {
       {/* ── Body ─────────────────────────────────────────────── */}
       <section className={styles.descriptionSection}>
         <Container>
-          <p className={styles.bio}>
-              To be a precious member of BTA, please download the form and fill it. Then send it at tanners@net2bd.com other then you may visit our office for your membership.
-            </p>
-          <Block
-            image={BcmMemberImgImg}
-            imageAlt="BTA activities overview"
-            containImage
+          <motion.p
+            className={styles.bio}
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
           >
-            
-          </Block>
+            To be a precious member of BTA, please download the form and fill it. Then send it at tanners@net2bd.com other then you may visit our office for your membership.
+          </motion.p>
+
+          <motion.div
+            className={styles.memberBanner}
+            variants={fadeInScale}
+            initial="hidden"
+            animate="visible"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.4 }}
+          >
+            <img
+              src={BcmMemberImgImg}
+              alt="Become a BTA member"
+              className={styles.memberBannerImage}
+            />
+          </motion.div>
 
           {/* ── Application Forms Download ────────────────── */}
           <div className={styles.downloadBlock}>
