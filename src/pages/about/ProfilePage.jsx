@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { motion, useInView } from 'framer-motion';
 import styles from './ProfilePage.module.scss';
 import presidentImg from '../../assets/services-BTA.jpg';
-import aboutUsPicsImg from '../../assets/aboutUsPics.jpg';
+import aboutUsImg from '../../assets/AboutUs.jpg';
 
 const FOUNDERS = [
   { name: 'Wahidul Hader Chowdhury', role: 'Proprietor, M/S Milon Tannery' },
@@ -151,7 +151,7 @@ const ProfilePage = () => {
             eyebrow="Our Mandate"
             titlePart1="What"
             titlePart2="We Do"
-            image={aboutUsPicsImg}
+            image={aboutUsImg}
             imageAlt="BTA members at work"
             reverse
           >
