@@ -17,28 +17,28 @@ const NEWS = [
     image: img1,
     title: 'বগুড়ায় “কাঁচা চামড়ার গুণগত মান রক্ষায় লেস্-কাট নিয়ন্ত্রণ এবং সঠিক পদ্ধতিতে চামড়া সংগ্রহ, সংরক্ষণ ও পরিবহণ” শীর্ষক কর্মশালা অনুষ্ঠিত',
     desc: 'বিটিএ ও এলএসবিপিসি, বাণিজ্য মন্ত্রাণালয় এর যৌথ উদ্যোগে ২৮ এপ্রিল, ২০২৬ তারিখে বগুড়ায় “কাঁচা চামড়ার গুণগত মান রক্ষায় লেস্-কাট নিয়ন্ত্রণ এবং.....',
-    link: 'http://www.tannersbd.com/?page_id=752',
+    link: '',
   },
   {
     id: 2,
     image: img2,
     title: 'গাইবান্ধায় “কাঁচা চামড়ার গুণগত মান রক্ষায় লেস্-কাট নিয়ন্ত্রণ এবং সঠিক পদ্ধতিতে চামড়া সংগ্রহ, সংরক্ষণ ও পরিবহণ” শীর্ষক কর্মশালা অনুষ্ঠিত',
     desc: 'বিটিএ ও এলএসবিপিসি, বাণিজ্য মন্ত্রাণালয় এর যৌথ উদ্যোগে ২৭ এপ্রিল, ২০২৬ তারিখে পলাশবাড়ী, গাইবান্ধায় “কাঁচা চামড়ার গুণগত মান রক্ষায় লেস্-কাট নিয়ন্ত্রণ এবং.....',
-    link: 'http://www.tannersbd.com/?page_id=752',
+    link: '',
   },
   {
     id: 3,
     image: img3,
     title: 'জয়পুরহাটে “কাঁচা চামড়ার গুণগত মান রক্ষায় লেস্-কাট নিয়ন্ত্রণ এবং সঠিক পদ্ধতিতে চামড়া সংগ্রহ, সংরক্ষণ ও পরিবহণ” শীর্ষক কর্মশালা অনুষ্ঠিত',
     desc: 'বিটিএ ও এলএসবিপিসি, বাণিজ্য মন্ত্রাণালয় এর যৌথ উদ্যোগে ২৬ এপ্রিল, ২০২৬ তারিখে জয়পুরহাটে “কাঁচা চামড়ার গুণগত মান রক্ষায় লেস্-কাট নিয়ন্ত্রণ এবং.....',
-    link: 'http://www.tannersbd.com/?page_id=752',
+    link: '',
   },
   {
     id: 4,
     image: img4,
     title: 'Their Excellencies, the Ambassadors of the EU, Germany, and Italy to Bangladesh, visited the Tannery Industrial Estate, Dhaka',
     desc: 'H.E. Mr. Michael Miller Ambassador and Head of Delegation of the European Union to Bangladesh, H.E. Mr. Dr. Rüdiger Lotz Ambassador.....',
-    link: 'http://www.tannersbd.com/?page_id=752',
+    link: '',
   },
 ];
 
@@ -125,7 +125,7 @@ const NewsSection = () => {
                     }}
                   >
                     {/* Full card image */}
-                    <Link to="/news" className={styles.cardImageWrapper}>
+                    <Link to={`/news/${facility.id}`} className={styles.cardImageWrapper}>
                       <motion.img
                         src={facility.image}
                         alt={facility.title}
@@ -146,7 +146,7 @@ const NewsSection = () => {
                           delay: index * 0.08 + 0.3
                         }}
                       >
-                        <Link to="/facilities" className={styles.cardTitleLink}>
+                        <Link to={`/news/${facility.id}`} className={styles.cardTitleLink}>
                           {facility.title}
                         </Link>
                       </motion.h3>
@@ -174,7 +174,7 @@ const NewsSection = () => {
                       }}
                       whileHover={{ x: 8 }}
                     >
-                      <Link to="/facilities" className={styles.cardLink}>
+                      <Link to={`/news/${facility.id}`} className={styles.cardLink}>
                         Read More 
                         <motion.span
                           initial={{ x: 0 }}
