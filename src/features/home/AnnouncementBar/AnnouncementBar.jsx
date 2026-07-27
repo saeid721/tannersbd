@@ -3,11 +3,10 @@ import styles from './AnnouncementBar.module.scss';
 
 // ─── Static Announcements ──────────────────────────────────────────
 const MESSAGES = [
-  'Bangladesh Leather & Footwear Expo (BLF) — Sept. 24-26, 2026 at ICCB, Dhaka.',
-  'Membership renewal for 2026 is now open. Contact the BTA office for details.',
-  'BTA General Meeting scheduled — check the Notice page for date and venue.',
-  'New members are welcome to join the Bangladesh Tanners Association.',
-  'Visit our Gallery for highlights from previous industry events.',
+  'LWG সনদ অর্জনে ট্যানারি প্রস্তুত করণের লক্ষ্যে “Validation Workshop”- এর আয়োজন ',
+  '“কাঁচা চামড়ার গুণগত মান রক্ষায় লেস-কাট নিয়ন্ত্রণ এবং সঠিক পদ্ধতিতে চামড়া সংগ্রহ, সংরক্ষণ ও পরিবহন” শীর্ষক কর্মশালা ',
+  '“দূষণ নিয়ন্ত্রণ ও সবুজ শিল্পায়নে সচেতনতা” বিষয়ক আলোচনা সভা ',
+  '  এস, এ, এফ ইন্ডাস্ট্রিজ লিঃ – এ “LWG সনদ অর্জন পরবর্তী করনীয়” শীর্ষক কর্মশালা',
 ];
 
 // ─── Announcement Top Bar ─────────────────────────────────────────
@@ -16,11 +15,13 @@ const AnnouncementBar = () => {
 
   return (
     <div className={styles['announcement-bar']}>
-      <div className={styles['announcement-bar__track']}>
-        {/* Duplicate for seamless loop */}
-        {[...MESSAGES, ...MESSAGES].map((msg, i) => (
-          <span key={i} className={styles['announcement-bar__slide']}>{msg}</span>
-        ))}
+      <span className={styles['announcement-bar__label']}>Recent News:</span>
+      <div className={styles['announcement-bar__viewport']}>
+        <div className={styles['announcement-bar__track']}>
+          {[...MESSAGES, ...MESSAGES].map((msg, i) => (
+            <span key={i} className={styles['announcement-bar__slide']}>{msg}</span>
+          ))}
+        </div>
       </div>
     </div>
   );

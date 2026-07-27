@@ -15,21 +15,21 @@ const FACILITIES = [
     image: img1,
     title: 'History',
     desc: 'Bangladesh Tanners Association came into being in the year 1963. It’s registration no- 2256 EP under the companies Act 1913.',
-    link: 'http://www.tannersbd.com/?page_id=752',
+    link: 'profile',
   },
   {
     id: 2,
     image: img2,
     title: 'Become a BTA Member',
     desc: 'To become a BTA Member, please',
-    link: 'http://www.tannersbd.com/?page_id=752',
+    link: 'eligibility',
   },
   {
     id: 3,
     image: img3,
     title: 'Area of BTA',
     desc: '',
-    link: 'http://www.tannersbd.com/?page_id=752',
+    link: 'areaOfBta',
   },
 ];
 
@@ -149,7 +149,7 @@ const FacilitiesPreview = () => {
                       }}
                       whileHover={{ x: 8 }}
                     >
-                      <Link to="/facilities" className={styles.cardLink}>
+                      <Link to={`/${facility.link}`} className={styles.cardLink}>
                         Read More 
                         <motion.span
                           initial={{ x: 0 }}

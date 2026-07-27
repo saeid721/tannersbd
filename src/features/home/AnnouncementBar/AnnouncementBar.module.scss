@@ -3,37 +3,60 @@
 .announcement-bar {
   width: 100%;
   background: var(--brand-secondary-bg);
-  color: var(--brand-secondary);
-  font-size: 1.50rem;
-  font-weight: 400;
-  text-align: center;
-  height: 60px;
+  color: var(--red);
+  height: 52px;
   display: flex;
   align-items: center;
-  justify-content: center;
   overflow: hidden;
   position: relative;
   border-top: 1px solid var(--brand-secondary-soft);
   border-bottom: 1px solid var(--brand-secondary-soft);
+  padding: 0 1.25rem;
+  gap: 1rem;
 
-  &__text {
-    padding: 0 1rem;
+  &__label {
+    flex-shrink: 0;
+    font-size: 1rem;
+    font-weight: 700;
     white-space: nowrap;
+    padding-right: 1rem;
+    border-right: 1px solid var(--brand-secondary-soft);
+
+    @media (max-width: 576px) {
+      font-size: 0.85rem;
+      padding-right: 0.6rem;
+    }
+  }
+
+  &__viewport {
+    flex: 1;
     overflow: hidden;
-    text-overflow: ellipsis;
+    position: relative;
   }
 
   &__track {
     display: flex;
     align-items: center;
     white-space: nowrap;
-    animation: marquee 40s linear infinite;
+    width: max-content;
+    animation: marquee 80s linear infinite;
     &:hover { animation-play-state: paused; }
+
+    @media (max-width: 576px) {
+      animation-duration: 60s;
+    }
   }
 
   &__slide {
-    padding: 0 3rem;
+    padding: 0 2.5rem;
     flex-shrink: 0;
+    font-size: 0.95rem;
+    font-weight: 400;
+
+    @media (max-width: 576px) {
+      font-size: 0.8rem;
+      padding: 0 1.5rem;
+    }
   }
 }
 

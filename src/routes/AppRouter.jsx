@@ -33,6 +33,7 @@ const GeneralMemberListPage        = lazy(() => import('../pages/members/General
 const AssociateMemberListPage        = lazy(() => import('../pages/members/AssociateMemberListPage'));
 const EligibilityPage        = lazy(() => import('../pages/members/EligibilityPage'));
 const MembershipBenefitsPage        = lazy(() => import('../pages/members/MembershipBenefitsPage'));
+const AreaOfBtaPage        = lazy(() => import('../pages/members/AreaOfBtaPage'));
 
 
 // ── Page fallback ────────────────────────────────────────────
@@ -71,6 +72,7 @@ const router = createBrowserRouter([
       { path: 'associateMemberList', element: withSuspense(AssociateMemberListPage) },
       { path: 'eligibility', element: withSuspense(EligibilityPage) },
       { path: 'membershipBenefits', element: withSuspense(MembershipBenefitsPage) },
+      { path: 'areaOfBta', element: withSuspense(AreaOfBtaPage) },
 
       // Core feature pages
       { path: 'facilities', element: withSuspense(FacilitiesPage) },

@@ -12,7 +12,7 @@
   background: transparent !important;
   border: none;
   border-radius: 0;
-  padding: 1rem 2.5rem !important;
+  padding: 0.2rem 2.5rem !important;
   transition: all 0.4s ease;
   box-shadow: none;
   overflow: visible;
@@ -47,7 +47,7 @@
     backdrop-filter: blur(20px) saturate(1.8);
     -webkit-backdrop-filter: blur(20px) saturate(1.8);
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-    padding: 0.6rem 2.5rem !important;
+    padding: 0.2rem 2.5rem !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 
     &::before {
@@ -59,14 +59,14 @@
     top: 0 !important;
     width: 100%;
     border-radius: 0;
-    padding: 0.75rem 1.25rem !important;
+    padding: 0.5rem 1.25rem !important;
 
     &::before {
       height: 140px;
     }
 
     &--scrolled {
-      padding: 0.6rem 1.25rem !important;
+      padding: 0.35rem 1.25rem !important;
     }
   }
 }
@@ -97,14 +97,14 @@
 }
 
 .brandLogo {
-  height: 46px;
+  height: 62px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 
   @media (max-width: 768px) {
-    height: 36px;
+    height: 48px;
   }
 }
 
@@ -157,7 +157,7 @@
 
   @media (max-width: 992px) {
     position: absolute;
-    top: calc(100% + 12px);
+    top: calc(100% - 12px);
     left: 12px;
     right: 12px;
     background: rgba(0, 0, 0, 0.98);

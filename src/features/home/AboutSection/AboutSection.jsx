@@ -108,8 +108,8 @@ const AboutSection = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <span className={styles.titlePart1}>What</span>
-                <span className={styles.titlePart2}>We Are</span>
+                <span className={styles.titlePart1}>WHAT</span>
+                <span className={styles.titlePart2}>WE ARE</span>
               </motion.h2>
 
               {[
