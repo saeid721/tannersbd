@@ -37,7 +37,7 @@ const AboutSection = () => {
               >
                 <motion.img
                   src={imgMain}
-                  alt="Noakhali Club Dhaka waterfront view"
+                  alt="Bangladesh Tanners Association waterfront view"
                   initial={{ scale: 1.1 }}
                   animate={isInView ? { scale: 1 } : { scale: 1.1 }}
                   transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
